@@ -1,0 +1,161 @@
+Last updated May 26, 2005.
+
+Because XML is a platform-independant language, using Java to manipulate it seems a natural choice. In fact, more than one DOM (or more specifically, DOM-like) implementation exists for Java, and the tools necessary for working with it have even been built into the langauge itself as of version 1.4.
+
+As of version 2.0, the Document Object Model defines the ways and means of manipulating a Document object and the objects cotnained by it, but doesn't define any way to create, load, or save (or persist, serialize, or whatever other verb you'd like to use) a Document. In this section, we'll get a feel for how these manipulations work by loading a simple document, making some changes to it, and then using a simple "cheat" to save it back out to a file.
+
+Consider, for example, the following sample file, candy.xml:
+
+<?xml version="1.0"?>
+<candy>
+  <product>Mints</product>
+  <product>Chocolate</product>
+  <product>Circus Peanuts</product>
+</candy>Using the XML capabilities of Java 1.4, we can create a new Document object that represents the data in that file using a DocumentBuilder:
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
+import org.w3c.dom.Document;
+
+public class ShowFile {
+
+    public static void main (String args[]) {
+        File docFile = new File("candy.xml");
+		
+        Document doc = null;
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            doc = db.parse(docFile);
+        } catch (java.io.IOException e) {
+            System.out.println("Can't find the file");
+        } catch (Exception e) {
+            System.out.print("Problem parsing the file.");
+        }
+		
+    }
+}Remember, while this capability does come built into Java, it's not part of the DOM Recommendation. Manipulating the Document object, on the other hand, is part of the recommendation:
+
+...
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+
+public class ShowFile {
+
+    public static void main (String args[]) {
+...
+        } catch (Exception e) {
+            System.out.print("Problem parsing the file.");
+        }
+		
+        Element root = doc.getDocumentElement();
+        System.out.println("The root element is " + root.getNodeName() + ".\n");
+						 
+        NodeList children = root.getChildNodes();
+        System.out.print("There are "+children.getLength()+" child elements.\n");
+        System.out.print("They are: \n");
+
+        for (Node child = root.getFirstChild(); 
+             child != null;
+             child = child.getNextSibling())
+        {
+            if (child.getNodeType() == child.TEXT_NODE){
+                 System.out.println("Text: "+child.getNodeValue());
+            } else if (child.getNodeType() == child.ELEMENT_NODE) {
+                 System.out.println(child.getNodeName()+" = "+
+                          child.getFirstChild().getNodeValue());	
+            }
+        }
+    }
+}To start with, we get a reference to the root element of the document, also called the document element. That element is a Node object, but because it's also an Element it has a name, which we can retrieve using the getNodeName() method.
+
+Next, we can get all of the child nodes of the root element using the getChildNodes() method, which returns a NodeList that includes both the candy elements and the text nodes in between them. We can iterate through that list much as we would iterate through any other list, using methods such as getNextSibling(). Each node has a type, which you can test against fields such as TEXT_NODE and ELEMENT_NODE to determine what it is. That information can be important. For example, an Element node has a nbame, so you can use getNodeName(), but not a value, so you can't use getNodeValue(). The situation is reversed for a Text node.
+
+Note that the text "content" of an element is also the first child of that element, as you can see when we retrieve the text contained within each candy element using first getFirstChild() and then getNodeValue().
+
+DOM also defines the ways in which you can add content to a document:
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.FileOutputStream;
+
+public class ShowFile {
+
+    public static void main (String args[]) {
+...
+            } else if (child.getNodeType() == child.ELEMENT_NODE) {
+                 System.out.println(child.getNodeName()+" = "+child.getFirstChild().getNodeValue());	
+            }
+        }
+		
+        NodeList products = root.getElementsByTagName("product");
+        Element productElement;
+        for (int productNum = 0; productNum < products.getLength(); productNum++) 
+        {
+            productElement = (Element)products.item(productNum);
+
+            productElement.setAttributeNode(doc.createAttribute("productNumber"));
+            productElement.setAttribute("productNumber", ("Product " + productNum));
+
+            String productName = productElement.getFirstChild().getNodeValue();
+            productElement.getFirstChild().setNodeValue(productName.toUpperCase());
+
+            Element updateElement = doc.createElement("updated");
+            java.util.Date rightNow = new java.util.Date();
+            Node updateText = doc.createTextNode(rightNow.toString());
+
+            updateElement.appendChild(updateText);
+            productElement.appendChild(updateElement);
+        }
+	
+    }
+}Here we are creating a NodeList by selecting all of the product elements. For each one, we can create and populate an attribute, then get and set the value of it's text child.
+
+As far as creating a new node, that's a job for the Document object, which carries methods such as createElement() and CreateTextNode(). Once you create and populate these nodes, you can append them to a particular element.
+
+Saving the Document out to a file is another area that unfortunately was left for DOM version 3.0. Once it's in place, you'll be able to create a DOMWriter object and use the writeNode() method. For now, though, it's common to "cheat" and use an XSL transformation without a style sheet to create an "identity transformation" that outputs to a file:
+
+...
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.FileOutputStream;
+
+public class ShowFile {
+
+    public static void main (String args[]) {
+...
+            updateElement.appendChild(updateText);
+            productElement.appendChild(updateElement);
+        }
+
+        try{
+             String outputURL = "output.xml";
+	
+             DOMSource source = new DOMSource(doc);
+             StreamResult result = new StreamResult(new FileOutputStream(outputURL));
+	
+             TransformerFactory transFactory = TransformerFactory.newInstance();
+             Transformer transformer = transFactory.newTransformer();
+
+             transformer.transform(source, result);	
+
+        } catch (Exception e) {
+        	 e.printStackTrace();
+        }
+		
+    }
+}Informit Articles and Sample Chapters | Next SectionPrevious Section

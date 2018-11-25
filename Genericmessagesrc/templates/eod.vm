@@ -1,0 +1,29 @@
+#set ( $eodStatusList=$dataMap.eodStatusList )
+#set ( $batchDetailsList=$dataMap.batchDetailsList )
+EOD STATUS REPORT
+==================
+
+#foreach( $eodRec in $eodStatusList )
+DIVISION ID  =>  $eodRec.DIVISION_ID
+EOD STATUS  =>  #if($eodRec.EOD_STATUS=="S")Success#elseif($eodRec.EOD_STATUS=="F")Failure#end
+
+RAN ON  =>  $eodRec.RAN_ON
+#foreach( $batch in $batchDetailsList )
+#if( ($batch.DIVISION_ID == $eodRec.DIVISION_ID) and ($eodRec.EOD_STATUS==$batch.EOD_STATUS) )
+EOD STOPPED AT BATCH ID  =>  #if( $batch.STOPPED_BATCH != "" )$batch.STOPPED_BATCH#end
+
+STOPPED BATCH CODE  =>  #if( $batch.STOPPED_BATCH_CODE != "" )$batch.STOPPED_BATCH_CODE#end
+
+_____________________________________________________________________________
+BATCH LIST
+_____________________________________________________________________________
+BATCH ID       | BATCH NAME    | ERROR DESCRIPTION
+_____________________________________________________________________________
+#foreach( $batchLog in $batch.FAILED_BATCH_LIST )
+$batchLog.BATCH_ID  | $batchLog.BATCH_NAME                     | #if($batchLog.ERR_DESC!="")$batchLog.ERR_DESC#end   
+
+#end
+#end	
+#end
+
+#end

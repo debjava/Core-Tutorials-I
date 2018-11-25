@@ -1,0 +1,101 @@
+				GenericMessageModule
+				====================
+
+Changelog History
+-----------------
+
+1. Build script genericmessage.xml has been modified to make it lucid.
+
+2. Exta bild script has been added ie build.xml so that a developer can
+   run it with ease.
+
+3. Unused java files have been removed from the source and test directory.
+
+4. New directories have been created in the directory "database".
+   The directories are Sql, Spc,Tables and Types.  The following files
+   should not be used and it should be out of CVS repository.
+   The files are present inside the directory "database".
+   
+		database/script_tables_creation.sql
+		database/table_values_inc.sql
+		database/tables_creation_script_v1.sql
+
+December 12, 2007
+-----------------
+
+The bug no 3389 has been solved. Some files were requested to remove from the CVS repository.
+Code clean up was made and files were committed in the CVS repository. Issue relating to
+dynamic class loading has been resolved.
+
+1. The following files inside the "src" directory have been modified.
+-----------------------------------------------------------------
+com.iit.core.action.ActionProcessor.java
+com.iit.core.bean.CellularAddressDetailsBean.java
+com.iit.core.bean.DatabaseConfigBean.java
+com.iit.core.bean.InternalConfigBean.java
+com.iit.core.bean.MailDetailsBean.java
+com.iit.core.bean.MessageConfigBean.java
+com.iit.core.bean.MessageConfigTableBean.java
+com.iit.core.bean.RuntimeTableConfigBean.java
+com.iit.core.bean.SchedulerConfigBean.java
+com.iit.core.common.Common.java
+com.iit.core.common.CommonDBConstant.java
+com.iit.core.config.DatabaseConfiguration.java
+com.iit.core.config.InternalConfiguration.java
+com.iit.core.config.MessageConfiguration.java
+com.iit.core.config.SchedulerConfiguration.java
+com.iit.core.data.TemplateData.java
+com.iit.core.db.AbstractDAOFactory.java
+com.iit.core.db.MessageDAO.java
+com.iit.core.db.OracleDAOFactory.java
+com.iit.core.db.OracleMessageDAOImpl.java
+com.iit.core.db.SQLProcessor.java
+com.iit.core.loader.AbstractLoadderFactory.java
+com.iit.core.loader.ClassPathLoader.java
+com.iit.core.loader.Loaddable.java
+com.iit.core.msg.data.MessageData.java
+com.iit.core.scheduler.DailyScheduler.java
+com.iit.core.scheduler.Scheduler.java
+com.iit.core.scheduler.SchedulerTask.java
+com.iit.core.util.DatabaseUtil.java
+com.iit.core.util.DataCollector.java
+com.iit.core.util.FileUtil.java
+com.iit.core.util.Security.java
+
+2. The following files inside the "test" directory have been modified.
+-----------------------------------------------------------------
+TestScheduler.java
+TestSchedulerConfiguration.java
+
+3. Minor changes in the build.xml and genericmessage.xml for application building.
+
+4. Removal of jar files from CVS
+   -----------------------------
+	lib/ant.jar
+	lib/commons-beanutils.jar
+	lib/commons-collections.jar
+	lib/commons-dbcp-1.2.2.jar
+	lib/commons-pool-1.2.jar
+	lib/javassist.jar
+	lib/mail.jar
+	lib/ojdbc14.jar
+	lib/xercesImpl.jar
+	lib/xml-apis.jar
+
+5. Removal of properties file from CVS
+   -----------------------------------
+	configuration/applicationlog.properties
+
+
+4. Removal of java files from CVS
+   ------------------------------
+
+	src/com/iit/core/loader/AbstractClassLoader.java
+	src/com/iit/core/loader/JarClassLoader.java
+	src/com/iit/core/loader/JarResources.java
+	src/com/iit/core/loader/Loaddable.java
+	src/com/iit/core/loader/SampleLoader.java
+
+	test/RoughTesting.java
+	test/StopScheduler.java
+	test/TestLoader.java

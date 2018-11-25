@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>It is an autogenrated file meant for Scheduler configuration</comment>
+<entry key="delay">5000</entry>
+<entry key="period">10000</entry>
+</properties>

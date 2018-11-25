@@ -1,0 +1,845 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>JDC Tech Tips: June 27, 2000</title>
+<meta name="collection" content="reference">
+<meta name="description" content="Java Developer Connection Tech Tips - XML Introduction, Using the SAX API, and Using the DOM API.">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="archive" content="false">
+<meta name="date" content="2003-03-22">
+<link rel="stylesheet" href="tt0627_files/default_developer.css">
+
+
+<script type="text/javascript" language="JavaScript" src="tt0627_files/popUp.js"></script>
+<script language="javascript1.2" type="text/javascript" src="tt0627_files/sniff.js"></script>
+<script language="javascript1.2" type="text/javascript" src="tt0627_files/menucontent.js"></script>
+<script language="javascript1.2" type="text/javascript" src="tt0627_files/menucode.js"></script><!--stopindex--></head><body leftmargin="0" topmargin="0" rightmargin="0" onload="prepmenus(); done=true" bgcolor="#ffffff" marginheight="0" marginwidth="0">
+<a name="top"></a>
+<!-- BEGIN MASTHEAD -->
+
+
+<!-- BEGIN A1 COMPONENT V.0 -->
+<div class="a1">
+<div class="a1v0">
+<a href="#skip2content" class="skiplink">Skip to Content</a>
+<span class="toolbarlinks">
+<a href="http://java.sun.com/global/mh/java/">Java</a>
+<a href="http://java.sun.com/global/mh/solaris/" class="dividelink">Solaris</a>
+<a href="http://java.sun.com/global/mh/communities/">Communities</a>
+<a href="http://java.sun.com/global/mh/store/" class="lastlink">Sun Store</a>
+</span>
+<span class="siteid">
+<a href="http://developers.sun.com/global/join_sdn.html" class="firstlink"><b>Join SDN</b></a>
+<a href="http://developers.sun.com/global/my_profile.html">My Profile</a>
+<a href="http://developers.sun.com/global/why_join.html">Why Join?</a>
+</span>
+</div>
+</div>
+<!-- END A1 COMPONENT V.0 -->
+
+<!-- BEGIN A2 COMPONENT V.1 -->
+<div class="a2w0">
+<div class="a2" id="a2v1">
+<div class="a2w1"><div class="a2w2"><div class="a2w3"><div class="a2w4">
+<div class="a2topiclinks">
+<div class="a2search">
+<form action="http://developers.sun.com/search/onesearch/index.jsp" accept-charset="utf-8" method="get">
+<input name="charset" value="utf-8" type="hidden"><input name="col" value="dev-reference" type="hidden">
+<span class="rightarrowwhite">»</span>&nbsp;<a href="http://developers.sun.com/global/search_tips.html">search tips</a>&nbsp;
+<input name="qt" class="searchfield" size="7" onfocus="if( this.value==this.defaultValue ) this.value=;" value="Search">
+<input id="searchbttn" src="tt0627_files/a2_bttn_search.gif" alt="Submit Search" border="0" type="image">
+</form>
+</div>
+<a href="http://java.sun.com/" title="Home Page" id="sunlogo"><img src="tt0627_files/a.gif" alt="Home Page" border="0" height="58" width="98"></a>
+<a href="http://developers.sun.com/" title="Sun Developer Network"><img src="tt0627_files/a.gif" id="venuespacer" alt="Sun Developer Network" border="0" height="33" width="400"></a>
+<ul id="mtopics">
+<li style="background-image: url(/css/a2_menu_off.gif);" id="mtopic1"><a style="text-decoration: none;" id="glink1" class="tpclink a2menu" title="See All APIs" href="http://java.sun.com/global/mh/api/index.html">APIs</a>			<div class="flymenus" style="width: 170px; visibility: hidden;" id="flymenu1">				<div style="background: rgb(53, 85, 107) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><img src="tt0627_files/a.gif" alt="APIs" border="0" height="1" width="1">				<div style="background: rgb(53, 85, 107) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulink1" onmouseover="clrmenu('1_1');" id="1_1" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='Java SE';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://java.sun.com/reference/api/'">					<a href="http://java.sun.com/reference/api/" class="menulink" onfocus="clrmenu('1_1');" id="mlink1_1" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='Java SE';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java SE</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('1_2');" id="1_2" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='Java EE';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://java.sun.com/j2ee/reference/api/'">					<a href="http://java.sun.com/j2ee/reference/api/" class="menulink" onfocus="clrmenu('1_2');" id="mlink1_2" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='Java EE';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java EE</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('1_3');" id="1_3" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='Java ME';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://java.sun.com/j2me/docs/'">					<a href="http://java.sun.com/j2me/docs/" class="menulink" onfocus="clrmenu('1_3');" id="mlink1_3" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='Java ME';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java ME</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('1_4');" id="1_4" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='Java Card';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://java.sun.com/products/javacard/reference/docs/'">					<a href="http://java.sun.com/products/javacard/reference/docs/" class="menulink" onfocus="clrmenu('1_4');" id="mlink1_4" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='Java Card';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java Card</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('1_5');" id="1_5" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='Web Services';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://java.sun.com/webservices/reference/api/'">					<a href="http://java.sun.com/webservices/reference/api/" class="menulink" onfocus="clrmenu('1_5');" id="mlink1_5" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='Web Services';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Web Services</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('1_6');" id="1_6" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='Solaris';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/prodtech/solaris/reference/docs/'">					<a href="http://developers.sun.com/prodtech/solaris/reference/docs/" class="menulink" onfocus="clrmenu('1_6');" id="mlink1_6" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='Solaris';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Solaris</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('1_7');" id="1_7" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='Sun Studio Compilers';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/prodtech/cc/reference/docs/'">					<a href="http://developers.sun.com/prodtech/cc/reference/docs/" class="menulink" onfocus="clrmenu('1_7');" id="mlink1_7" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='Sun Studio Compilers';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Sun Studio Compilers</a>				</div>
+				<div style="width: 150px;" class="menulinks" onmouseover="clrmenu('1_0');" id="1_0" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='APIs (bottom menu link)';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://java.sun.com/reference/api/'">					<a href="http://java.sun.com/reference/api/" class="menulink" onfocus="clrmenu('1_0');" onblur="hideA2(0);" id="mlink1_0" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: APIs';s_prop15=s_pageName;s_prop16='APIs (bottom menu link)';s_lnk=s_co(this);s_gs(s_account);clkd=true;}" title="See All APIs">See All <img src="tt0627_files/a.gif" alt="APIs" border="0" height="1" width="1"></a>»				</div>
+</div>				<table class="menucorners" border="0" cellpadding="0" cellspacing="0" width="170">
+				<tbody><tr>				<td class="cornerBL">&nbsp;</td>				<td class="cornerBR">&nbsp;</td>				</tr>				</tbody></table>			</div>
+<div style="top: 85px; left: -8px; visibility: hidden;" id="offdiv" class="offdivs" onmouseover="hideA2(0);">&nbsp;</div>
+<div style="top: 41px; left: -8px; visibility: hidden;" id="offdivL" class="offdivs" onmouseover="hideA2(0);">&nbsp;</div>
+<div style="top: 38px; left: -8px; visibility: hidden;" id="offdivT" class="offdivs" onmouseover="hideA2(0);">&nbsp;</div>
+<div style="top: 41px; left: 573px; visibility: hidden;" id="offdivR" class="offdivs" onmouseover="hideA2(0);">&nbsp;</div>
+</li>
+<li style="background-image: url(/css/a2_menu_off.gif);" id="mtopic2"><a style="text-decoration: none;" id="glink2" class="tpclink a2menu" title="See All Downloads" href="http://java.sun.com/global/mh/downloads/index.html">Downloads</a>			<div class="flymenus" style="width: 170px; visibility: hidden;" id="flymenu2">				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><img src="tt0627_files/a.gif" alt="Downloads" border="0" height="1" width="1">				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulink1" onmouseover="clrmenu('2_1');" id="2_1" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Java SE';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://java.sun.com/j2se/1.5.0/download.jsp'">					<a href="http://java.sun.com/j2se/1.5.0/download.jsp" class="menulink" onfocus="clrmenu('2_1');" id="mlink2_1" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Java SE';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java SE</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('2_2');" id="2_2" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Java EE';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://java.sun.com/javaee/downloads/'">					<a href="http://java.sun.com/javaee/downloads/" class="menulink" onfocus="clrmenu('2_2');" id="mlink2_2" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Java EE';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java EE</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('2_3');" id="2_3" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Java ME';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://java.sun.com/j2me/download.html'">					<a href="http://java.sun.com/j2me/download.html" class="menulink" onfocus="clrmenu('2_3');" id="mlink2_3" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Java ME';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java ME</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('2_4');" id="2_4" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Solaris';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/prodtech/solaris/downloads/'">					<a href="http://developers.sun.com/prodtech/solaris/downloads/" class="menulink" onfocus="clrmenu('2_4');" id="mlink2_4" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Solaris';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Solaris</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('2_5');" id="2_5" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Java Studio Enterprise';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/prodtech/javatools/jsenterprise/downloads/'">					<a href="http://developers.sun.com/prodtech/javatools/jsenterprise/downloads/" class="menulink" onfocus="clrmenu('2_5');" id="mlink2_5" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Java Studio Enterprise';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java Studio Enterprise</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('2_6');" id="2_6" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Java Studio Creator';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/prodtech/javatools/jscreator/downloads/'">					<a href="http://developers.sun.com/prodtech/javatools/jscreator/downloads/" class="menulink" onfocus="clrmenu('2_6');" id="mlink2_6" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Java Studio Creator';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java Studio Creator</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('2_7');" id="2_7" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='NetBeans Mobility Pack';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/prodtech/javatools/mobility/downloads/'">					<a href="http://developers.sun.com/prodtech/javatools/mobility/downloads/" class="menulink" onfocus="clrmenu('2_7');" id="mlink2_7" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='NetBeans Mobility Pack';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">NetBeans Mobility Pack</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('2_8');" id="2_8" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Sun Studio Compilers';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/prodtech/cc/downloads/'">					<a href="http://developers.sun.com/prodtech/cc/downloads/" class="menulink" onfocus="clrmenu('2_8');" id="mlink2_8" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Sun Studio Compilers';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Sun Studio Compilers</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('2_9');" id="2_9" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Early Access';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://java.sun.com/downloads/ea/'">					<a href="http://java.sun.com/downloads/ea/" class="menulink" onfocus="clrmenu('2_9');" id="mlink2_9" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Early Access';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Early Access</a>				</div>
+				<div style="width: 150px;" class="menulinks" onmouseover="clrmenu('2_0');" id="2_0" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Downloads (bottom menu link)';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/resources/downloads.html'">					<a href="http://developers.sun.com/resources/downloads.html" class="menulink" onfocus="clrmenu('2_0');" onblur="hideA2(0);" id="mlink2_0" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Downloads';s_prop15=s_pageName;s_prop16='Downloads (bottom menu link)';s_lnk=s_co(this);s_gs(s_account);clkd=true;}" title="See All Downloads">See All <img src="tt0627_files/a.gif" alt="Downloads" border="0" height="1" width="1"></a>»				</div>
+</div>				<table class="menucorners" border="0" cellpadding="0" cellspacing="0" width="170">
+				<tbody><tr>				<td class="cornerBL">&nbsp;</td>				<td class="cornerBR">&nbsp;</td>				</tr>				</tbody></table>			</div></li>
+<li style="background-image: url(/css/a2_menu_off.gif);" id="mtopic3"><a style="text-decoration: none;" id="glink3" class="tpclink a2menu" title="See All Technologies &amp; Solutions" href="http://java.sun.com/global/mh/tech/index.html">Technologies</a>			<div class="flymenus" style="width: 170px; visibility: hidden;" id="flymenu3">				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><img src="tt0627_files/a.gif" alt="Technologies" border="0" height="1" width="1">				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulink1" onmouseover="clrmenu('3_1');" id="3_1" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Technologies';s_prop15=s_pageName;s_prop16='Java SE';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://java.sun.com/j2se/'">					<a href="http://java.sun.com/j2se/" class="menulink" onfocus="clrmenu('3_1');" id="mlink3_1" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Technologies';s_prop15=s_pageName;s_prop16='Java SE';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java SE</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('3_2');" id="3_2" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Technologies';s_prop15=s_pageName;s_prop16='Java EE';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://java.sun.com/javaee/'">					<a href="http://java.sun.com/javaee/" class="menulink" onfocus="clrmenu('3_2');" id="mlink3_2" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Technologies';s_prop15=s_pageName;s_prop16='Java EE';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java EE</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('3_3');" id="3_3" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Technologies';s_prop15=s_pageName;s_prop16='Java ME';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://java.sun.com/j2me/'">					<a href="http://java.sun.com/j2me/" class="menulink" onfocus="clrmenu('3_3');" id="mlink3_3" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Technologies';s_prop15=s_pageName;s_prop16='Java ME';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java ME</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('3_4');" id="3_4" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Technologies';s_prop15=s_pageName;s_prop16='Solaris';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/prodtech/solaris/'">					<a href="http://developers.sun.com/prodtech/solaris/" class="menulink" onfocus="clrmenu('3_4');" id="mlink3_4" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Technologies';s_prop15=s_pageName;s_prop16='Solaris';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Solaris</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('3_5');" id="3_5" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Technologies';s_prop15=s_pageName;s_prop16='Mobility';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/techtopics/mobility/'">					<a href="http://developers.sun.com/techtopics/mobility/" class="menulink" onfocus="clrmenu('3_5');" id="mlink3_5" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Technologies';s_prop15=s_pageName;s_prop16='Mobility';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Mobility</a>				</div>
+				<div style="width: 150px;" class="menulinks" onmouseover="clrmenu('3_0');" id="3_0" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Technologies';s_prop15=s_pageName;s_prop16='Technologies (bottom menu link)';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/global/mh/tech/index.html'">					<a href="http://developers.sun.com/global/mh/tech/index.html" class="menulink" onfocus="clrmenu('3_0');" onblur="hideA2(0);" id="mlink3_0" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Technologies';s_prop15=s_pageName;s_prop16='Technologies (bottom menu link)';s_lnk=s_co(this);s_gs(s_account);clkd=true;}" title="See All Technologies">See All <img src="tt0627_files/a.gif" alt="Technologies" border="0" height="1" width="1"></a>»				</div>
+</div>				<table class="menucorners" border="0" cellpadding="0" cellspacing="0" width="170">
+				<tbody><tr>				<td class="cornerBL">&nbsp;</td>				<td class="cornerBR">&nbsp;</td>				</tr>				</tbody></table>			</div></li>
+<li style="background-image: url(/css/a2_menu_off.gif);" id="mtopic4"><a style="text-decoration: none;" id="glink4" class="tpclink a2menu" title="See All Products" href="http://java.sun.com/global/mh/products/index.html">Products</a>			<div class="flymenus" style="width: 170px; top: 85px; left: 305px; visibility: hidden;" id="flymenu4">				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><img src="tt0627_files/a.gif" alt="Products" border="0" height="1" width="1">				<div style="border-top: 1px solid rgb(53, 85, 107); background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulink1" onmouseover="clrmenu('4_1');" id="4_1" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Products';s_prop15=s_pageName;s_prop16='Java Studio Creator';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/prodtech/javatools/jscreator/'">					<a style="text-decoration: none;" href="http://developers.sun.com/prodtech/javatools/jscreator/" class="menulink" onfocus="clrmenu('4_1');" id="mlink4_1" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Products';s_prop15=s_pageName;s_prop16='Java Studio Creator';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java Studio Creator</a>				</div>
+				<div style="border-top: 1px solid rgb(163, 184, 203); background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('4_2');" id="4_2" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Products';s_prop15=s_pageName;s_prop16='Java Studio Enterprise';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/prodtech/javatools/jsenterprise/'">					<a style="text-decoration: none;" href="http://developers.sun.com/prodtech/javatools/jsenterprise/" class="menulink" onfocus="clrmenu('4_2');" id="mlink4_2" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Products';s_prop15=s_pageName;s_prop16='Java Studio Enterprise';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java Studio Enterprise</a>				</div>
+				<div style="border-top: 1px solid rgb(163, 184, 203); background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('4_3');" id="4_3" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Products';s_prop15=s_pageName;s_prop16='NetBeans Mobility Packs';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/prodtech/javatools/mobility/'">					<a style="text-decoration: none;" href="http://developers.sun.com/prodtech/javatools/mobility/" class="menulink" onfocus="clrmenu('4_3');" id="mlink4_3" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Products';s_prop15=s_pageName;s_prop16='NetBeans Mobility Packs';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">NetBeans Mobility Packs</a>				</div>
+				<div style="border-top: 1px solid rgb(163, 184, 203); background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('4_4');" id="4_4" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Products';s_prop15=s_pageName;s_prop16='Sun Studio Compilers';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/prodtech/cc/'">					<a style="text-decoration: none;" href="http://developers.sun.com/prodtech/cc/" class="menulink" onfocus="clrmenu('4_4');" id="mlink4_4" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Products';s_prop15=s_pageName;s_prop16='Sun Studio Compilers';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Sun Studio Compilers</a>				</div>
+				<div style="border-top: 1px solid rgb(163, 184, 203); background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('4_5');" id="4_5" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Products';s_prop15=s_pageName;s_prop16='Java Enterprise Systems';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/prodtech/devtools/javaes/'">					<a style="text-decoration: none;" href="http://developers.sun.com/prodtech/devtools/javaes/" class="menulink" onfocus="clrmenu('4_5');" id="mlink4_5" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Products';s_prop15=s_pageName;s_prop16='Java Enterprise Systems';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Java Enterprise Systems</a>				</div>
+				<div style="border-top: 1px solid rgb(163, 184, 203); width: 150px; background-color: rgb(53, 85, 107);" class="menulinks" onmouseover="clrmenu('4_0');" id="4_0" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Products';s_prop15=s_pageName;s_prop16='Products (bottom menu link)';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/global/mh/products/index.html'">					<a style="text-decoration: none;" href="http://developers.sun.com/global/mh/products/index.html" class="menulink" onfocus="clrmenu('4_0');" onblur="hideA2(0);" id="mlink4_0" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Products';s_prop15=s_pageName;s_prop16='Products (bottom menu link)';s_lnk=s_co(this);s_gs(s_account);clkd=true;}" title="See All Products">See All <img src="tt0627_files/a.gif" alt="Products" border="0" height="1" width="1"></a>»				</div>
+</div>				<table class="menucorners" border="0" cellpadding="0" cellspacing="0" width="170">
+				<tbody><tr>				<td class="cornerBL">&nbsp;</td>				<td class="cornerBR">&nbsp;</td>				</tr>				</tbody></table>			</div></li>
+<li style="background-image: url(/css/a2_menu_off.gif);" id="mtopic5"><a style="text-decoration: none;" id="glink5" class="tpclink a2menu" title="See All Support" href="http://java.sun.com/global/mh/support/index.html">Support</a>			<div class="flymenus" style="width: 170px; visibility: hidden;" id="flymenu5">				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><img src="tt0627_files/a.gif" alt="Support" border="0" height="1" width="1">				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulink1" onmouseover="clrmenu('5_1');" id="5_1" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Support';s_prop15=s_pageName;s_prop16='Forums';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/forums/'">					<a href="http://developers.sun.com/forums/" class="menulink" onfocus="clrmenu('5_1');" id="mlink5_1" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Support';s_prop15=s_pageName;s_prop16='Forums';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Forums</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('5_2');" id="5_2" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Support';s_prop15=s_pageName;s_prop16='Developer Services';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/services/'">					<a href="http://developers.sun.com/services/" class="menulink" onfocus="clrmenu('5_2');" id="mlink5_2" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Support';s_prop15=s_pageName;s_prop16='Developer Services';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Developer Services</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('5_3');" id="5_3" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Support';s_prop15=s_pageName;s_prop16='Big Admin';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://www.sun.com/bigadmin/home/'">					<a href="http://www.sun.com/bigadmin/home/" class="menulink" onfocus="clrmenu('5_3');" id="mlink5_3" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Support';s_prop15=s_pageName;s_prop16='Big Admin';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Big Admin</a>				</div>
+				<div style="width: 150px;" class="menulinks" onmouseover="clrmenu('5_0');" id="5_0" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Support';s_prop15=s_pageName;s_prop16='Support (bottom menu link)';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://developers.sun.com/services/'">					<a href="http://developers.sun.com/services/" class="menulink" onfocus="clrmenu('5_0');" onblur="hideA2(0);" id="mlink5_0" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Support';s_prop15=s_pageName;s_prop16='Support (bottom menu link)';s_lnk=s_co(this);s_gs(s_account);clkd=true;}" title="See All Support">See All <img src="tt0627_files/a.gif" alt="Support" border="0" height="1" width="1"></a>»				</div>
+</div>				<table class="menucorners" border="0" cellpadding="0" cellspacing="0" width="170">
+				<tbody><tr>				<td class="cornerBL">&nbsp;</td>				<td class="cornerBR">&nbsp;</td>				</tr>				</tbody></table>			</div></li>
+<li style="background-image: url(/css/a2_menu_off.gif);" id="mtopic6"><a style="text-decoration: none;" id="glink6" class="tpclink a2menu" title="See All Training" href="http://java.sun.com/global/mh/training/index.html">Training</a>			<div class="flymenus" style="width: 170px; visibility: hidden;" id="flymenu6">				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><img src="tt0627_files/a.gif" alt="Training" border="0" height="1" width="1">				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulink1" onmouseover="clrmenu('6_1');" id="6_1" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Training';s_prop15=s_pageName;s_prop16='Certification';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://www.sun.com/training/certification/index.xml'">					<a href="http://www.sun.com/training/certification/index.xml" class="menulink" onfocus="clrmenu('6_1');" id="mlink6_1" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Training';s_prop15=s_pageName;s_prop16='Certification';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Certification</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('6_2');" id="6_2" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Training';s_prop15=s_pageName;s_prop16='Training';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://www.sun.com/training/'">					<a href="http://www.sun.com/training/" class="menulink" onfocus="clrmenu('6_2');" id="mlink6_2" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Training';s_prop15=s_pageName;s_prop16='Training';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Training</a>				</div>
+				<div style="width: 150px;" class="menulinks" onmouseover="clrmenu('6_0');" id="6_0" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Training';s_prop15=s_pageName;s_prop16='Training (bottom menu link)';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://www.sun.com/training/'">					<a href="http://www.sun.com/training/" class="menulink" onfocus="clrmenu('6_0');" onblur="hideA2(0);" id="mlink6_0" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Training';s_prop15=s_pageName;s_prop16='Training (bottom menu link)';s_lnk=s_co(this);s_gs(s_account);clkd=true;}" title="See All Training">See All <img src="tt0627_files/a.gif" alt="Training" border="0" height="1" width="1"></a>»				</div>
+</div>				<table class="menucorners" border="0" cellpadding="0" cellspacing="0" width="170">
+				<tbody><tr>				<td class="cornerBL">&nbsp;</td>				<td class="cornerBR">&nbsp;</td>				</tr>				</tbody></table>			</div></li>
+<li style="background-image: url(/css/a2_menu_off.gif);" id="mtopic7"><a style="text-decoration: none;" id="glink7" class="tpclink a2menu" title="See All Sun.com" href="http://java.sun.com/global/mh/suncom/index.html">Sun.com</a>			<div class="flymenus" style="width: 170px; visibility: hidden;" id="flymenu7">				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><img src="tt0627_files/a.gif" alt="Sun.com" border="0" height="1" width="1">				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulink1" onmouseover="clrmenu('7_1');" id="7_1" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Sun.com';s_prop15=s_pageName;s_prop16='Products';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://www.sun.com/products/'">					<a href="http://www.sun.com/products/" class="menulink" onfocus="clrmenu('7_1');" id="mlink7_1" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Sun.com';s_prop15=s_pageName;s_prop16='Products';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Products</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('7_2');" id="7_2" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Sun.com';s_prop15=s_pageName;s_prop16='Downloads';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://www.sun.com/download/'">					<a href="http://www.sun.com/download/" class="menulink" onfocus="clrmenu('7_2');" id="mlink7_2" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Sun.com';s_prop15=s_pageName;s_prop16='Downloads';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Downloads</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('7_3');" id="7_3" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Sun.com';s_prop15=s_pageName;s_prop16='Services & Solutions';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://www.sun.com/servicessolutions/'">					<a href="http://www.sun.com/servicessolutions/" class="menulink" onfocus="clrmenu('7_3');" id="mlink7_3" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Sun.com';s_prop15=s_pageName;s_prop16='Services & Solutions';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Services &amp; Solutions</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('7_4');" id="7_4" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Sun.com';s_prop15=s_pageName;s_prop16='Support';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://sunsolve.sun.com/pub-cgi/show.pl?target=tous'">					<a href="http://sunsolve.sun.com/pub-cgi/show.pl?target=tous" class="menulink" onfocus="clrmenu('7_4');" id="mlink7_4" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Sun.com';s_prop15=s_pageName;s_prop16='Support';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Support</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('7_5');" id="7_5" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Sun.com';s_prop15=s_pageName;s_prop16='Training';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://www.sun.com/training/'">					<a href="http://www.sun.com/training/" class="menulink" onfocus="clrmenu('7_5');" id="mlink7_5" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Sun.com';s_prop15=s_pageName;s_prop16='Training';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">Training</a>				</div>
+				<div style="background: rgb(53, 85, 107) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="menulinks" onmouseover="clrmenu('7_6');" id="7_6" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Sun.com';s_prop15=s_pageName;s_prop16='About Sun';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://www.sun.com/aboutsun/'">					<a href="http://www.sun.com/aboutsun/" class="menulink" onfocus="clrmenu('7_6');" id="mlink7_6" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Sun.com';s_prop15=s_pageName;s_prop16='About Sun';s_lnk=s_co(this);s_gs(s_account);clkd=true;}">About Sun</a>				</div>
+				<div style="width: 150px;" class="menulinks" onmouseover="clrmenu('7_0');" id="7_0" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Sun.com';s_prop15=s_pageName;s_prop16='Sun.com (bottom menu link)';s_lnk=s_co(this);s_gs(s_account);clkd=true;}document.location = 'http://www.sun.com/'">					<a href="http://www.sun.com/" class="menulink" onfocus="clrmenu('7_0');" onblur="hideA2(0);" id="mlink7_0" onclick="if(!clkd){s_linkType='o';s_linkName='Masthead Menu: Sun.com';s_prop15=s_pageName;s_prop16='Sun.com (bottom menu link)';s_lnk=s_co(this);s_gs(s_account);clkd=true;}" title="See All Sun.com">See All <img src="tt0627_files/a.gif" alt="Sun.com" border="0" height="1" width="1"></a>»				</div>
+</div>				<table class="menucorners" border="0" cellpadding="0" cellspacing="0" width="170">
+				<tbody><tr>				<td class="cornerBL">&nbsp;</td>				<td class="cornerBR">&nbsp;</td>				</tr>				</tbody></table>			</div></li>
+</ul>
+</div>
+</div></div></div></div>
+</div></div>
+<!-- END A2 COMPONENT V.1 -->
+
+
+
+<!-- END MASTHEAD -->
+<!-- BEGIN BREADCRUMB -->
+<table class="vatop" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td>      
+<div class="breadcrumb">
+<a href="http://developers.sun.com/index.html">Developers Home</a> &gt; <a href="http://developers.sun.com/prodtech/index.html">Products &amp; Technologies</a> &gt; <a href="http://java.sun.com/index.jsp">Java Technology</a> &gt; <a href="http://java.sun.com/j2se/index.jsp">Java Platform, Standard Edition (Java SE)</a> &gt; <a href="http://java.sun.com/j2se/reference/index.html">Reference</a> &gt; <a href="http://java.sun.com/j2se/reference/techart/index.html">Technical Articles and Tips</a> &gt;
+</div>
+</td>
+<td align="right" nowrap="nowrap"><div class="breadcrumb">
+</div></td></tr>
+<tr><td colspan="2"><img src="tt0627_files/a.gif" alt=" " border="0" height="1" width="770"></td></tr>
+</tbody></table>
+<span class="sp5">&nbsp;</span><br>     
+<!-- END BREADCRUMB -->
+<!-- BEGIN PAGETITLE -->
+<div class="pagetitle2">Technical Articles and Tips</div>
+<div class="pagetitle">JDC Tech Tips: June 27, 2000</div>
+<!-- END PAGETITLE -->
+<!-- BEGIN WRAPPER TABLE, 1 COLUMN, MAIN -->
+<table border="0" cellpadding="10" cellspacing="0" width="100%">
+<tbody><tr><td valign="top" width="100%">
+<!-- BEGIN CENTRAL COLUMN COMPONENTS -->
+<!--startindex-->
+<!-- ============ -->
+<!-- MAIN CONTENT -->
+<!-- ============ -->
+<a name="skip2content"></a>
+<!--  BEGIN VCD4 PFV  -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="smaller" valign="top"><em></em></td>
+<td width="10">&nbsp;</td>
+<td align="right" valign="bottom"><div class="sitelinks" style="padding: 0px;">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td align="right" valign="bottom">&nbsp;</td>
+<td class="smaller" nowrap="nowrap" valign="bottom"><a href="http://java.sun.com/jsp_utils/PrintPage.jsp" target="printFriendlyView" onclick="openPopup('','printFriendlyView',710,650,'no',1,1,0,0,0,0); return true;"><img src="tt0627_files/ic_print.gif" alt="Print-friendly Version" border="0" height="12" hspace="4" width="14">Print-friendly Version</a><br></td>
+</tr></tbody></table></div>
+</td></tr>
+</tbody></table>
+<!--  END VCD4 PFV -->
+<!-- ================== -->
+<!-- Start Main Content -->
+<!-- ================== -->
+<p>
+<a href="http://java.sun.com/developer/TechTips/index.html">Tech Tips archive</a>
+</p>
+<p>
+</p>
+<p>
+<i>June 27, 2000</i>
+</p>
+<p>
+WELCOME to the Java Developer Connection 
+(JDC) Tech Tips, 
+June 27, 2000. This issue is covers some aspects of using the Java<sup><font size="-2">TM</font></sup> programming language with XML. First there's a short 
+introduction to XML, followed by tips on how to use two APIs designed for use 
+with XML. 
+</p>
+<p>
+This issue of the JDC Tech Tips is written by Stuart Halloway,
+a Java specialist at <a href="http://www.develop.com/java">DevelopMentor 
+</a>.
+</p>
+<ul>
+<li>
+<a href="#tip1">XML Introduction</a></li>
+<li>
+<a href="#tip2">Using the SAX API</a></li>
+<li>
+<a href="#tip3">Using the DOM API</a></li>
+</ul>
+<p>   
+<!--TIP ONE -->
+<a name="tip1"></a>
+</p><h3>
+<!-- BEGIN FRAGMENT | HR TAG -->
+<div class="contentdivider"><table class="grey4" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td><img src="tt0627_files/a.gif" alt=" " border="0" height="4" width="1"></td></tr></tbody></table></div>
+<!-- END FRAGMENT | HR TAG -->
+XML INTRODUCTION</h3>
+
+<p>     
+XML INTRODUCTION
+</p>
+<p>
+The Extensible Markup Language (XML) is a way of specifying the 
+content elements of a page to a Web browser. XML is syntactically 
+similar to HTML. In fact, XML can be used in many of the places 
+in which HTML is used today. Here's an example. Imagine that the 
+JDC Tech Tip index was stored in XML instead of HTML. Instead of 
+HTML coding such as this:
+</p>
+<!-- BEGIN VCD7 CODE SAMPLE COMPONENT  -->
+<table class="grey4" border="0" cellpadding="10" cellspacing="0" width="100%">
+<tbody><tr><td><pre>&lt;html&gt;
+&lt;body&gt;
+&lt;h1&gt;JDC Tech Tip Index&lt;/h1&gt;
+&lt;ol&gt;&lt;li&gt;
+&lt;a href="/developer/TechTips/2000/tt0509.html#tip1"&gt;
+Random Access for Files
+&lt;/a&gt;
+&lt;/li&gt;&lt;/ol&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></tbody></table>
+<span class="sp20"> </span><br>
+<!-- END VCD7 CODE SAMPLE COMPONENT  -->
+<p>
+It might look something like this:
+</p>
+<!-- BEGIN VCD7 CODE SAMPLE COMPONENT  -->
+<table class="grey4" border="0" cellpadding="10" cellspacing="0" width="100%">
+<tbody><tr><td><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;tips&gt;
+&lt;author id="glen" fullName="Glen McCluskey"/&gt;
+&lt;tip title="Random Access for Files"
+     author="glen"
+     htmlURL="/developer/TechTips/2000/tt0509.html#tip1"
+     textURL="/developer/TechTips/txtarchive/May00_GlenM.txt"&gt;
+&lt;/tip&gt;
+&lt;/tips&gt;
+</pre></td></tr></tbody></table>
+<span class="sp20"> </span><br>
+<!-- END VCD7 CODE SAMPLE COMPONENT  -->
+<p>
+Notice the coding similarities between XML and HTML. In each case,
+the document is organized as a hierarchy of elements, where each
+element is demarcated by angle brackets. As is true for most HTML
+elements, each XML element consists of a start tag, followed by 
+some data, followed by an end tag:
+</p>
+<pre>&lt;element&gt;element data&lt;/element&gt;
+</pre>
+<p>
+Also as in HTML, XML elements can be annotated with attributes. 
+In the XML example above, each &lt;tip&gt; element has several 
+attributes. The 'title' attribute is the name of the tip, the 
+'author' attribute gives a short form of the author's name, and 
+the 'htmlURL' and 'textURL' attributes contain links to different 
+archived formats of the tip.  
+</p>
+<p>
+The similarities between the two markup languages is an important 
+advantage as the world moves to XML, because hard-earned HTML 
+skills continue to be useful. However, it does  beg the question 
+"Why bother to switch to XML at all?" To answer this question, 
+look again at the XML example above, and this time consider the 
+semantics instead of the syntax. Where HTML tells you how to format 
+a document, XML tells you about the content of the document. This 
+capability is very powerful. In an XML world, clients can 
+reorganize data in a way most useful to them. They are not 
+restricted to the presentation format delivered by the server. 
+Importantly, the XML format has been designed for the convenience 
+of parsers, without sacrificing readability. XML imposes strong 
+guarantees about the structure of documents. To name a few: begin 
+tags must have end tags, elements must nest properly, and all 
+attributes must have values. This strictness makes parsing and 
+transforming XML much more reliable than attempting to manipulate 
+HTML.
+</p>
+<p>
+The similarities between XML and HTML stem from a shared history.  
+HTML is a simplified vocabulary of a powerful markup language 
+called SGML. SGML is the "kitchen sink" of markup, allowing you 
+to do almost anything, including the ability to define your own 
+domain-specific vocabularies. HTML is a dim shadow of SGML, with 
+a predefined vocabulary. Thus HTML is basically a static snapshot 
+of some presentation features that seemed useful circa 1992. Both 
+SGML and HTML are problematic: SGML does everything, but is too 
+complex. HTML is simple, but its parsing rules are loose, and its 
+vocabulary does not provide a standard mechanism for extension. 
+XML, by comparison, is a streamlined version of SGML. It aims to 
+meet the most important objectives of SGML without too much 
+complexity. If SGML is the "kitchen sink," XML is a "Swiss Army 
+knife."  
+</p>
+<p>
+Given its advantages, XML does far more than simply displace HTML 
+in some applications. It can also displace SGML, and open new 
+opportunities where the complexity of SGML had been a barrier.  
+Regardless of how you plan to use XML, the programming language of 
+choice is likely to be the Java programming language. You could 
+write your own code to parse XML directly, the Java language 
+provides higher level tools to parse XML documents through the 
+the Simple API for XML (SAX) and the Document Object Model (DOM) 
+interfaces. The SAX and DOM parsers are standards that are 
+implemented in several different languages.  In the Java 
+programming language, you can instantiate the parsers by using the 
+Java API for XML Parsing (JAXP). 
+</p>
+<p>
+To execute the code in this tip, you will need to <a href="http://java.sun.com/xml/download.html">download JAXP 
+and a reference implementation of the SAX and DOM parsers</a>. You will also 
+need to 
+download <a href="http://www.megginson.com/SAX/Java">SAX 2.0</a>. Remember
+to update your class path to include the jaxp, parser, and sax2 
+JAR files.
+</p>
+<p>
+<!--TIP TWO -->
+<a name="tip2"></a>
+</p><h3>
+<!-- BEGIN FRAGMENT | HR TAG -->
+<div class="contentdivider"><table class="grey4" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td><img src="tt0627_files/a.gif" alt=" " border="0" height="4" width="1"></td></tr></tbody></table></div>
+<!-- END FRAGMENT | HR TAG -->
+USING THE SAX API
+</h3>
+
+<p>
+The SAX API provides a serial mechanism for accessing XML 
+documents. It was developed by members of the XML-DEV mailing list 
+as a standard set of interfaces to allow different vendor 
+implementations. The SAX model allows for simple parsers by 
+allowing parsers to read through a document in a linear way, and 
+then to call an event handler every time a markup event occurs. 
+The original SAX implementation was released in May 1998. It was 
+superseded by SAX 2.0 in May 2000. (The code is this tip is SAX2 
+compliant.)  
+</p>
+<p>
+All you have to do to use SAX2 for notification of markup events,
+is implement a few methods and interfaces. The <code>ContentHandler</code>
+interface is the most important of these interfaces. It declares 
+a number of methods for different steps in parsing an XML document. 
+In many cases, you will only be interested in few of these methods.  
+For example, the code below handles only a single <code>ContentHandler</code>
+method <code>(startElement)</code>, and uses it to build an HTML page from the 
+XML Tech Tip Index: 
+</p>
+<!-- BEGIN VCD7 CODE SAMPLE COMPONENT  -->
+<table class="grey4" border="0" cellpadding="10" cellspacing="0" width="100%">
+<tbody><tr><td><pre>import java.io.*;
+import java.net.*;
+import java.util.*;
+import javax.xml.parsers.*;
+import org.xml.sax.*;
+import org.xml.sax.helpers.*;
+/**
+ * Builds a simple HTML page which lists tip titles 
+ * and provides links to HTML and text versions
+ */
+public class UseSAX2 extends DefaultHandler {
+    StringBuffer htmlOut;
+
+    public String toString() {
+        if (htmlOut != null)
+            return htmlOut.toString();
+        return super.toString();    
+    }
+    
+    public void startElement(String namespace, 
+                            String localName, 
+                            String qName,
+                            Attributes atts) {
+        if (localName.equals("tip")) 
+        {
+            String title = atts.getValue("title");
+            String html = atts.getValue("htmlURL");
+            String text = atts.getValue("textURL");
+            htmlOut.append("&lt;br&gt;");
+            htmlOut.append("&lt;A HREF=");
+            htmlOut.append(html);
+            htmlOut.append(
+              "&gt;HTML&lt;/A&gt; &lt;A HREF=");
+            htmlOut.append(text);
+            htmlOut.append("&gt;TEXT&lt;/A&gt; ");           
+            htmlOut.append(title);
+        }
+    }
+    
+    public void processWithSAX(String urlString) 
+      throws Exception {
+        System.out.println("Processing URL " + 
+          urlString);
+        htmlOut = new StringBuffer(
+          "&lt;HTML&gt;&lt;BODY&gt;&lt;H1&gt;JDC 
+            Tech Tips Archive&lt;/H1&gt;");
+        SAXParserFactory spf = 
+          SAXParserFactory.newInstance();
+        SAXParser sp = spf.newSAXParser();
+        ParserAdapter pa = 
+          new ParserAdapter(sp.getParser());
+        pa.setContentHandler(this);
+        pa.parse(urlString);
+        htmlOut.append("&lt;/BODY&gt;&lt;/HTML&gt;");
+    }
+
+    public static void main(String[] args) {
+        try {
+            UseSAX2 us = new UseSAX2();
+            us.processWithSAX(args[0]);
+            String output = us.toString();
+            System.out.println(
+              "Saving result to " + args[1]);
+            FileWriter fw = new FileWriter(args[1]);
+            fw.write(output, 0, output.length());
+            fw.flush();
+        }
+        catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+}
+</pre></td></tr></tbody></table>
+<span class="sp20"> </span><br>
+<!-- END VCD7 CODE SAMPLE COMPONENT  -->
+<p>
+To test the program, you can use the XML fragment in the XML
+Introduction that precedes this tip, or <a href="http://staff.develop.com/halloway/TechTips/TechTipArchive.xml">download a 
+longer version</a>.  
+Save the XML fragment or the longer XML version in your local 
+directory as TechTipArchive.xml. You can then produce an HTML 
+version with the command: 
+</p>
+<p>
+<code>
+java UseSAX2 file:TechTipArchive.xml SimpleList.html
+</code>
+</p>
+<p>
+Then use your browser of choice to view SimpleList.html, and 
+follow links to either text or HTML versions of recent Tech Tips.  
+(In a production scenario you would probably merge this code into 
+a client browser or into a servlet or JSP page on the server.) 
+</p>
+<p>
+There are several interesting points about the code above. Notice
+the steps in creating the parser. 
+</p>
+<p>
+<code>
+SAXParserFactory spf = SAXParserFactory.newInstance();<br>
+SAXParser sp = spf.newSAXParser();<br>
+</code>
+</p>
+<p>
+In JAXP, the SAXParser class is not created directly, but instead 
+through the factory method <code>newSAXParser()</code>. This allows different 
+implementations to be plug-compatible without source code changes.  
+The factory also provides control over more advanced parsing 
+features such as namespace support and validation. Even after you 
+have the JAXP parser instance, you still aren't ready to parse.  
+The current JAXP parser only supports SAX 1.0; to get SAX 2.0 
+support, you must wrap the parser in a ParserAdapter.  
+</p>
+<p>
+<code>
+ParserAdapter pa = new ParserAdapter(sp.getParser());
+</code>
+</p>
+<p>
+The <code>ParserAdapter</code> class adds SAX2 functionality to an existing 
+SAX1 parser and is part of the SAX2 download.  
+</p>
+<p>
+Notice that instead of implementing the <code>ContentHandler</code> interface, 
+<code>UseSAX extends</code> the <code>DefaultHandler</code> class. 
+<code>DefaultHandler</code> is an 
+adapter class that provides an empty implementation of all the 
+<code>ContentHandler</code> methods, so only the methods that are of interest 
+need to be overridden.  
+</p>
+<p>
+The <code>startElement()</code> method does the real work. Because the program 
+only wants to list the tips by title, the &lt;tip&gt; element is 
+all-important, and the &lt;tips&gt; and &lt;author&gt; elements are ignored.  
+The startElement method checks the element name and continues 
+only if the current element is &lt;tip&gt;. The method also provides 
+access to an element's attributes via an Attributes reference, so 
+it is easy to extract the tip name, htmlURL, and textURL. 
+</p>
+<p>
+The end result of this exercise is an HTML document that allows you 
+to browse the list of recent Tech Tips. You could have done this
+directly by coding in HTML. But doing this in XML, and writing the 
+SAX code provides additional flexibility. If another person wanted 
+to view the Tech Tips sorted by date, or by author, or filtered by 
+some constraint, then various views could be generated from a 
+single XML file, with different parsing code for each view.  
+</p><p>Unfortunately, as the XML data gets more complicated, the sample 
+above becomes more difficult to code and maintain. The example 
+suffers from two problems. First, the code to generate the HTML 
+output is just raw string manipulation, which makes it easy to 
+lose a '&gt;' or a '/' somewhere. Second, the SAX API doesn't remember 
+much; if you need to refer back to some earlier element, then you 
+have to build your own state machine to remember the elements that 
+have already been parsed. 
+</p>
+<p>
+The Document Object Model (DOM) API solves both of these problems.  
+<a name="tip3"></a>
+</p><h3>
+<!-- BEGIN FRAGMENT | HR TAG -->
+<div class="contentdivider"><table class="grey4" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td><img src="tt0627_files/a.gif" alt=" " border="0" height="4" width="1"></td></tr></tbody></table></div>
+<!-- END FRAGMENT | HR TAG -->
+USING THE DOM API
+</h3>
+
+<p>
+The DOM API is based on an entirely different model of document 
+processing than the SAX API. Instead of reading a document 
+one piece at a time (as with SAX), a DOM parser reads an entire 
+document. It then makes the tree for the entire document available 
+to program code for reading and updating. Simply put, the 
+difference between SAX and DOM is the difference between 
+sequential, read-only access, and random, read-write access.  
+</p>
+<p>
+At the core of the DOM API are the Document and Node interfaces.
+A Document is a top level object that represents an XML document. 
+The Document holds the data as a tree of Nodes, where a Node is 
+a base type that can be an element, an attribute, or some other  
+type of content. The Document also acts as a factory for new 
+Nodes. Nodes represent a single piece of data in the tree, and 
+provide all of the popular tree operations. You can query nodes 
+for their parent, their siblings, or their children. You can also 
+modify the document by adding or removing Nodes.  
+</p>
+<p>
+To demonstrate the DOM API, let's process the same XML document 
+that got "SAXed" above. This time, let's group the output by 
+author. This will take a little more work. Here's the code: 
+</p>
+<!-- BEGIN VCD7 CODE SAMPLE COMPONENT  -->
+<table class="grey4" border="0" cellpadding="10" cellspacing="0" width="100%">
+<tbody><tr><td><pre>//UseDOM.java
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import javax.xml.parsers.*;
+import org.w3c.dom.*;
+
+public class UseDOM {
+    private Document outputDoc;
+    private Element body;
+    private Element html;
+
+    private HashMap authors = new HashMap();
+    
+    public String toString() {
+        if (html != null) {
+            return html.toString();
+        }
+        return super.toString();
+    }
+    
+    public void processWithDOM(String urlString) 
+      throws Exception {
+        System.out.println(
+          "Processing URL " + urlString);
+        DocumentBuilderFactory dbf = 
+          DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        Document doc = db.parse(urlString);
+        Element elem = doc.getDocumentElement();
+        NodeList nl = 
+          elem.getElementsByTagName("author");
+        for (int n=0; n&lt;nl.getLength(); n++) 
+        {
+            Element author = (Element)nl.item(n);
+            String id = author.getAttribute("id");
+            String fullName = 
+              author.getAttribute("fullName");          
+            Element h2 = 
+              outputDoc.createElement("H2");
+            body.appendChild(h2);
+            h2.appendChild(outputDoc.createTextNode(
+              "by " +  fullName));
+            Element list = 
+              outputDoc.createElement("OL");
+            body.appendChild(list);
+            authors.put(id, list);
+        }
+        NodeList nlTips = 
+              elem.getElementsByTagName("tip");
+        for (int i=0; i&lt;nlTips.getLength(); i++) 
+        {
+            Element tip = (Element)nlTips.item(i);
+            String title = tip.getAttribute("title");           
+            String htmlURL = 
+              tip.getAttribute("htmlURL");
+            String author = 
+              tip.getAttribute("author");
+            Node list = (Node) authors.get(author);
+            Node item = list.appendChild(
+              outputDoc.createElement("LI"));
+            Element a = outputDoc.createElement("A");
+            item.appendChild(a);
+            a.appendChild(
+              outputDoc.createTextNode(title));                     
+            a.setAttribute("HREF", htmlURL);            
+        }
+    }
+    
+    public void createHTMLDoc(String heading) 
+      throws ParserConfigurationException  
+    {
+        DocumentBuilderFactory dbf = 
+          DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        outputDoc = db.newDocument();
+        html = outputDoc.createElement("HTML");
+        outputDoc.appendChild(html);
+        body = outputDoc.createElement("BODY"); 
+        html.appendChild(body);
+        Element h1 = outputDoc.createElement("H1");
+        body.appendChild(h1);
+        h1.appendChild(
+          outputDoc.createTextNode(heading));
+    }
+    
+    public static void main(String[] args) {
+        try {
+            UseDOM ud = new UseDOM();
+            ud.createHTMLDoc("JDC Tech Tips Archive");
+            ud.processWithDOM(args[0]);
+            String htmlOut = ud.toString();
+            System.out.println(
+              "Saving result to " + args[1]);
+            FileWriter fw = new FileWriter(args[1]);
+            fw.write(htmlOut, 0, htmlOut.length());
+            fw.flush();
+        }
+        catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+}
+</pre></td></tr></tbody></table>
+<span class="sp20"> </span><br>
+<!-- END VCD7 CODE SAMPLE COMPONENT  -->
+<p>
+Assuming you save the XML as TechTipArchive.xml, you can run the 
+code with this command line:
+</p>
+<p>
+<code>
+java UseDOM file:TechTipArchive.xml ListByAuthor.html
+</code>
+</p>
+<p>
+Then point your browser to ListByAuthor.html to see a list of tips 
+organized by author.
+</p>
+<p>
+To see how the code works, start by looking at the <code>createHTMLDoc </code>
+method. This method creates the outputDoc Document, which will be 
+used to build the HTML output. Notice that just as with SAX, the 
+parser is created using factory methods. However here the factory 
+method is in the <code>DocumentBuilderFactory</code> class. The second half of 
+createHTMLDoc builds the basic elements of an HTML page. 
+</p>
+<!-- BEGIN VCD7 CODE SAMPLE COMPONENT  -->
+<table class="grey4" border="0" cellpadding="10" cellspacing="0" width="100%">
+<tbody><tr><td><pre>outputDoc.appendChild(html);
+body = outputDoc.createElement("BODY"); 
+html.appendChild(body);
+Element h1 = outputDoc.createElement("H1");
+body.appendChild(h1);
+h1.appendChild(outputDoc.createTextNode(heading));
+</pre></td></tr></tbody></table>
+<span class="sp20"> </span><br>
+<!-- END VCD7 CODE SAMPLE COMPONENT  -->
+<p>
+Compare that code with the code in the SAX example that builds 
+the elements of an HTML page: 
+</p>
+<!-- BEGIN VCD7 CODE SAMPLE COMPONENT  -->
+<table class="grey4" border="0" cellpadding="10" cellspacing="0" width="100%">
+<tbody><tr><td><pre>//direct string manipulation from SAX example
+htmlOut = new StringBuffer(
+  "&lt;HTML&gt;&lt;BODY&gt;&lt;H1&gt;JDC Tech Tips 
+Archive&lt;/H1&gt;");
+
+</pre></td></tr></tbody></table>
+<span class="sp20"> </span><br>
+<!-- END VCD7 CODE SAMPLE COMPONENT  -->
+<p>
+Using the DOM API to build documents isn't as terse or as fast as 
+direct String manipulation, but it is much less error-prone, 
+especially in larger documents.  
+</p>
+<p>
+The important part of the useDOM example is the processWithDOM 
+method. This method does two things: (1) it finds the author 
+elements and provides them as output, and (2) finds the tips and 
+provides them as output organized by their respective author. 
+Each of these steps requires access to the top level element of 
+the document. This is done via the <code>getDocumentElement()</code> method. 
+The author information is in &lt;author&gt; elements. These elements 
+are found by calling <code>getElementsByTagName("author")</code> on the 
+top-level element. The <code>getElementsByTagName</code> method returns 
+a NodeList; this is a simple collection of Nodes. Each Node is 
+then cast to an Element in order to use the convenience method 
+<code>getAttribute()</code>. The <code>getAttribute</code> method gets the 
+author's id and 
+fullName. Each author is listed as a second-level heading; to do 
+this, the output document is used to create an &lt;H2&gt; element 
+containing the author's fullName. Adding a Node requires 
+two steps. First the output document is used to create the Node 
+with a factory method such as <code>createElement()</code>. Then the node is
+added with <code>appendChild()</code>. Nodes can only be added to the document 
+that created them.  
+</p>
+<p>
+After the author headings are in place, it is time to create the 
+links for individual tips. The &lt;tip&gt; elements are found in the 
+same way as the &lt;author&gt; elements, that is, via 
+getElementsByTagName(). The logic for extracting the tip attributes 
+is also similar. The only difference is deciding where to add the 
+Nodes. Different authors should be added to different lists. The 
+groundwork for this was laid back when the author elements were 
+processed by adding an &lt;OL&gt; node and storing it in a <code>HashMap</code> 
+indexed by author id. Now, the author id attribute of the tip can 
+be used to look up the appropriate &lt;OL&gt; node for adding the tip.  
+</p>
+<p>
+For more in-depth coverage of XML, see The XML Companion, by Neil 
+Bradley, Addision-Wesley 2000. For more information about JAXP,
+see the <a href="http://java.sun.com/xml/index.jsp">Java<sup><font size="-2">TM</font></sup> Technology and XML page</a>. For more information 
+about 
+SAX2, see <a href="http://www.megginson.com/SAX/index.html">www.megginson.com</a>. The DOM 
+standard is available at <a href="http://www.w3.org/TR/REC-DOM-Level-1">www.w3.org</a>. 
+</p>
+<p>
+<img src="tt0627_files/coffeecup13x10.gif" alt="" height="10" width="13">
+</p>
+<p>
+The names on the JDC 
+mailing list 
+are used for internal Sun Microsystems<sup><font size="-2">TM</font></sup>
+purposes only. To remove your name from the list, see 
+Subscribe/Unsubscribe 
+below.  
+</p>
+<p>
+<strong> &#8212; Feedback &#8212; </strong> 
+</p>
+<p>
+Comments? Send your feedback on the JDC Tech Tips to: <a href="mailto:jdc-webmaster@Sun.com"> jdc-webmaster </a> 
+</p>
+<p>
+<strong> &#8212; Subscribe/Unsubscribe &#8212; </strong> 
+</p>
+<p>
+To subscribe to these and other SDN publications:<br>
+- Go to the Sun Developer Network - <a href="https://softwarereg.sun.com/registration/developer/en_US/subscriptions">Subscriptions page</a>,
+choose the newsletters you want to subscribe to and click
+"Submit".
+<br><br>
+To unsubscribe,<br>
+- Go to the  Sun Developer Network -
+<a href="https://softwarereg.sun.com/registration/developer/en_US/subscriptions">Subscriptions page</a>,
+uncheck the appropriate checkbox, and click "Submit".
+</p>
+<!-- ================ -->
+<!-- End Main Content -->
+<!-- ================ -->
+<!-- =================== -->
+<!-- END OF MAIN CONTENT -->
+<!-- =================== -->
+<!--stopindex-->
+<!-- END CENTRAL COLUMN COMPONENTS -->
+</td></tr>
+<!-- BEGIN SPACER ROW -->
+<tr><td><img src="tt0627_files/a.gif" alt=" " border="0" height="1" width="750"></td></tr>
+<!-- END SPACER ROW -->
+</tbody></table>
+<!-- END WRAPPER TABLE, 1 COLUMN, MAIN -->
+<!-- BEGIN VNV5 FOOTER  -->
+<table border="0" cellpadding="0" cellspacing="10" width="100%">
+<tbody><tr>
+<td>
+<table class="vatop" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="4" class="grey3" valign="top"><img src="tt0627_files/a.gif" alt="" border="0" height="2" width="1"></td></tr>
+<tr>
+<td><img src="tt0627_files/a.gif" alt="" border="0" height="1" width="190"><br>
+<a href="http://www.sun.com/"><img src="tt0627_files/logo_sun_small_sdn.gif" alt="" border="0" height="29" vspace="5" width="61"></a></td>
+<td valign="top" width="100%"><img src="tt0627_files/a.gif" alt="" border="0" height="1" width="350"><br>
+<div class="footer">
+<a href="http://developers.sun.com/global/aboutsun.html">About Sun</a> &nbsp;|&nbsp;
+<a href="http://developers.sun.com/global/aboutsdn.html">About This Site</a> &nbsp;|&nbsp;
+<a href="http://developers.sun.com/global/newsletters.html">Newsletters</a> &nbsp;|&nbsp;
+<a href="http://developers.sun.com/global/contact.html">Contact Us</a> &nbsp;|&nbsp;
+<a href="http://developers.sun.com/global/employment.html">Employment</a><br>
+<a href="http://developers.sun.com/global/howtobuy.html">How to Buy</a> &nbsp;|&nbsp;
+<a href="http://developers.sun.com/global/licensing.html">Licensing</a> &nbsp;|&nbsp;
+<a href="http://developers.sun.com/global/termsofuse.html">Terms of Use</a> &nbsp;|&nbsp;
+<a href="http://developers.sun.com/global/privacy.html">Privacy</a> &nbsp;|&nbsp;
+<a href="http://developers.sun.com/global/trademarks.html">Trademarks</a>
+<br><span class="sp10">&nbsp;</span><br>
+<br><span class="sp10">&nbsp;</span><br>
+Copyright 1994-2006 Sun Microsystems, Inc.
+</div></td>
+<td><img src="tt0627_files/a.gif" alt="" border="0" height="1" width="40"></td>
+<td valign="top"><div class="footer"><b><a href="http://developers.sun.com/global/aboutsdn.html">A Sun Developer Network Site</a></b></div>
+<div class="footer">
+<img src="tt0627_files/a.gif" alt="" border="0" height="1" width="170"><br>
+Unless otherwise licensed, code in all technical manuals herein (including articles, FAQs, samples) is provided under this <a href="http://developers.sun.com/global/berkeley_license.html">License</a>.
+<br><span class="sp5">&nbsp;</span><br>
+<a href="http://developers.sun.com/global/rss_sdn.html"><img src="tt0627_files/button_xml.gif" alt="XML" align="top" border="0" height="14" width="36"></a>&nbsp;<a href="http://developers.sun.com/global/content_feeds.html">Content Feeds</a>
+</div></td></tr>
+<tr><td colspan="4" class="grey3" valign="top"><img src="tt0627_files/a.gif" alt="" border="0" height="2" width="1"></td></tr>
+</tbody></table>
+</td></tr>
+</tbody></table>
+<!-- END VNV5 FOOTER -->
+<script language="JavaScript" src="tt0627_files/s_code_remote.js"></script><img src="tt0627_files/s43264810987666.gif" name="s_i_sunglobal" alt="" border="0" height="1" width="1"></body></html>

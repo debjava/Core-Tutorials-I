@@ -1,0 +1,26 @@
+--
+/*******************************************************************************************************
+* Copyright 2006 IDEAL INVENT Technologies Pvt. Ltd.                                         	       *
+* IDEAL INVENT Technologies Pvt. Ltd reserves all rights in the Program as delivered.                  *
+* The Program or any portion thereof may not be reproduced in any form whatsoever except               *
+* as provided by license without the written consent of IDEAL INVENT Technologies Pvt. Ltd.            *
+*												       *										*
+* File Name                   : sq_event_id.sq                                                   	       *
+* Author                      : Karunakaran.P                                                           *
+* Creation Date               : 16-Nov-2007                                   	                       *
+* Description                 : This file is to create an sequences for event_id    		       *
+*				        							       *			       *
+* Modification History        :                                                                        *
+*												       *										    *
+*     Version No.               Date               Brief description of change                         *
+*  --------------------------------------------------------------------------------------------------  *
+*        	  |	      |		      |							       *
+*  --------------------------------------------------------------------------------------------------  *
+********************************************************************************************************/
+DROP SEQUENCE  SQ_EVENT_ID
+/
+--
+CREATE SEQUENCE  SQ_EVENT_ID
+START WITH 1000
+INCREMENT BY 1
+NOCACHE;

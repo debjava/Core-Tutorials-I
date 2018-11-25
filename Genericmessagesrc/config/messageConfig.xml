@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>It is an autogenrated file meant for message configuration for email and sms</comment>
+<entry key="mail.smtp.host">idealexch01.idealinvent.com</entry>
+<entry key="SMS_GATEWAY">airtelkk.com</entry>
+</properties>

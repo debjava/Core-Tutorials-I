@@ -1,0 +1,1850 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (Win95; I) [Netscape]">
+   <title>Tutorial, Introduction to XML and XML with Xerces for Java (updated for jdk 1.5 and xerces 2.7.1)</title>
+
+   <style type="text/css">
+
+   .code {
+   	color:white;
+   	background-color:#629570;
+   }
+
+   .header {
+   	background-image:url('images/tb.gif');
+   	font-weight:bold;
+   	padding-left:10px;
+
+	}
+
+
+   </style><!-- Last updated 20 Oct 2005 removed the layout for google ads--></head><body background="xmltutorial_files/back.gif" bgcolor="#ffffff" text="#000000">
+<a name="top"></a>
+<center>
+<table border="0" height="57" width="975">
+<tbody><tr>
+<td align="right" bgcolor="#dac1a7">
+</td>
+</tr>
+</tbody></table>
+</center>
+
+<!-- main body -->
+<center>
+<table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" height="6000" width="970">
+<tbody><tr>
+
+<!-- LEFT -->
+<td align="left" valign="top" width="230">
+&nbsp;<br>
+
+</td>
+
+<!-- Middle -->
+<td align="left" valign="top" width="715">
+<table style="padding-left: 0px; padding-right: 10px;" border="0" height="6000" width="700">
+
+<!-- Item 1 -->
+<tbody><tr>
+<td height="60" width="402">
+&nbsp;<br>
+<b><font face="Arial,Helvetica"><font size="+1">Introduction to XML
+and XML With Java</font></font></b>
+&nbsp;<br>
+<!--<hr noshade>-->
+</td>
+<td align="right" height="60" width="85"></td>
+</tr>
+
+<tr align="left" valign="top">
+<td colspan="2" height="5800">
+<!-- begin -->
+<!-- <center><b><font face="Arial,Helvetica"><font size=+1>Introduction to XML -->
+<!-- and XML With Java</font></font></b></center> -->
+<!-- <hr ALIGN=LEFT SIZE=1 NOSHADE WIDTH="100%"> -->
+
+<p>
+
+If you are looking for sample programs to parse a XML file using DOM/SAX parser or looking for
+a program to generate a XML file please proceed directly to <a href="#6">programs</a>.
+<br>
+<br>
+This small tutorial introduces you to the basic concepts of XML and
+using Xerces parser for Java to generate and parse XML.
+<br>The intended audience are XML beginners with knowledge of Java.
+<br>
+<b>Last updated:</b>
+<br>
+03 Oct 2005.Modified programs runs in JDK 1.3, JDK 1.4 and JDK 1.5. Xerces parser is used with JDK 1.4 and 1.3.
+<br>
+<br>
+
+</p><div class="header">Contents</div>
+<ul>
+	<li><a href="#1">1 Introduction</a></li>
+
+	<li><a href="#2">2 What is XML</a></li>
+
+	<li><a href="#3">3 Advantages of XML</a>
+		<ul>
+			<li><a href="#3.1">3.1 Readability</a></li>
+			<li><a href="#3.2">3.2 Hierarchical</a></li>
+			<li><a href="#3.3">3.3 Language Independent</a></li>
+			<li><a href="#3.4">3.4 OS independent</a></li>
+		</ul>
+	</li>
+
+
+	<li><a href="#4">4 Uses of XML</a>
+		<ul>
+			<li><a href="#4.1">4.1 MetaContent</a></li>
+			<li><a href="#4.2">4.2 Messaging</a></li>
+			<li><a href="#4.3">4.3 Database</a></li>
+		</ul>
+	</li>
+
+	<li><a href="#5">5 Parsers</a>
+		<ul>
+			<li><a href="#5.1">5.1 DOM</a></li>
+			<li><a href="#5.2">5.2 SAX</a></li>
+			<li><a href="#5.3">5.3 When to use DOM Parser</a></li>
+			<li><a href="#5.4">5.4 When to use SAX Parser</a></li>
+			<li><a href="#5.5">5.5 Validating And Non Validating</a></li>
+			<li><a href="#5.6">5.6 Well Formedness</a></li>
+		</ul>
+	</li>
+
+
+	<li><a href="#6">6 Programs</a>
+		<ul>
+			<li><a href="#6.1">6.1 Parsing and Printing</a>
+				<ul>
+					<li><a href="#6.1.1">6.1.1 Using DOM</a></li>
+					<li><a href="#6.1.2">6.1.2 Using SAX</a></li>
+				</ul>
+			</li>
+			<li><a href="#6.2">6.2 Generating XML</a></li>
+
+		</ul>
+	</li>
+
+	<li><a href="#7">7 Instructions to run these programs</a>
+		<ul>
+			<li><a href="#7.1">7.1 Using JDK 1.5</a></li>
+			<li><a href="#7.2">7.2 Using JDK 1.4</a></li>
+			<li><a href="#7.3">7.3 Using JDK 1.3</a></li>
+		</ul>
+
+	</li>
+	<li><a href="#Def">Definitions</a></li>
+
+</ul>
+
+
+<a name="1"></a>
+<div class="header">Introduction:</div>
+<p>
+&nbsp;&nbsp;&nbsp; This is a gentle introduction to XML and using XML
+with Java. We see what makes XML tick and the advantages of XML . Also
+we have programs to show how to use Xerces parser for parsing and printing
+an XML document, to generate XML from arbitrary data.
+<br>These programs have been intentionally kept small to get the point
+across.
+</p><div align="right"><a href="#top">Top</a><br><br></div>
+
+<a name="2"></a>
+
+<div class="header">2 What is XML ?</div>
+
+<p>
+&nbsp;&nbsp;&nbsp; Extensible Markup Language
+<br>XML is text based markup language.
+<br>XML is more than html because html only deal with presentation and
+carries no information about the data itself.
+</p><p>In HTML
+<br>For example
+<br><font color="#004182">&lt;b&gt;Seagull&lt;b&gt;</font>
+<br><font color="#004182">&lt;i&gt;3674&lt;i&gt;</font>
+<br><font color="#004182">&lt;i&gt; 34 &lt;/i&gt;</font>
+<br>could mean anything
+</p><p>In XML&nbsp; we represent it as.
+</p><p><font color="#004182">&lt;Personnel&gt;</font>
+<br><font color="#004182">&nbsp;&nbsp;&nbsp; &lt;Employee&gt;</font>
+<br><font color="#004182">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Name&gt;Seagull&lt;/Name&gt;</font>
+<br><font color="#004182">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;
+ID&gt; 3674 &lt;/ID&gt;</font>
+<br><font color="#004182">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Age&gt;34&lt;/Age&gt;</font>
+<br><font color="#004182">&nbsp;&nbsp;&nbsp; &lt;/Employee&gt;</font>
+<br><font color="#004182">&lt;/Personnel&gt;</font>
+</p><p>And this clearly expresses Seagull is an employee name his ID is 3674
+and his age is 34.
+</p><p>HTML has limited set of Tags
+<br>But XML can be extended (i.e we can create our own tags )
+
+</p><div align="right"><a href="#top">Top</a><br><br></div>
+
+<!-- 3 PARAGRAPH -->
+<a name="3"></a>
+
+<div class="header">3 Advantages of XML</div>
+
+<p>
+&nbsp;&nbsp;&nbsp; Here are a few advantages.
+</p>
+
+<p><a name="3.1"><b><u><i>3.1 Readability</i></u></b></a>
+<br>&nbsp;&nbsp;&nbsp; XML document is plain text and human readable, To
+edit/view XML documents any simple text editor will suffice .
+</p>
+
+<p>
+<a name="3.2"><b><u><i>3.2 Hierarchical</i></u></b></a>
+<br>&nbsp;&nbsp;&nbsp; XML document has a tree structure which is powerful
+enough to express complex data and simple enough to understand
+</p>
+
+<p>
+<a name="3.3"><b><u><i>3.3 Language Independent</i></u></b></a>
+<br>&nbsp;&nbsp;&nbsp; XML documents are language neutral.For e.g. a Java program can generate a XML
+which can be parsed by a program written in C++ or Perl.
+</p>
+
+<p>
+<a name="3.4"><b><u><i>3.4 OS Independent</i></u></b></a>
+<br>&nbsp;&nbsp;&nbsp; XML files are Operating System independent.
+</p>
+
+<p></p>
+
+
+
+<div align="right"><a href="#top">Top</a><br><br></div>
+
+<a name="4"></a>
+<div class="header">4 Uses of XML</div>
+
+<p>
+
+<a name="4.1"></a><br><b><u><i>4.1 MetaContent</i></u></b>
+<br>&nbsp;&nbsp;&nbsp; To describe the contents of a document.
+
+<a name="4.2"></a>
+</p><p>
+<b><u><i>4.2 Messaging</i></u></b>
+<br>&nbsp;&nbsp;&nbsp; Where applications or organizations exchanges data
+between them.
+<a name="4.3"></a>
+</p><p>
+<b><u><i>4.3 Database</i></u></b>
+<br>&nbsp;&nbsp;&nbsp; The data extracted from the database can be preserved
+with original information and can be used more than one application in
+different ways. One application might just display the data and the other
+application might perform some complex calculation on this data
+
+</p><div align="right"><a href="#top">Top</a><br><br></div>
+
+<a name="5"></a>
+<div class="header">5 Parsers</div>
+
+<p>
+<a name="5.1"></a></p><p>
+<b><u><i>5.1 DOM (Document Object Model ) parser</i></u></b> - Tree Structure based
+API:
+<br>&nbsp;&nbsp;&nbsp; The Dom parser implements the dom api and it creates
+a DOM tree in memory for a XML document
+
+<a name="5.2"></a>
+</p><p>
+<b><u><i>5.2 SAX (Simple API For XML ) parser</i></u></b> - Event Based API
+<br>&nbsp;&nbsp;&nbsp; The SAX parser implements the SAX API and it is
+event driven interface. As it parses it invokes the callback methods
+
+<a name="5.3"></a>
+
+</p><p>
+<b><u><i>5.3 When to use DOM parser</i></u></b>
+</p><ul>
+	<li>Manipulate the document</li>
+	<li>Traverse the document back and forth</li>
+	<li>Small XML files</li>
+</ul>
+
+Drawbacks of DOM parser
+<br>&nbsp;&nbsp;&nbsp; Consumes lot of memory
+<p></p>
+
+<p>
+<a name="5.4"></a>
+<b><u><i>5.4 When to use SAX parser</i></u></b>
+</p><ul>
+	<li>No structural modification</li>
+	<li>Huge XML files</li>
+
+</ul>
+
+
+<a name="5.5"></a>
+<b><u><i>5.5 Validating And Non Validating</i></u></b>
+<br>
+DOM and SAX can either be a validating or a non validating parser.
+
+
+<br>&nbsp;&nbsp;&nbsp; A validating parser checks the XML file against
+the rules imposed by DTD or XML Schema.
+<br>&nbsp;&nbsp;&nbsp; A non validating parser doesn't validate the XML
+file against a DTD or XML Schema.
+<br>Both Validating and non validating parser checks for the well formedness
+of the xml document
+
+<div align="right"><a href="#top">Top</a></div>
+
+<a name="5.6"></a>
+<b><u><i>5.6 Well Formedness</i></u></b>
+
+<br>&nbsp;&nbsp;&nbsp; A well formed XML must satisfy these constraints
+
+<br>a) All tags must have a corresponding ending tag.
+<br>
+<table style="margin-left: 35px;" border="1">
+	<tbody><tr>
+		<th>
+		Well Formed
+		</th>
+
+		<th>
+		Not Well formed
+		</th>
+	</tr>
+	<tr>
+		<td><font color="#004182">
+			&lt;Personnel&gt;
+			<br>&nbsp;&nbsp;&nbsp; &lt;Employee&gt;
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Name&gt;Seagull&lt;/Name&gt;
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt; ID&gt; 3674 &lt;/ID&gt;
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Age&gt;34&lt;/Age&gt;
+			<br>&nbsp;&nbsp;&nbsp; &lt;/Employee&gt;
+			<br>&lt;/Personnel&gt;
+			</font>
+		</td>
+		<td><font color="#004182">
+			&lt;Personnel&gt;
+			<br>&nbsp;&nbsp;&nbsp; &lt;Employee&gt;
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Name&gt;Seagull&lt;/Name&gt;
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt; ID&gt; 3674 &lt;/ID&gt;
+			<font color="#ff0000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Age&gt;34 </font>
+			<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/Employee&gt;
+			<br>&lt;/Personnel&gt;
+			</font>
+		</td>
+	</tr>
+</tbody></table>
+(Note: Missing ending tag for Age)
+
+
+<p>b) No overlapping tags
+
+<table style="margin-left: 35px;" border="1">
+	<tbody><tr>
+		<th>
+		Well Formed
+		</th>
+
+		<th>
+		Not Well formed
+		</th>
+	</tr>
+	<tr>
+		<td><font color="#004182">
+			&lt;Personnel&gt;
+			<br>&nbsp;&nbsp;&nbsp; &lt;Employee&gt;
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Name&gt;Seagull&lt;/Name&gt;
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt; ID&gt; 3674 &lt;/ID&gt;
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Age&gt;34&lt;/Age&gt;
+			<br>&nbsp;&nbsp;&nbsp; &lt;/Employee&gt;
+			<br>&lt;/Personnel&gt;
+			</font>
+		</td>
+		<td><font color="#004182">
+			&lt;Personnel&gt;
+			<br>&nbsp;&nbsp;&nbsp; &lt;Employee&gt;
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Name&gt;Seagull&lt;/Name&gt;
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt; ID&gt; 3674 &lt;/ID&gt;
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Age&gt;34&lt;/Age&gt;
+			<font color="#ff0000">
+			<br>&nbsp;&nbsp;&nbsp; &lt;/Personnel&gt;
+			<br>&lt;/Employee&gt;
+			</font>
+			</font>
+		</td>
+	</tr>
+</tbody></table>
+
+Note: &lt;/Employee&gt; and &lt;/Personnel &gt; tags are not in the right
+order
+
+</p><div align="right"><a href="#top">Top</a><br><br></div>
+
+
+<!-- RAJ START -->
+
+<a name="6"></a>
+<div class="header">6 Programs</div>
+
+<p>
+&nbsp;&nbsp;&nbsp; All these Programs uses Xerces for Java Parser.
+</p><p>
+<a name="6.1"></a>
+<b><u><i>6.1 Parsing XML </i></u></b>
+
+<br>&nbsp;&nbsp;&nbsp; This is like "hello world" &nbsp; to programming.
+One of the first encounters with XML for a beginner would be to parse a XML file
+create Java Objects and manipulate them.
+<br>
+<br>
+The idea here is to parse the <a target="source" href="http://totheriver.com/learn/xml/code/employees.xml">employees.xml</a> file with content as below
+<br>
+</p><pre><code>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;Personnel&gt;
+  &lt;Employee type="permanent"&gt;
+        &lt;Name&gt;Seagull&lt;/Name&gt;
+        &lt;Id&gt;3674&lt;/Id&gt;
+        &lt;Age&gt;34&lt;/Age&gt;
+   &lt;/Employee&gt;
+  &lt;Employee type="contract"&gt;
+        &lt;Name&gt;Robin&lt;/Name&gt;
+        &lt;Id&gt;3675&lt;/Id&gt;
+        &lt;Age&gt;25&lt;/Age&gt;
+    &lt;/Employee&gt;
+  &lt;Employee type="permanent"&gt;
+        &lt;Name&gt;Crow&lt;/Name&gt;
+        &lt;Id&gt;3676&lt;/Id&gt;
+        &lt;Age&gt;28&lt;/Age&gt;
+    &lt;/Employee&gt;
+&lt;/Personnel&gt;
+</code>
+</pre>
+
+From the parsed content create a list of Employee objects and print it to the console.
+The output would be something like
+<pre><code>
+Employee Details - Name:Seagull, Type:permanent, Id:3674, Age:34.
+Employee Details - Name:Robin, Type:contract, Id:3675, Age:25.
+Employee Details - Name:Crow, Type:permanent, Id:3676, Age:28.
+</code>
+</pre>
+
+We will start with a DOM parser to parse the xml file, create Employee value objects and add them
+to a list.To ensure we parsed the file correctly let's iterate through the list and print the employees
+data to the console.Later we will see how to implement the same using SAX parser.
+<br>
+In a real world situation you might get a xml file from a third party vendor
+which you need to parse and update your database.
+
+<p></p>
+<p>
+<a name="6.1.1"></a>
+<b><u><i>6.1.1 Using DOM</i></u></b>
+
+<br>&nbsp;&nbsp;&nbsp; This program
+<a target="source" href="http://totheriver.com/learn/xml/code/DomParserExample.java"><font color="#bb000f"><code>DomParserExample.java</code></font></a>
+  uses DOM API.
+</p>
+<p>
+The steps are
+</p><ul>
+	<li>Get a document builder using document builder factory and parse the xml file to create a DOM object</li>
+	<li>Get a list of employee elements from the DOM</li>
+	<li>For each employee element get the id,name,age and type. Create an employee value object and add it to the list.
+	</li><li>At the end iterate through the list and print the employees to verify we parsed it right.
+</li></ul>
+<p></p>
+
+
+<p>
+a) Getting a document builder
+
+</p><div class="code">
+<pre><code>
+
+	private void parseXmlFile(){
+		//get the factory
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+		try {
+
+			//Using factory get an instance of document builder
+			DocumentBuilder db = dbf.newDocumentBuilder();
+
+			//parse using builder to get DOM representation of the XML file
+			dom = db.parse("employees.xml");
+
+
+		}catch(ParserConfigurationException pce) {
+			pce.printStackTrace();
+		}catch(SAXException se) {
+			se.printStackTrace();
+		}catch(IOException ioe) {
+			ioe.printStackTrace();
+		}
+	}
+
+</code>
+</pre>
+</div>
+
+
+<p></p>
+
+
+<p>
+
+b) Get a list of employee elements
+<br>
+Get the rootElement from the DOM object.From the root element get all employee elements.
+Iterate through each employee element to load the data.
+</p><div class="code">
+<pre><code>
+	private void parseDocument(){
+		//get the root element
+		Element docEle = dom.getDocumentElement();
+
+		//get a nodelist of <employee> elements
+		NodeList nl = docEle.getElementsByTagName("Employee");
+		if(nl != null &amp;&amp; nl.getLength() &gt; 0) {
+			for(int i = 0 ; i &lt; nl.getLength();i++) {
+
+				//get the employee element
+				Element el = (Element)nl.item(i);
+
+				//get the Employee object
+				Employee e = getEmployee(el);
+
+				//add it to list
+				myEmpls.add(e);
+			}
+		}
+	}
+</employee></code>
+</pre>
+</div>
+
+<p></p>
+
+
+<p>
+c) Reading in data from each employee.
+<br>
+</p><div class="code">
+<pre><code>
+	/**
+	 * I take an employee element and read the values in, create
+	 * an Employee object and return it
+	 */
+	private Employee getEmployee(Element empEl) {
+
+		//for each &lt;employee&gt; element get text or int values of
+		//name ,id, age and name
+		String name = getTextValue(empEl,"Name");
+		int id = getIntValue(empEl,"Id");
+		int age = getIntValue(empEl,"Age");
+
+		String type = empEl.getAttribute("type");
+
+		//Create a new Employee with the value read from the xml nodes
+		Employee e = new Employee(name,id,age,type);
+
+		return e;
+	}
+
+
+	/**
+	 * I take a xml element and the tag name, look for the tag and get
+	 * the text content
+	 * i.e for &lt;employee&gt;&lt;name&gt;John&lt;/name&gt;&lt;/employee&gt; xml snippet if
+	 * the Element points to employee node and tagName is 'name' I will return John
+	 */
+	private String getTextValue(Element ele, String tagName) {
+		String textVal = null;
+		NodeList nl = ele.getElementsByTagName(tagName);
+		if(nl != null &amp;&amp; nl.getLength() &gt; 0) {
+			Element el = (Element)nl.item(0);
+			textVal = el.getFirstChild().getNodeValue();
+		}
+
+		return textVal;
+	}
+
+
+	/**
+	 * Calls getTextValue and returns a int value
+	 */
+	private int getIntValue(Element ele, String tagName) {
+		//in production application you would catch the exception
+		return Integer.parseInt(getTextValue(ele,tagName));
+	}
+</code>
+</pre>
+</div>
+
+<p></p>
+
+
+<p>
+d) Iterating and printing.
+<br>
+</p><div class="code">
+<pre><code>
+	private void printData(){
+
+		System.out.println("No of Employees '" + myEmpls.size() + "'.");
+
+		Iterator it = myEmpls.iterator();
+		while(it.hasNext()) {
+			System.out.println(it.next().toString());
+		}
+	}
+</code>
+</pre>
+</div>
+
+<p></p>
+
+
+<div align="right"><a href="#top">Top</a></div>
+
+
+<a name="6.1.2"></a>
+<b><u><i>6.1.2 Using SAX</i></u></b>
+
+<br>
+This program
+<a target="source" href="http://totheriver.com/learn/xml/code/SAXParserExample.java"><font color="#bb000f"><code>SAXParserExample.java</code></font></a>
+parses a XML document and prints it on the console.
+
+<br>
+Sax parsing is event based modelling.When a Sax parser parses a XML document and every time it encounters
+a tag it calls the corresponding tag handler methods
+
+<p>
+when it encounters a Start Tag it calls this method
+<br>&nbsp;&nbsp;&nbsp; public void startElement(String uri,..
+</p>
+
+<p>when it encounters a End Tag it calls this method
+<br>&nbsp;&nbsp;&nbsp; public void endElement(String uri,...
+</p>
+
+
+<p>
+Like the dom example this program also parses the xml file, creates a list of employees and prints it to the console.
+The steps involved are
+</p><ul>
+<li>Create a Sax parser and parse the xml</li>
+<li>In the event handler create the employee object</li>
+<li>Print out the data</li>
+
+</ul>
+Basically the class extends DefaultHandler to listen for call back events.
+And we register this handler with the Sax parser to notify us of call back events.
+We are only interested in <i>start event, end event and character event</i>.
+<br>
+In <i>start event</i> if the element is employee we create a new instant of employee object and
+if the element is Name/Id/Age we initialize the character buffer to get the text value.
+<br>
+In <i>end event</i> if the node is employee then we know we are at the end of the employee node and we add the Employee object
+to the list.If it is any other node like Name/Id/Age we call the corresponding methods like setName/SetId/setAge
+on the Employee object.
+<br>
+In <i>character event</i> we store the data in a temp string variable.
+<p></p>
+
+<p>
+a) Create a Sax Parser and parse the xml
+<br>
+</p><div class="code">
+<pre><code>
+	private void parseDocument() {
+
+		//get a factory
+		SAXParserFactory spf = SAXParserFactory.newInstance();
+		try {
+
+			//get a new instance of parser
+			SAXParser sp = spf.newSAXParser();
+
+			//parse the file and also register this class for call backs
+			sp.parse("employees.xml", this);
+
+		}catch(SAXException se) {
+			se.printStackTrace();
+		}catch(ParserConfigurationException pce) {
+			pce.printStackTrace();
+		}catch (IOException ie) {
+			ie.printStackTrace();
+		}
+	}
+</code>
+</pre>
+</div>
+
+<p></p>
+
+
+<p>
+b) In the event handlers create the Employee object and call the corresponding setter methods.
+<br>
+</p><div class="code">
+<pre><code>
+	//Event Handlers
+	public void startElement(String uri, String localName, String qName,
+		Attributes attributes) throws SAXException {
+		//reset
+		tempVal = "";
+		if(qName.equalsIgnoreCase("Employee")) {
+			//create a new instance of employee
+			tempEmp = new Employee();
+			tempEmp.setType(attributes.getValue("type"));
+		}
+	}
+
+
+	public void characters(char[] ch, int start, int length) throws SAXException {
+		tempVal = new String(ch,start,length);
+	}
+
+	public void endElement(String uri, String localName,
+		String qName) throws SAXException {
+
+		if(qName.equalsIgnoreCase("Employee")) {
+			//add it to the list
+			myEmpls.add(tempEmp);
+
+		}else if (qName.equalsIgnoreCase("Name")) {
+			tempEmp.setName(tempVal);
+		}else if (qName.equalsIgnoreCase("Id")) {
+			tempEmp.setId(Integer.parseInt(tempVal));
+		}else if (qName.equalsIgnoreCase("Age")) {
+			tempEmp.setAge(Integer.parseInt(tempVal));
+		}
+
+	}
+</code>
+</pre>
+</div>
+
+<p></p>
+
+<p>
+c) Iterating and printing.
+<br>
+</p><div class="code">
+<pre><code>
+	private void printData(){
+
+		System.out.println("No of Employees '" + myEmpls.size() + "'.");
+
+		Iterator it = myEmpls.iterator();
+		while(it.hasNext()) {
+			System.out.println(it.next().toString());
+		}
+	}
+</code>
+</pre>
+</div>
+
+<p></p>
+
+<div align="right"><a href="#top">Top</a></div>
+
+<a name="6.2"></a>
+<p>
+<b><u><i>6.2 Generating XML</i></u></b>
+
+<br>&nbsp;&nbsp;&nbsp; The previous programs illustrated how to parse an
+existing XML file using both SAX and DOM Parsers.
+
+<br>But generating a XML file from scratch is a different story, for instance you might
+like to generate a xml file for the data extracted from a database.To keep the example simple this program
+
+<a target="source" href="http://totheriver.com/learn/xml/code/XMLCreatorExample.java"><font color="#bb000f">XMLCreatorExample.java</font></a>
+
+generates XML from a list preloaded with hard coded data.
+The output will be book.xml file with the following content.
+</p><pre><code>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;Books&gt;
+    &lt;Book Subject="Java 1.5"&gt;
+        &lt;Author&gt;Kathy Sierra .. etc&lt;/Author&gt;
+        &lt;Title&gt;Head First Java&lt;/Title&gt;
+    &lt;/Book&gt;
+    &lt;Book Subject="Java Architect"&gt;
+        &lt;Author&gt;Kathy Sierra .. etc&lt;/Author&gt;
+        &lt;Title&gt;Head First Design Patterns&lt;/Title&gt;
+    &lt;/Book&gt;
+&lt;/Books&gt;
+</code>
+</pre>
+
+<br>
+The steps involved are
+
+<ul>
+<li>Load Data</li>
+<li>Get an instance of Document object using document builder factory</li>
+<li>Create the root element Books</li>
+<li>For each item in the list create a Book element and attach it to Books element</li>
+<li>Serialize DOM to FileOutputStream to generate the xml file "book.xml".</li>
+</ul>
+<p></p>
+
+
+
+<p>
+a) Load Data.
+<br>
+</p><div class="code">
+<pre><code>
+
+	/**
+	 * Add a list of books to the list
+	 * In a production system you might populate the list from a DB
+	 */
+	private void loadData(){
+
+		myData.add(new Book("Head First Java",
+			"Kathy Sierra .. etc","Java 1.5"));
+
+		myData.add(new Book("Head First Design Patterns",
+			"Kathy Sierra .. etc","Java Architect"));
+	}
+
+
+</code>
+</pre>
+</div>
+
+<p></p>
+
+
+<p>
+c) Getting an instance of DOM.
+<br>
+</p><div class="code">
+<pre><code>
+
+	/**
+	 * Using JAXP in implementation independent manner create a document object
+	 * using which we create a xml tree in memory
+	 */
+	private void createDocument() {
+
+		//get an instance of factory
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		try {
+		//get an instance of builder
+		DocumentBuilder db = dbf.newDocumentBuilder();
+
+		//create an instance of DOM
+		dom = db.newDocument();
+
+		}catch(ParserConfigurationException pce) {
+			//dump it
+			System.out.println("Error while trying to instantiate DocumentBuilder " + pce);
+			System.exit(1);
+		}
+
+	}
+
+</code>
+</pre>
+</div>
+
+<p></p>
+
+<p>
+c) Create the root element Books.
+<br>
+</p><div class="code">
+<pre><code>
+
+	/**
+	 * The real workhorse which creates the XML structure
+	 */
+	private void createDOMTree(){
+
+		//create the root element <books>
+		Element rootEle = dom.createElement("Books");
+		dom.appendChild(rootEle);
+
+		//No enhanced for
+		Iterator it  = myData.iterator();
+		while(it.hasNext()) {
+			Book b = (Book)it.next();
+			//For each Book object  create <book> element and attach it to root
+			Element bookEle = createBookElement(b);
+			rootEle.appendChild(bookEle);
+		}
+
+	}
+
+</book></books></code>
+</pre>
+</div>
+
+<p></p>
+
+<p>
+d) Creating a book element.
+<br>
+</p><div class="code">
+<pre><code>
+
+	/**
+	 * Helper method which creates a XML element <book>
+	 * @param b The book for which we need to create an xml representation
+	 * @return XML element snippet representing a book
+	 */
+	private Element createBookElement(Book b){
+
+		Element bookEle = dom.createElement("Book");
+		bookEle.setAttribute("Subject", b.getSubject());
+
+		//create author element and author text node and attach it to bookElement
+		Element authEle = dom.createElement("Author");
+		Text authText = dom.createTextNode(b.getAuthor());
+		authEle.appendChild(authText);
+		bookEle.appendChild(authEle);
+
+		//create title element and title text node and attach it to bookElement
+		Element titleEle = dom.createElement("Title");
+		Text titleText = dom.createTextNode(b.getTitle());
+		titleEle.appendChild(titleText);
+		bookEle.appendChild(titleEle);
+
+		return bookEle;
+
+	}
+
+</book></code>
+</pre>
+</div>
+
+<p></p>
+
+<p>
+e) Serialize DOM to FileOutputStream to generate the xml file "book.xml".
+<br>
+</p><div class="code">
+<pre><code>
+
+
+	/**
+	 * This method uses Xerces specific classes
+	 * prints the XML document to file.
+     */
+	private void printToFile(){
+
+		try
+		{
+			//print
+			OutputFormat format = new OutputFormat(dom);
+			format.setIndenting(true);
+
+			//to generate output to console use this serializer
+			//XMLSerializer serializer = new XMLSerializer(System.out, format);
+
+
+			//to generate a file output use fileoutputstream instead of system.out
+			XMLSerializer serializer = new XMLSerializer(
+			new FileOutputStream(new File("book.xml")), format);
+
+			serializer.serialize(dom);
+
+		} catch(IOException ie) {
+		    ie.printStackTrace();
+		}
+	}
+
+
+</code>
+</pre>
+</div>
+
+Note:
+<br>
+The Xerces internal classes <code>OutputFormat</code> and <code>XMLSerializer</code> are in different packages.
+<br>
+<br>
+In JDK 1.5 with built in Xerces parser they are under
+<br>
+<code>com.sun.org.apache.xml.internal.serialize.OutputFormat</code>
+<br>
+<code>com.sun.org.apache.xml.internal.serialize.XMLSerializer</code>
+<br>
+<br>
+
+In Xerces 2.7.1 which we are using to run these examples they are under
+<br>
+<code>org.apache.xml.serialize.XMLSerializer</code>
+<br>
+<code>org.apache.xml.serialize.OutputFormat</code>
+<br>
+
+We are using Xerces 2.7.1 with JDK 1.4  and JDK 1.3 as the default parser
+with JDK 1.4 is Crimson and there is no built in parser with JDK 1.3.
+<br>
+Also please remember it is not advisable to use parser implementation specific classes
+like <code>OutputFormat</code> and <code>XMLSerializer</code> as they are only available in
+Xerces and if you switch to another parser in the future you may have to rewrite.
+<br>
+See <a href="#misc1">below for steps</a> to make your code JAXP compliant.
+
+<p></p>
+
+
+<div align="right"><a href="#top">Top</a><br><br></div>
+<br>
+
+<a name="7"></a>
+<div class="header">7 Instructions to run these programs</div>
+<br>
+The instructions to compile and run these programs varies based on the JDK that you are using.
+This is due to the way the XML parser is bundled with various  Java distributions.These
+instructions are for Windows OS.For Unix or Linux OS you just need to change the folder paths accordingly.
+
+<br>
+<a name="7.1"></a>
+<b><u><i>7.1 Using JDK 1.5</i></u></b>
+
+<p>
+Xerces parser is bundled with the JDK 1.5 distribution.So you need not download the parser separately.
+
+<br>
+<br>
+
+<b>Running DOMParserExample</b>
+</p><ol>
+
+<li>
+	Download <a href="http://totheriver.com/learn/xml/code/DomParserExample.java">DomParserExample.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/Employee.java">Employee.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/employees.xml">employees.xml</a> to c:\xercesTest
+</li>
+
+<li>
+	Go to command prompt and type <br>
+	<code>cd c:\xercesTest</code>
+</li>
+
+<li>
+	To compile, type <br>
+	<code>javac -classpath . DomParserExample.java</code>
+</li>
+
+
+<li>
+	To run, type <br>
+	<code>java -classpath . DomParserExample</code>
+</li>
+
+</ol>
+
+<b>Running SAXParserExample</b>
+<ol>
+
+<li>
+	Download <a href="http://totheriver.com/learn/xml/code/SAXParserExample.java">SAXParserExample.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/Employee.java">Employee.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/employees.xml">employees.xml</a> to c:\xercesTest
+</li>
+
+<li>
+	Go to command prompt and type <br>
+	<code>cd c:\xercesTest</code>
+</li>
+
+<li>
+	To compile, type <br>
+	<code>javac -classpath . SAXParserExample.java</code>
+</li>
+
+
+<li>
+	To run,type <br>
+	<code>java -classpath . SAXParserExample</code>
+</li>
+</ol>
+
+
+<b>Running XMLCreatorExample</b>
+<ol>
+
+<li>
+	Download <a href="http://totheriver.com/learn/xml/code/jdk15/XMLCreatorExample.java">XMLCreatorExample.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/Book.java">Book.java</a> to c:\xercesTest
+</li>
+
+<li>
+	Go to command prompt and type <br>
+	<code>cd c:\xercesTest</code>
+</li>
+
+<li>
+	To compile, type <br>
+	<code>javac -classpath . XMLCreatorExample.java</code>
+</li>
+
+
+<li>
+	To run, type <br>
+	<code>java -classpath . XMLCreatorExample</code>
+</li>
+
+</ol>
+
+<p></p>
+
+<a name="7.2"></a>
+<b><u><i>7.2 Using JDK 1.4</i></u></b>
+<p>
+Crimson parser is bundled by default with JDK 1.4.To override this parser we need to run our
+example with <code>-Djava.endorsed.dirs</code> option. Download Xerces 2.7.1 from
+<a href="http://xml.apache.org/xerces2-j/download.cgi">here</a>.
+Unzip and copy the jar files to c:\xerces\lib.If it is installed in any other folder modify the
+instructions below accordingly.
+
+<br>
+<b>Running DOMParserExample</b>
+</p><ol>
+
+<li>
+	Download <a href="http://totheriver.com/learn/xml/code/DomParserExample.java">DomParserExample.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/Employee.java">Employee.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/employees.xml">employees.xml</a> to c:\xercesTest
+</li>
+
+<li>
+	Go to command prompt and type <br>
+	<code>cd c:\xercesTest</code>
+</li>
+
+<li>
+	To compile, type <br>
+	<code>javac -classpath .;c:\xerces\lib\xercesImpl.jar DomParserExample.java</code>
+</li>
+
+
+<li>
+	To run, type <br>
+	<code>java -classpath .; -Djava.endorsed.dirs=c:\xerces\lib DomParserExample</code>
+</li>
+
+</ol>
+
+<b>Running SAXParserExample</b>
+<ol>
+
+<li>
+	Download <a href="http://totheriver.com/learn/xml/code/SAXParserExample.java">SAXParserExample.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/Employee.java">Employee.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/employees.xml">employees.xml</a> to c:\xercesTest
+</li>
+
+<li>
+	Go to command prompt and type <br>
+	<code>cd c:\xercesTest</code>
+</li>
+
+<li>
+	To compile, type <br>
+	<code>javac -classpath .;c:\xerces\lib\xercesImpl.jar SAXParserExample.java</code>
+</li>
+
+
+<li>
+	To run, type <br>
+	<code>java -classpath .; -Djava.endorsed.dirs=c:\xerces\lib SAXParserExample</code>
+</li>
+
+</ol>
+
+
+<b>Running XMLCreatorExample</b>
+
+<ol>
+
+<li>
+	Download <a href="http://totheriver.com/learn/xml/code/XMLCreatorExample.java">XMLCreatorExample.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/Book.java">Book.java</a> to c:\xercesTest
+</li>
+
+<li>
+	Go to command prompt and type <br>
+	<code>cd c:\xercesTest</code>
+</li>
+
+<li>
+	To compile, type <br>
+	<code>javac -classpath .;c:\xerces\lib\xercesImpl.jar XMLCreatorExample.java</code>
+</li>
+
+
+<li>
+	To run, type <br>
+	<code>java -classpath .; -Djava.endorsed.dirs=c:\xerces\lib XMLCreatorExample</code>
+</li>
+
+</ol>
+
+
+
+
+<p></p>
+
+<a name="7.3"></a>
+<b><u><i>7.3 Using JDK 1.3</i></u></b>
+<p>
+No parser is bundled by default with JDK 1.3.
+All we need to do is set the xerces jar files in classpath for our compilation and execution.
+Download xerces 2.7.1 from
+<a href="http://xml.apache.org/xerces2-j/download.cgi">here</a>.
+Unzip and copy the jar files to c:\xerces\lib.If it is installed in any other folder modify the
+instructions below accordingly.
+<br>
+<b>Running DOMParserExample</b>
+</p><ol>
+
+<li>
+	Download <a href="http://totheriver.com/learn/xml/code/DomParserExample.java">DomParserExample.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/Employee.java">Employee.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/employees.xml">employees.xml</a> to <code>c:\xercesTest</code>
+</li>
+
+<li>
+	Go to command prompt and type <br>
+	<code>cd c:\xercesTest</code>
+</li>
+
+<li>
+	To compile, type <br>
+	<code>javac -classpath .;c:\xerces\lib\xercesImpl.jar;c:\xerces\lib\xml-apis.jar DomParserExample.java</code>
+</li>
+
+
+<li>
+	To run, type <br>
+	<code>java -classpath .;c:\xerces\lib\xercesImpl.jar;c:\xerces\lib\xml-apis.jar DomParserExample</code>
+</li>
+
+</ol>
+
+<b>Running SAXParserExample</b>
+<ol>
+
+<li>
+	Download <a href="http://totheriver.com/learn/xml/code/SAXParserExample.java">SAXParserExample.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/Employee.java">Employee.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/employees.xml">employees.xml</a> to <code>c:\xercesTest</code>
+</li>
+
+<li>Go to command prompt and type <br>
+ <code>cd c:\xercesTest</code></li>
+
+<li>To compile, type <br>
+<code>javac -classpath .;c:\xerces\lib\xercesImpl.jar;c:\xerces\lib\xml-apis.jar SAXParserExample.java</code></li>
+
+
+<li>To run, type <br>
+<code>java -classpath .;c:\xerces\lib\xercesImpl.jar;c:\xerces\lib\xml-apis.jar SAXParserExample</code></li>
+
+</ol>
+
+
+<b>Running XMLCreatorExample</b>
+<ol>
+
+<li>
+	Download <a href="http://totheriver.com/learn/xml/code/XMLCreatorExample.java">XMLCreatorExample.java</a>,
+	<a href="http://totheriver.com/learn/xml/code/Book.java">Book.java</a> to <code>c:\xercesTest</code>
+</li>
+
+<li>Go to command prompt and type <br>
+ <code>cd c:\xercesTest</code></li>
+
+<li>To compile, type <br>
+<code>javac -classpath .;c:\xerces\lib\xercesImpl.jar;c:\xerces\lib\xml-apis.jar XMLCreatorExample.java</code></li>
+
+
+<li>To run, type <br>
+<code>java -classpath .;c:\xerces\lib\xercesImpl.jar;c:\xerces\lib\xml-apis.jar XMLCreatorExample</code></li>
+
+</ol>
+
+<br>
+
+
+
+<p></p>
+
+<!-- Raj End -->
+
+<div align="right"><a href="#top">Top</a></div>
+<p><br>
+
+</p><div class="header">Misc</div>
+<p>
+<a name="misc1"></a>
+<b>Alternative to XMLSerializer</b>
+<br>
+It is not advisable to use parser implementation specific classes like <code>OutputFormat</code> and <code>XMLSerializer</code>
+as they are only available in Xerces and if you switch to another parser in the future you may have to rewrite.
+To be JAXP compliant use the following to classes to generate the output.
+
+</p><pre><code>
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+</code>
+</pre>
+
+The code to generate xml to a file would be something like
+<br>
+
+
+<pre><code>
+Transformer tr = TransformerFactory.newInstance().newTransformer();
+tr.setOutputProperty(OutputKeys.INDENT, "yes");
+tr.setOutputProperty(OutputKeys.METHOD,"xml");
+tr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "3");
+
+//to send the output to a file
+tr.transform( new DOMSource(dom),new StreamResult(new FileOutputStream("test.xml")));
+
+
+//to send the output to console
+//tr.transform( new DOMSource(dom),new StreamResult(System.out));
+</code>
+</pre>
+
+
+<p></p>
+
+<p>
+<b>What is endorsed standard?</b>
+<br>
+An endorsed standard is a JavaTM API defined through a standards process other than the
+Java Community ProcessSM (JCPSM). Because endorsed standards are defined outside the JCP,
+it is anticipated that such standards may be revised between releases of the Java 2 Platform.
+In order to take advantage of new revisions to endorsed standards, developers and software vendors
+may use the Endorsed Standards Override Mechanism to provide newer versions of an endorsed standard than
+those included in the Java 2 Platform as released by Sun Microsystems.
+
+<br>
+
+By default java looks for endorsed jar files under
+<br>
+
+</p><pre><code>
+&lt;java-home&gt;\lib\endorsed          [Microsoft Windows]
+&lt;java-home&gt;/lib/endorsed          [Solaris or Linux]
+</code></pre>
+
+<br>
+This can be overridden using java system property java.endorsed.dirs as follows
+<br>
+<br>
+<code>
+java -Djava.endorsed.dirs=&lt;folder_name&gt;
+</code>
+<br>
+<br>
+For more information see <a href="http://java.sun.com/j2se/1.4.2/docs/guide/standards">Endorsed Standards Override Mechanism</a>
+
+<p></p>
+
+
+<hr align="left" noshade="noshade" size="1" width="100%">
+
+<p><a name="Def"></a><b>Definitions</b>
+<br>(From java.sun.com)
+</p><dl>
+	<dt>Attribute</dt>
+	<dd>
+		A qualifier on an XML tag that provides additional information.
+		For example, in the tag &lt;slide title="My Slide"&gt;, title is an attribute,
+		and My Slide is its value.
+	</dd>
+
+	<dt>Tag</dt>
+	<dd>
+		A piece of text that describes a unit of data, or element, in XML.
+		A tag is surrounded by angle brackets
+		<br>&lt;Age&gt;25&lt;/Age&gt;
+		<br>&lt;Age&gt; is the start tag
+
+	</dd>
+
+	<dt>Element</dt>
+	<dd>
+		A unit of XML data, delimited by tags. An XML element can enclose other
+		elements.
+			<br>&lt;Personnel&gt;
+			<br>&lt;Employee&gt;..&lt;/Employee&gt;
+			<br>&lt;Employee&gt;..&lt;/Employee&gt;
+			<br>&lt;/Personnel&gt;
+			<br>In this Personnel has two Employee elements.
+
+	</dd>
+
+	<dt>CDATA</dt>
+	<dd>
+		A predefined XML tag for "Character DATA" that says "don't interpret
+		these characters", as opposed to "Parsed Character Data" (PCDATA), in which
+		the normal rules of XML syntax apply (for example, angle brackets demarcate
+		XML tags, tags define XML elements, etc.).
+		<br>
+		CDATA sections are typically
+		used to show examples of XML syntax. Like this:
+		<br>&lt;![CDATA[ &lt;slide&gt;..A sample slide..&lt;/slide&gt; ]]&gt;
+		<br>which displays as:
+		<br>&lt;slide&gt;..A sample slide.. &lt;/slide&gt;
+	</dd>
+
+	<dt>Declaration</dt>
+	<dd>
+		The very first thing in an XML document, which declares it as XML.
+		The minimal declaration is &lt;?xml version="1.0"?&gt;. The declaration is
+		part of the document prolog.
+	</dd>
+
+	<dt>Data</dt>
+	<dd>
+		The contents of an element, generally used when the element does not
+		contain any subelements.
+		<br>&lt;Age&gt;25&lt;Age&gt;
+		<br>Here 25 is the data
+
+	</dd>
+
+	<dt>DTD</dt>
+	<dd>
+		Document Type Definition. An optional part of the document prolog, as
+		specified by the XML standard. The DTD specifies constraints on the valid
+		tags and tag sequences that can be in the document.
+	</dd>
+
+</dl>
+
+<div align="right"><a href="#top">Top</a></div>
+<hr>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- Older version starts here -->
+
+<h2>
+<font color="red">The following segement contains the older version of the code.
+<br>
+Please use the latest <a href="#6">programs found above</a><a>. </a></font>
+</h2>
+
+
+<p><a><b>6 Programs<font color="red">(Old Version)</font></b>
+<br>&nbsp;&nbsp;&nbsp; All these Programs uses Xerces for Java Parser.
+</a></p><p>
+<a><i>6.1 Parsing and Printing <font color="red"><b>(Old Version)</b></font></i>
+<br>&nbsp;&nbsp;&nbsp; This is like "hello world"&nbsp; to programming.The
+first step we should do is to learn how to parse and print a simple XML
+document using both DOM and SAX.
+<br>This will help you to get the basic concepts in parsing and how does
+DOM API differ from SAX.
+</a></p><p>
+
+
+<a><i>6.1.1 Using DOM <font color="red"><b>(Old Version)</b></font></i>
+<br>&nbsp;&nbsp;&nbsp; This program
+</a><a target="source" href="http://totheriver.com/learn/xml/code/PrintUsingDOM.java"><font color="#bb000f"><code>PrintUsingDOM</code></font></a>
+  parses a XML file and prints it on
+the console . It uses DOM API.
+</p><p>This is a two stage process, first it parses the XML file and creates
+a tree structure in the memory.
+<br>The next stage is to traverse the tree and print the contents.
+</p><p>a) Construction of DOM tree
+</p><p><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;
+//get an instance of DomParser</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;
+DOMParserWrapper myDOMParser = (DOMParserWrapper) new dom.wrappers.DOMParser();</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;
+//Parse the XML File which results in the creation of the Dom tree</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;
+Document doc = myDOMParser.parse(xmlFile);</font></font></font>
+</p><p>Once the Dom tree is constructed the Walk method is called which traverses
+the tree and prints the content.
+</p><p><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;
+walk(doc);</font></font></font>
+</p><p>b) Traversing the DOM tree
+<br>It does a Depth First Pre Order Traversal , for more on tree traversal
+techniques see here
+<br>As it goes through each node it prints it contents.
+<br>This snippet explains how to handle the element Node
+</p><p><font face="Tahoma"><font color="#004182"><font size="-1">//For an element
+node print the node name and also its attributes if any</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+case Node.ELEMENT_NODE:</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.print('&lt;' + node.getNodeName() );</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+NamedNodeMap nnm = node.getAttributes();</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if(nnm != null )</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int len = nnm.getLength() ;</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Attr attr;</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for ( int i = 0; i &lt; len; i++ )</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+attr = (Attr)nnm.item(i);</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.print(' '</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ attr.getNodeName()</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "=\""</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ attr.getNodeValue()</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++&nbsp; '"' );</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.print('&gt;');</font></font></font>
+</p><p><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+break;</font></font></font>
+</p><p><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}//end of element</font></font></font>
+</p><p>This recurses through each node
+</p><p><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//recurse</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for(Node child = node.getFirstChild(); child != null; child = child.getNextSibling())</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+walk(child);</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font></font></font>
+</p><p>Hence we print recursively all the contents to the console
+</p><div align="right"><a href="#top">Top</a></div>
+
+<i>6.1.2 Using SAX <font color="red"><b>(Old Version)</b></font></i>
+<br>&nbsp;&nbsp;&nbsp; Sax is much more easier to understand and implement.
+<br>This program
+<a target="source" href="http://totheriver.com/learn/xml/code/PrintUsingSAX.java"><font color="#bb000f"><code>PrintUsingSAX</code></font></a>
+ parses a XML document and prints it on the console.
+<br>When a Sax parser parses a XML document and every time it encounters
+a tag it calls the corresponding tag handler methods
+<p>when it encounter a Start Tag it calls this method
+<br>&nbsp;&nbsp;&nbsp; public void startElement(String name, AttributeList
+attrs)
+</p><p>when it encounter a End Tag it calls this method
+<br>&nbsp;&nbsp;&nbsp; public void endElement(String name)
+</p><p>This program also parses a XML file and prints it on the console . It
+uses SAX API.
+<br>In this example,&nbsp; the PrintUsingSax Class extends the HandlerBase
+class and implemets the call back&nbsp; methods to handle the printing
+</p><p>The steps involved are
+</p><p>&nbsp;&nbsp;&nbsp; Get a instance of SAX parser,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#004182"><font face="Tahoma"><font size="-1">Parser
+myParser = new SAXParser()</font></font>;</font>
+</p><p>&nbsp;&nbsp;&nbsp; Register the class which extends the HandlerBase
+so that it handle the call backs
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font face="Tahoma"><font color="#004182"><font size="-1">myParser.setDocumentHandler(this);</font></font></font>
+</p><p>&nbsp;&nbsp;&nbsp; Parse the XML file
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font face="Tahoma"><font color="#004182"><font size="-1">
+myParser.parse(fileName);</font></font></font>
+</p><p>&nbsp;&nbsp;&nbsp; Print the document as it is parsed
+</p><p><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//handle start element</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+public void startElement(String name, AttributeList attrs)</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</font></font></font>
+</p><blockquote><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.print('&lt;' + name );</font></font></font>
+<p><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (attrs != null)</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</font></font></font>
+</p><p><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int len = attrs.getLength();</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for (int i = 0; i &lt; len; i++)</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.print(" "</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ attrs.getName(i)</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "=\""</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ attrs.getValue(i)</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "\"");</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}//end of if</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.print('&gt;');</font></font></font>
+</p><p><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;
+} // startElement(String,AttributeList)</font></font></font></p></blockquote>
+
+<p><br>That&#8217;s how we print using a SAX parser
+</p><div align="right"><a href="#top">Top</a></div>
+
+<p><i>6.2 Generate XML <font color="red"><b>(Old Version)</b></font></i>
+<br>&nbsp;&nbsp;&nbsp; The previous program illustrated how to Parse an
+existing XML file using both SAX and DOM Parsers.
+<br>But generating&nbsp; a XML file from scratch is a different story ,
+for instance you might like to generate a xml file for the&nbsp; data extracted
+form the database.To keep the example simple this program
+
+<a target="source" href="http://totheriver.com/learn/xml/code/GenerateXML.java"><font color="#bb000f"><code>GenerateXML</code></font></a>
+
+generates a XML
+file from a Vector preloaded with hard coded data.
+</p><p>The steps involved are
+<br>&nbsp;&nbsp; a)&nbsp; Get an instance of DOM parser
+<br>&nbsp;&nbsp; b)&nbsp; Create a new Document
+<br>&nbsp;&nbsp; c)&nbsp; Load the Data
+<br>&nbsp;&nbsp; d)&nbsp; Create a DOM tree with this Data
+<br>&nbsp;&nbsp; e)&nbsp; Print the DOM tree which will be the XML file
+</p><p>In detail
+</p><p>a) Get an instance of DOM psrser
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;
+DocumentBuilderFactory dbf =DocumentBuilderFactory.newInstance();</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;
+DocumentBuilder db = dbf.newDocumentBuilder();</font></font></font>
+</p><p>b) Create a new Document
+<br>&nbsp;&nbsp;&nbsp; <font face="Tahoma"><font color="#004182"><font size="-1">doc
+= db.newDocument();</font></font></font>
+</p><p>c) Load the Data
+<br>In this case the vector is loaded with hard coded data for simplicty.
+
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;
+private void loadData()</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;
+{</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+vData = new Vector();</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//trivial example</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//data is Name$Age$sex</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+vData.addElement("John$35$M");</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+vData.addElement("Jessie$30$F");</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+vData.addElement("Jonathan$28$M");</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+vData.addElement("Laila$20$F");</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;
+}</font></font></font>
+<br>&nbsp;
+</p><p>d) Create a DOM tree with this Data
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+root = doc.createElement("Employee");</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+root.appendChild(doc.createTextNode("\n"));</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//add name Element</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+item = doc.createElement("Name");</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+item.appendChild(doc.createTextNode(name));</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+root.appendChild(item);</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+root.appendChild(doc.createTextNode("\n"));</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//add Age Element</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+item = doc.createElement("Age");</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+item.appendChild(doc.createTextNode(age));</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+root.appendChild(item);</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+root.appendChild(doc.createTextNode("\n"));</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//add Sex Element</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+item = doc.createElement("Sex");</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+item.appendChild(doc.createTextNode(sex));</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+root.appendChild(item);</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+root.appendChild(doc.createTextNode("\n"));</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//add to the Top Element</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+main.appendChild(root);</font></font></font>
+<br><font face="Tahoma"><font color="#004182"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+main.appendChild(doc.createTextNode("\n"));</font></font></font>
+<br>&nbsp;
+</p><p>This is nothing but a creating a tree structure,
+<br>Create a Root Node Employee
+<br>Append Child nodes Name, Age and Sex to the Root Node
+<br>Append Root Node to the Top Node Personal
+</p><p>This is similar to this
+</p><p><font color="#004182">&lt;Personnel&gt;</font>
+<br><font color="#004182">&nbsp;&nbsp;&nbsp; &lt;Employee&gt;</font>
+<br><font color="#004182">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Name&gt;John&lt;/Name&gt;</font>
+<br><font color="#004182">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Age&gt;35&lt;/Age&gt;</font>
+<br><font color="#004182">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Sex&gt;
+M &lt;/Sex&gt;</font>
+<br><font color="#004182">&nbsp;&nbsp;&nbsp; &lt;/Employee&gt;</font>
+<br><font color="#004182">&lt;/Personnel&gt;</font>
+</p><p>e) Print the DOM tree
+<br>This is similar to the printing done in the previous program PrintUsingDOM.java
+
+</p><p></p><div align="right"><a href="#top">Top</a></div>
+
+<p>
+<b>7 Instructions to run these programs  <font color="red">(Old Version)</font></b>
+<br>
+If you wish you can download
+<a target="source" href="http://totheriver.com/learn/xml/code/Personnel.xml"><font color="#bb000f"><code>Personnel.xml</code></font></a>
+ and
+<a target="source" href="http://totheriver.com/learn/xml/code/Personnel.dtd"><font color="#bb000f"><code>Personnel.dtd</code></font></a>
+ Personnel.dtd
+  to the same directory where you
+<br>have downloaded these programs.
+<br>
+Requirements<br>
+JDK of course<br>
+ Xerces for Java Parser<br>
+</p><p>
+Assumption <br>
+Xerces is installed in c:\xerces-1_3_0 if not change the path accordingly in these instructions<br>
+</p><p>
+<a target="source" href="http://totheriver.com/learn/xml/code/PrintUsingDOM.java"><font color="#bb000f"><code>PrintUsingDOM.java</code></font></a><br>
+To compile <br>
+<font color="#3366ff">
+set CLASSPATH=c:\xerces-1_3_0\xerces.jar;c:\xerces-1_3_0\xercesSamples.jar;.;%classpath%;<br>
+javac PrintUsingDOM.java  <br>
+</font>
+&nbsp;<br>
+To run<br>
+<font color="#3366ff">
+java  PrintUsingDOM xmlFileName<br>
+</font>
+&nbsp;<br>
+or if you have downloaded the Personnel.xml and Personnel.DTD<br>
+<font color="#3366ff">
+java  PrintUsingDOM Personnel.xml<br>
+</font>
+</p><p>
+<a target="source" href="http://totheriver.com/learn/xml/code/PrintUsingSAX.java"><font color="#bb000f"><code>PrintUsingSAX</code></font></a><br>
+To compile <br>
+<font color="#3366ff">
+set CLASSPATH=c:\xerces-1_3_0\xerces.jar;c:\xerces-1_3_0\xercesSamples.jar;.;%classpath%;<br>
+javac PrintUsingSAX.java
+</font>
+  <br>
+&nbsp;<br>
+To run<br>
+<font color="#3366ff">
+java  PrintUsingSAX xmlFileName<br>
+</font>
+&nbsp;<br>
+or if you have downloaded the sample xml file and DTD<br>
+<font color="#3366ff">
+java  PrintUsingSAX Personnel.xml<br>
+</font>
+</p><p>
+<a target="source" href="http://totheriver.com/learn/xml/code/GenerateXML.java"><font color="#bb000f"><code>GenerateXML.java</code></font></a><br>
+To compile <br>
+<font color="#3366ff">
+set CLASSPATH=c:\xerces-1_3_0\xerces.jar;c:\xerces-1_3_0\xercesSamples.jar;.;%classpath%;<br>
+javac GenerateXML.java  <br>
+</font>
+&nbsp;<br>
+To run<br>
+<font color="#3366ff">
+java GenerateXML <br>
+</font>
+
+
+
+<!-- Older version ends here -->
+
+
+
+
+<!-- end  -->
+</p></td>
+</tr>
+
+
+</tbody></table>
+</td>
+
+<!-- Right side image -->
+
+<td align="left" valign="top" width="45">
+<img src="xmltutorial_files/xmlTut.jpg" border="0">
+</td>
+
+</tr>
+</tbody></table>
+  <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="970">
+    <tbody><tr>
+     <td align="right">
+	<right>
+
+
+
+		<!-- Begin Nedstat Basic code -->
+		<!-- End Nedstat Basic code -->
+
+     </right></td>
+    </tr>
+   <tr>
+     <td>
+     <!--
+	<script language=javascript src="http://ss.webring.yahoo.com/navbar?f=j&y=seagull98_in&u=98392383310005686"></script>
+	-->
+     </td>
+   </tr><tr>
+  </tr></tbody></table>
+</center>
+</body></html>

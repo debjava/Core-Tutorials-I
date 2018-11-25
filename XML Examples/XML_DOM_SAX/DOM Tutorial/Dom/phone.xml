@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CoronaConfig> 
+	<CEXsd>
+		<XsdName>ce1.xsd</XsdName> 
+		<XmlPath>CEXmlDS</XmlPath>
+		<FileCount>2</FileCount>
+		<CEXmlFile>ce1_1.xml</CEXmlFile>
+		<CEXmlFile>ce1_2.xml</CEXmlFile>
+	</CEXsd>
+	<CEXsd>
+		<XsdName>ce2.xsd</XsdName>
+		<XmlPath>CEXmlDS</XmlPath>
+		<FileCount>2</FileCount>
+		<CEXmlFile>ce2_1.xml</CEXmlFile>
+		<CEXmlFile>ce2_2.xml</CEXmlFile>
+	</CEXsd>
+</CoronaConfig>

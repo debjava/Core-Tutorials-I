@@ -1,0 +1,1161 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0120)http://searchwebservices.techtarget.com/expert/KnowledgebaseAnswer/0,289625,sid26_gci818850_tax298941,00.html?bucket=ETA -->
+<!-- Vignette V/5 Wed Sep 27 00:38:24 2006 --><HTML XMLNS:IE><HEAD><TITLE>What is the difference or similarity between SAX, DOM, JDOM?</TITLE>
+<META content="Find the latest information on Web Services" name=description>
+<META lang=en-us 
+content="Web Services, SOAP, WSDL, UDDI, XML, J2EE, EJB, Java, Enterprise JavaBeans, ebXML, schema, JMS, UML, CORBA, EAI, .NET, Sun ONE, DTD, enterprise application integration, B2Bi, model driven architecture, business to business integration, Application Server, web server, WebSphere, WebLogic, OASIS, OMG, W3C, soap, wsdl, ejb, java, xml" 
+name=keywords>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<META content="Expert Response" name=ctype>
+<META content=04/23/2002 name=cdate>
+<META content=04/23/2007 name=adate>
+<META 
+content=http://searchWebServices.techtarget.com/expert/KnowledgebaseAnswer/0,289625,sid26_gci818850_tax298941,00.html 
+name=url>
+<META content=SearchWebServices.com name=site>
+<META content="Expert Advice" name=cgroup>
+<META content="298394, 298931, 298940, 298941" name=taxonomyids>
+<META 
+content="Topics, Web services development and deployment, Application programming interfaces (API), SAX" 
+name=taxonomynames>
+<SCRIPT language=Javascript 
+src="What is the difference or similarity between SAX, DOM, JDOM_files/0,296650,sid26,00.js"></SCRIPT>
+
+<META content="MSHTML 6.00.2800.1106" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff leftMargin=0 topMargin=0 marginheight="0" 
+marginwidth="0"><A name=top></A>
+<TABLE cellSpacing=0 cellPadding=1 width=776 align=center border=0>
+  <TBODY>
+  <TR>
+    <TD class=color9>
+      <TABLE class=crmColorPortfolioBand cellSpacing=0 cellPadding=0 
+      width="100%" border=0>
+        <TBODY>
+        <TR class=crmColorPortfolioBand>
+          <TD colSpan=4><IMG height=3 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1></TD></TR>
+        <TR class=crmColorPortfolioBand>
+          <TD><IMG height=15 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=5></TD>
+          <TD width="100%"><SPAN class=a2><SPAN 
+            class=crmTxOnColorPortfolioBand>SAX</SPAN></SPAN></TD>
+          <TD class=a2 noWrap align=right>
+            <SCRIPT language=Javascript>
+			<!--
+				var JSdigitalGuideID = "26";
+				var JSisHomePage = ""; //true/false
+				var JSexternal = "false"; //true/false
+				var JSpopUp = "-1";
+				var JSmembersOnly = "";
+				var JSmembersLoginURL = "/loginMembersOnly/1,289498,sid26_gci818850,00.html";
+				var JSIPCmembersOnly = "";
+				var JSIPCmembersLoginURL = "";
+				var JSwebReportingContentCategory = "";
+				var tt_rptInfoCenterMLC = "";
+				var JSv3ic = false;
+
+				//webReporting variables
+				var wrCmpStartPage = false;
+				var wrCmpGoalPage = false;
+				var wrFunnelValue = "";
+				var wrCmpGoalPageValue = "";
+				var wrCmpLocalName = "";
+				var wrCmpLocalNameBase = "";
+				var wrCmpCookieValue = (document.cookie.indexOf("CMP=") != -1) ? document.cookie.substring(document.cookie.indexOf("CMP=") + 4, document.cookie.length) : "";
+				if (wrCmpCookieValue.indexOf(";") != -1) wrCmpCookieValue = wrCmpCookieValue.substring(0,wrCmpCookieValue.indexOf(";"));
+				var cmpValue = "";
+				var cmpGoalValue = "";
+				var newCmpCookieValue = "";
+				
+				//goalPage
+				if (wrCmpGoalPageValue != "" && wrCmpCookieValue != "") { //page specified the campaign name and a cookie value exists
+					if (wrCmpCookieValue.indexOf(wrCmpGoalPageValue) != -1) { //goal specified is contained in the campaign cookie
+						cmpGoalValue = wrCmpGoalPageValue;
+						newCmpCookieValue = newCmpCookieValue.replace(wrCmpGoalPageValue,"");
+						if (newCmpCookieValue.indexOf(",") != -1) newCmpCookieValue = newCmpCookieValue.replace(",","");
+						document.cookie = "CMP=" + newCmpCookieValue + "; path=/";
+					}
+				} else if (wrCmpGoalPage && wrCmpCookieValue != "") { //this is a goal page, but the page has not specified the campaign
+					cmpGoalValue = wrCmpCookieValue;
+					document.cookie = "CMP=; path=/";
+				} else {}
+				
+				//startPage
+				if (wrCmpStartPage) { //page specified that this page is a campaign start page
+					if (window.location.search.indexOf("TTCMP=") != -1) { //campaign name in url parameter
+						cmpWLS = unescape(window.location.search);
+						cmpValue = unescape(cmpWLS.substring(cmpWLS.indexOf("TTCMP=") + 6, cmpWLS.length));
+						if (cmpValue.indexOf("&") != -1) cmpValue = cmpValue.substring(0,cmpValue.indexOf("&"));
+						document.cookie = "CMP=" + cmpValue + "; path=/";
+					} else if (wrCmpLocalName != "") { // page specified the campaign name
+						cmpValue = wrCmpLocalName;
+						document.cookie = "CMP=" + wrCmpLocalName + "; path=/";
+					} else if (wrCmpCookieValue != "") { //start page, nothing specified, use cookie value
+						cmpValue = wrCmpCookieValue;
+						document.cookie = "CMP=" + cmpValue + "; path=/";
+					} else {}
+				}
+
+				/*
+					Header and Footer switches on/off with defaults set in /pageScripts
+					These do not have to be declared unless overriding a default.
+				*/
+				var JSadFooter = "off";
+				
+				//Advertising variables
+				if (document.layers) var ADlayer = new Object();
+				if (typeof adVibe == "undefined") var adVibe = "on";
+				if (typeof adPageID == "undefined") var adPageID = Math.round(Math.random() * 100000000);
+				var adVibeInfo = new String();
+
+				var JSsponsorBanner = "on";
+				var JSad9Type = "2";
+				var JSad9SiteValue = "swsv";
+				var JSad9AreaValue = "ate";
+				var JSad9PositionValue = "vendorOffer_2";
+				var JSad9SiteName = "";
+				var JSad9PageName = "";
+				var JSad9Width = "550";
+				var JSad9Height = "33";
+				var JSad9Tile = "1";
+				var JSad9KW = "";
+				var JSad9KV = "";
+				var JSad9INT = "ist";
+
+var JSadInterstitial = "on";
+
+				var JSleaderBoard = "on";
+				var JSad12Type = "2";
+				var JSad12SiteValue = "swsv";
+				var JSad12AreaValue = "ate";
+				var JSad12PositionValue = "leaderBoard_3";
+				var JSad12SiteName = "";
+				var JSad12PageName = "";
+				var JSad12Width = "728";
+				var JSad12Height = "90";
+				var JSad12Tile = "2";
+				var JSad12KW = "";
+				var JSad12KV = "";
+				var JSad12INT = "";
+
+				var JSadCategory = "ATE";
+				var JSshowInfoLink = "false";
+				var JSadTaxID = "";
+				var JSinfoCenterID = "";
+				var JSinfoCenterName = "";
+
+				// begin header HITBOX vars
+				<!-- templateContentCategory:  -->
+				var searchTotal = '';
+				var tt_hbxTemplateID = '155';
+				var tt_hbxApplicationPath = '/expertKnowledgeBase';
+				var tt_hbxSitePath = '/searchWebServices';
+				var tt_hbxExtraAcct = false;
+				var tt_dartTAX_id = '298940';
+				if(typeof cl_id_298940 == "undefined") {
+				var tt_hbxCL_id = 'NONE';
+				var tt_hbxCL_name = '';
+				var cl_exclusive = 'N';
+				var tt_hbxMLC = '/CL-NONE/Applicat-298940';
+				} else {
+				var tt_hbxCL_id = cl_id_298940;
+				var tt_hbxCL_name = cl_name_298940;
+				var cl_exclusive = cl_excl_298940;
+				var tt_hbxMLC = '/CL-' + tt_hbxCL_name + '-' + tt_hbxCL_id + '/Applicat-298940';
+				}
+				var tt_hbx404 = false;
+				var tt_hbxGCI = '818850';
+				// end header HITBOX vars
+				
+			// -->
+			</SCRIPT>
+
+            <SCRIPT language=Javascript 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/0,294327,sid26,00.js"></SCRIPT>
+
+            <SCRIPT language=Javascript>
+						<!--
+							document.write(((USERINFO == "on") ? '<span class="crmTxOnColorPortfolioBand">'+((loggedIn != -1) ? '<i>You\'re logged in as:</i> <b>'+DisplayName+'</b>&nbsp;'+
+							'<a href="/register/1,289568,sid26,00.html" class="crmTxOnColorPortfolioBand"><span class="a2">Edit your Profile</span></a>&nbsp;<span class="yellow">|</span>&nbsp;'+
+							'<a href="'+((ALTLOGOUT != "no") ? ALTLOGOUT : '/logout/1,289500,sid26,00.html')+'" class="crmTxOnColorPortfolioBand"><span class="a2">Log-out</span></a>' :
+							'<a href="/register/1,289568,sid26,00.html" class="crmTxOnColorPortfolioBand"><span class="a2">Activate your FREE membership today</span></a>&nbsp;<span class="yellow">|</span>&nbsp;'+
+							'<a href="'+((ALTLOGIN != "no") ? ALTLOGIN : '/login/1,289498,sid26,00.html')+'" class="crmTxOnColorPortfolioBand"><span class="a2">Log-in</span></a>')+'</span>' : '&nbsp;'));
+						// -->
+						</SCRIPT>
+          </TD>
+          <TD><IMG height=1 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=5></TD></TR>
+        <TR class=crmColorPortfolioBand>
+          <TD colSpan=4><IMG height=3 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1></TD></TR>
+        <TR class=color1>
+          <TD colSpan=4><IMG height=1 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1></TD></TR>
+        <TR class=crmColorPortfolioBand>
+          <TD colSpan=4><IMG height=1 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<SCRIPT language=Javascript>
+<!--
+	PORTFOLIOBAND = "off";
+	PAGE_HEADER();
+// -->
+</SCRIPT>
+<!-- BEGIN: BreadCrumb Splash -->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD colSpan=2><IMG height=5 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD></TR>
+  <TR>
+    <TD><IMG height=1 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=7></TD>
+    <TD class=a2 vAlign=top width="100%" name="breadcrumbCell"><A 
+      class=breadcrumbRed 
+      href="http://searchwebservices.techtarget.com/home/0,289692,sid26,00.html" 
+      name=breadcrumb_0>Home</A> &gt; <A class=breadcrumbGray 
+      href="http://searchwebservices.techtarget.com/expert/Knowledgebase/0,289622,sid26,00.html" 
+      name=breadcrumb_1>Ask the Web Services Experts</A> &gt; <A 
+      class=breadcrumbGray 
+      href="http://searchwebservices.techtarget.com/expert/KnowledgebaseCategory/0,289620,sid26_tax,00.html" 
+      name=breadcrumb_2>Questions &amp; Answers</A> &gt; <B 
+      class=breadcrumbGray>What is the difference or similarity between SAX, 
+      DOM, JDOM?</B></TD></TR>
+  <TR>
+    <TD colSpan=2><IMG height=5 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD></TR></TBODY></TABLE><!-- END: BreadCrumb Splash -->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD rowSpan=99><IMG height=1 alt="" 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=5></TD>
+    <TD width="100%" colSpan=2><IMG height=3 alt="" 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD>
+    <TD rowSpan=99><IMG height=1 alt="" 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=5></TD></TR><!-- Content Type and Email/iCopy Toolbar Begin -->
+  <TR>
+    <TD class=a6 vAlign=bottom>
+      <H1 class=a6>Ask The Web Services Expert: Questions &amp; Answers</H1></TD>
+    <TD align=right><!-- BEGIN: Email A Friend & iCopyright Toolbar -->
+      <TABLE cellSpacing=0 cellPadding=0 align=right border=0>
+        <FORM name=emaillink onsubmit="return false;" 
+        action=/emailAFriend/1,289150,sid26,00.html method=post>
+        <TBODY>
+        <TR><!-- BEGIN: Email A Friend -->
+          <SCRIPT language=JavaScript>
+		<!--
+		function JSsendform() {
+			document.emaillink.fullurl.value = location.href;
+			document.emaillink.emailpath.value = "SearchWebServices.com : Ask the experts : Questions & Answers : ";
+			document.emaillink.subject.value = "The SearchWebServices.com : Ask the experts : Questions & Answers : ";
+			document.emaillink.submit();
+		}
+		//-->
+		</SCRIPT>
+          <INPUT type=hidden size=50 name=subject> <INPUT type=hidden size=60 
+          name=emailpath> <INPUT type=hidden size=50 name=fullurl> 
+          <TD noWrap align=right><A href="javascript:JSsendform();"><IMG 
+            alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/envelope_small.gif" 
+            align=bottom border=0></A><IMG height=1 alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1></TD>
+          <TD noWrap><A class=textRed href="javascript:JSsendform();"><SPAN 
+            class=a1>EMAIL THIS</SPAN></A></TD></FORM><!-- END: Email A Friend -->
+          <TD><IMG height=1 alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=5></TD></TR></FORM></TBODY></TABLE><!-- END: Email A Friend & iCopyright Toolbar --></TD></TR><!-- Content Type and Email/iCopy Toolbar End -->
+  <TR>
+    <TD><IMG height=3 alt="" 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD></TR><!-- Gray Bar Begin -->
+  <TR class=color9>
+    <TD colSpan=2><IMG height=1 alt="" 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD></TR>
+  <TR class=colorC>
+    <TD colSpan=2><IMG height=15 alt="" 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD></TR>
+  <TR class=color9>
+    <TD colSpan=2><IMG height=1 alt="" 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD></TR><!-- Gray Bar End -->
+  <TR>
+    <TD colSpan=4><IMG height=1 alt="" 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width="100%">
+      <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD width="100%" colSpan=3>
+            <H2 class=a4>What is the difference or similarity between SAX, DOM, 
+            JDOM?</H2></TD></TR>
+        <TR>
+          <TD vAlign=top width=75><IMG height=98 alt="Jeff  Hanson" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/jhanson-sm.jpg" 
+            width=75></TD>
+          <TD vAlign=top width=350><SPAN class=a1><SPAN class=text6>EXPERT 
+            RESPONSE FROM:</SPAN> <A 
+            href="http://searchwebservices.techtarget.com/expert/KnowledgebaseBio/0,289623,sid26_cid455993,00.html"><B>Jeff 
+            Hanson</B></A> <BR><IMG height=5 alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=5><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0><!-- Pose a Question -->
+              <TBODY>
+              <TR>
+                <TD><A 
+                  href="http://searchwebservices.techtarget.com/expert/KnowledgebasePoseQuestion/0,289624,sid26,00.html"><IMG 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/arrow_next_red.gif" 
+                  border=0></A></TD>
+                <TD><IMG height=1 alt="" 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+                  width=5></TD>
+                <TD noWrap width="100%"><A class=textRed 
+                  href="http://searchwebservices.techtarget.com/expert/KnowledgebasePoseQuestion/0,289624,sid26,00.html"><SPAN 
+                  class=a2>Pose a Question</SPAN></A></TD></TR>
+              <TR>
+                <TD colSpan=3><IMG height=1 alt="" 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+                  width=5></TD></TR><!-- Other Categories -->
+              <TR>
+                <TD><A 
+                  href="http://searchwebservices.techtarget.com/expert/Knowledgebase/0,289622,sid26,00.html"><IMG 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/arrow_next_red.gif" 
+                  border=0></A></TD>
+                <TD><IMG height=1 alt="" 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+                  width=5></TD>
+                <TD noWrap width="100%"><A class=textRed 
+                  href="http://searchwebservices.techtarget.com/expert/Knowledgebase/0,289622,sid26,00.html"><SPAN 
+                  class=a2>Other Web Services Categories</SPAN></A></TD></TR>
+              <TR>
+                <TD colSpan=3><IMG height=1 alt="" 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+                  width=5></TD></TR><!-- Meet all Experts -->
+              <TR>
+                <TD><A 
+                  href="http://searchwebservices.techtarget.com/expert/KnowledgebaseBios/0,289621,sid26,00.html"><IMG 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/arrow_next_red.gif" 
+                  border=0></A></TD>
+                <TD><IMG height=1 alt="" 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+                  width=5></TD>
+                <TD noWrap width="100%"><A class=textRed 
+                  href="http://searchwebservices.techtarget.com/expert/KnowledgebaseBios/0,289621,sid26,00.html"><SPAN 
+                  class=a2>Meet all Web Services Experts</SPAN></A></TD></TR><!-- Become an Expert Begin -->
+              <TR>
+                <TD><A 
+                  href="http://searchwebservices.techtarget.com/expert/KnowledgebaseRecruitment/1,289629,sid26,00.html"><IMG 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/arrow_next_red.gif" 
+                  border=0></A></TD>
+                <TD><IMG height=1 alt="" 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+                  width=5></TD>
+                <TD noWrap width="100%"><A class=textRed 
+                  href="http://searchwebservices.techtarget.com/expert/KnowledgebaseRecruitment/1,289629,sid26,00.html"><SPAN 
+                  class=a2>Become an Expert for this site</SPAN></A></TD></TR><!-- Become an Expert End --></TBODY></TABLE></SPAN></TD></TR></TBODY></TABLE>
+      <TABLE cellSpacing=2 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD><IMG height=3 alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=5></TD>
+          <TD colSpan=2></TD></TR><!-- Question Begin -->
+        <TR>
+          <TD class=carrot vAlign=top>&gt;</TD>
+          <TD class=body vAlign=top width="100%">
+            <TABLE width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD class=body vAlign=top><SPAN class=a1><SPAN 
+                  class=text6>QUESTION POSED ON: 23 April 2002 
+                  </SPAN></SPAN><BR><B>I want to know what is the difference or 
+                  similarity between SAX, DOM, JDOM and JAXP? All of them are 
+                  APIs used for XML processing and SAX and DOM are inherently 
+                  different in the way XML data is represented.</B> 
+              </TD></TR></TBODY></TABLE><BR></TD></TR><!-- Question End --><!-- Response Begin -->
+        <TR>
+          <TD class=carrot vAlign=top>&gt;</TD>
+          <TD class=body vAlign=top>
+            <TABLE width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD class=body vAlign=top><SPAN class=a1><SPAN 
+                  class=text6>EXPERT RESPONSE</SPAN></SPAN><BR>SAX uses an event 
+                  callback mechanism requiring you to code methods to handle 
+                  events thrown by the parser as it encounters different 
+                  entities within the XML document.
+                  <P>DOM parses an XML document and returns an instance of 
+                  org.w3c.dom.Document. This document object's tree must then be 
+                  "walked" in order to process the different elements.
+                  <P>JDOM is an open source API, designed specifically for Java 
+                  programmers, that represents an XML tree as Elements and 
+                  Attributes. JDOM can interact with SAX or DOM. With JDOM, you 
+                  construct an instance of a builder (org.jdom.input.SAXBuilder 
+                  or org.jdom.input.DOMBuilder) and then invoke the build() 
+                  method on the builder to construct a Document object from the 
+                  input source (a File, an InputStream, a URL, etc.).
+                  <P>JAXP relies on factories to support different parser 
+                  implementations (including SAX, DOM) or XSLT engines. This 
+                  gives you the option of using a callback mechanism or a 
+                  builder mechanism that generates a document object.
+                  <P>The specific parser technology that you use will be 
+                  determined by the requirements of your application. If you 
+                  need the entire document represented, you will most likely use 
+                  DOM, JDOM or JAXP's builder implementation. If you only care 
+                  about parts of the XML document and/or you only need to parse 
+                  the document once, you might be better served using SAX or 
+                  JAXP's SAX implementation.
+                  <P>
+                  <P><BR><B>For news, advice and other information about web 
+                  services standards, <A 
+                  href="http://searchwebservices.techtarget.com/topics/0,295493,sid26_tax298809,00.html?Offer=WSeac1">click 
+                  here</A>.</B> </P></TD></TR></TBODY></TABLE></TD></TR><!-- Response End -->
+        <TR>
+          <TD></TD>
+          <TD><!-- Vignette V/5 Wed Sep 27 11:06:32 2006 --><!-- techtarget.com, searchWebServices, generated on September 27, 2006, by homer--><!-- BEGIN: Social Bookmarking --><IMG 
+            height=8 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=5><BR><SPAN class=textHighlite><SPAN 
+            class=a3>Share</SPAN></SPAN>&nbsp;- &nbsp;<!-- BEGIN: Digg This Bookmark --><A 
+            onclick="window.open('http://digg.com/submit?phase=2%26url='+encodeURIComponent(location.href)+'%26title='+encodeURIComponent(document.title)+'%26topic=tech_news%26bodytext=Q%2E%20I%20want%20to%20know%20what%20is%20the%20difference%20or%20similarity%20between%20SAX%2C%20DOM%2C%20JDOM%0Aand%20JAXP%3F%20All%20of%20them%20are%20APIs%20used%20for%20XML%20processing%20and%20SAX%20and%20DOM%20are%0Ainherently%20different%20in%20the%20way%20XML%20data%20is%20represented%2EnA%2E%20SAX%20uses%20an%20event%20callback%20mechanism%20requiring%20you%20to%20code%20methods%20to%20handle%0Aevents%20thrown%20by%20the%20parser%20as%20it%20encounters%20different%20entities%20within%20the%0AXML%20document%2E%3Cp%3E%0A%0ADOM%20parses%20an%20XML%20document%20and%20returns%20an%20instance%20of%20org%2Ew3c%2Edom%2EDocument%2E%0AThis%20document%20object%27s%20tree%20must%20then%20be%20%22walked%22%20in%20order%20to%20process%20the%0Adifferent%20elements%2E%3Cp%3E%0A%0AJDOM%20is%20an%20open%20source%20API%2C%20designed%20specifically%20for%20Java%20programmers%2C%20that%0Arepresents%20an%20XML%20tree%20as%20Elements%20and%20Attributes%2E%20%20JDOM%20can%20interact%20with%0ASAX%20or%20DOM%2E%20%20With%20JDOM%2C%20you%20construct%20an%20instance%20of%20a%20builder%0A%28org%2Ejdom%2Einput%2ESAXBuilder%20or%20org%2Ejdom%2Einput%2EDOMBuilder%29%20and%20then%20invoke%20the%0Abuild%28%29%20method%20on%20the%20builder%20to%20construct%20a%20Document%20object%20from%20the%20input%0Asource%20%28a%20File%2C%20an%20InputStream%2C%20a%20URL%2C%20etc%2E%29%2E%3Cp%3E%0A%0AJAXP%20relies%20on%20factories%20to%20support%20different%20parser%20implementations%0A%28including%20SAX%2C%20DOM%29%20or%20XSLT%20engines%2E%20%20This%20gives%20you%20the%20option%20of%20using%20a%0Acallback%20mechanism%20or%20a%20builder%20mechanism%20that%20generates%20a%20document%20object%2E%3Cp%3E%0A%0AThe%20specific%20parser%20technology%20that%20you%20use%20will%20be%20determined%20by%20the%0Arequirements%20of%20your%20application%2E%20%20If%20you%20need%20the%20entire%20document%0Arepresented%2C%20you%20will%20most%20likely%20use%20DOM%2C%20JDOM%20or%20JAXP%27s%20builder%0Aimplementation%2E%20%20If%20you%20only%20care%20about%20parts%20of%20the%20XML%20document%20and%2For%20you%0Aonly%20need%20to%20parse%20the%20document%20once%2C%20you%20might%20be%20better%20served%20using%20SAX%0Aor%20JAXP%27s%20SAX%20implementation%2E%3Cp%3E%0A%0A%3Cp%3E%3Cbr%3E%0A%0A%3Cb%3EFor%20news%2C%20advice%20and%20other%20information%20about%20web%20services%20standards%2C%20%3Ca%20href%3Dhttp%3A%2F%2Fsearchwebservices%2Etechtarget%2Ecom%2Ftopics%2F0%2C295493%2Csid26%5Ftax298809%2C00%2Ehtml%3FOffer%3DWSeac1%0A%3Eclick%20here%3C%2Fa%3E%2E%3C%2Fb%3E', 'digg','resizeable=yes,scrollbars=yes,toolbar=no,scroolbar,width=700,height=400'); return false;" 
+            href="http://www.digg.com/"><SPAN class=a2><FONT color=#000000>Digg 
+            This!</FONT></SPAN></A><!-- END: Digg This Bookmark -->&nbsp;&nbsp; <!-- BEGIN: Declicous Bookmark --><A style="COLOR: #000000" 
+            onclick="window.open('http://del.icio.us/post?v=4&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=700,height=400'); return false;" 
+            href="http://del.icio.us/post"><IMG height=12 
+            alt="Bookmark with Delicious" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/delicious.gif" 
+            width=16 align=absBottom border=0></A>&nbsp;<A 
+            style="COLOR: #000000" 
+            onclick="window.open('http://del.icio.us/post?v=4&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=700,height=400'); return false;" 
+            href="http://del.icio.us/post"><SPAN class=a2>Bookmark with 
+            Del.icio.us</SPAN></A><!-- END: Declicous Bookmark --> <BR><IMG 
+            height=15 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=5><BR><!-- END: Social Bookmarking --><!-- begin Google AdSense -->
+            <SCRIPT>
+	<!--
+	function ss(w){window.status=w;return true;}
+	function cs(){window.status='';}
+	function ga(o,e){
+		if (document.getElementById){
+			a=o.id.substring(1);
+			p="";
+			g=e.target;
+				if(g){
+					t=g.id;f=g.parentNode;
+						if(f)p=f.id;
+					}
+				else{t=e.srcElement.id;}
+					if(t==a||p==a)return;location.href=document.getElementById(a).href
+		}
+	}
+	//-->
+	</SCRIPT>
+
+            <STYLE>.ch {
+	CURSOR: hand
+}
+</STYLE>
+
+            <SCRIPT language=JavaScript>
+	<!--
+	function google_ad_request_done(google_ads) {
+		var i;
+		if(google_ads.length > 0) {
+			document.write('<!-- begin Google AdSense writes -->');
+			document.write('<table width="100%" cellspacing="0" cellpadding="0" border="0">');
+			document.write('<tr>');
+			document.write('<td align="right" valign="top"><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="1" height="2"><br><img src="http://media.techtarget.com/digitalguide/images/Misc/splash_icon_related_links.gif" width="13" height="13"><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="2" height="1"></td>');
+			document.write('<td><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="5" height="1"></td>');
+			document.write('<td class="colorback"><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="2" height="1"></td>');
+			document.write('<td><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="5" height="1"></td>');
+			document.write('<td width="100%" class="textHighlite"><b>WEB SERVICES RELATED LINKS</b></td>');
+			document.write('</tr>');
+
+			document.write('<tr>');
+			document.write('<td align="right" valign="top"><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="1" height="2"><br><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="2" height="1"></td>');
+			document.write('<td><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="5" height="1"></td>');
+			document.write('<td class="colorback"><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="2" height="1"></td>');
+			document.write('<td><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="5" height="25"></td>');
+			document.write('<td width="100%" class="a3"><b>Ads by Google</b></td>');
+			document.write('</tr>');
+
+			document.write('<tr>');
+			document.write('<td colspan="2"><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="1" height="5"></td>');
+			document.write('<td class="colorback"><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="2" height="1"></td>');
+			document.write('<td colspan="2"><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="1" height="1"></td>');
+			document.write('</tr>');
+
+		    for(i = 0; i < google_ads.length; ++i) {
+				document.write('<!-- begin ad -->');
+				document.write('<tr>');
+				document.write('<td colspan="2"><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="1" height="1"></td>');
+				document.write('<td class="colorback"><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="2" height="1"></td>');
+				document.write('<td><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="1" height="1"></td>');
+				document.write('		<td width="100%" style="cursor:pointer; cursor:hand" onMouseOver="return ss(\'' + google_ads[i].visible_url + '\')" onMouseOut="cs()" onClick="window.location.href=\'' + google_ads[i].url + '\'">');
+				document.write('<a href="' + google_ads[i].url + '"><b>' + google_ads[i].line1 + '</b></a><br>');
+				document.write('			<span class="a3">' + google_ads[i].line2 + '');
+				document.write('			' + google_ads[i].line3 + '<br>');
+				document.write('					<a href="' + google_ads[i].url + '" class="green"><span class="nunder"><span class="a3">' + google_ads[i].visible_url + '</span></span></a></span>');
+				document.write('</td>');
+				document.write('</tr>');
+				document.write('<tr>');
+				document.write('<td colspan="2"><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="1" height="15"></td>');
+				document.write('<td class="colorback"><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="2" height="1"></td>');
+				document.write('<td colspan="2"><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="1" height="1"></td>');
+				document.write('</tr>');
+				document.write('<!-- end ad -->');
+			}
+			document.write('<tr><td colspan="5"><img src="http://media.techtarget.com/searchWebServices/images/spacer.gif" width="1" height="15"></td></tr>');
+			document.write('</table>');
+			document.write('<br>');
+			document.write('<!-- end Google AdSense writes -->');
+		}
+	}
+	// -->
+	</SCRIPT>
+
+            <SCRIPT language=JavaScript>
+	<!--
+	         google_ad_client = 'ca-techtarget_js';
+	         google_ad_channel = 'other';
+	         google_ad_output = 'js';
+	         google_max_num_ads = 5;
+
+			if(cl_exclusive != 'Y') document.write('<script language="JavaScript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>');
+
+	// -->
+	</SCRIPT>
+<!-- end Google AdSense --><!-- BEGIN: Related Content-->
+            <TABLE cellSpacing=0 cellPadding=0 border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><IMG height=14 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/icon_mottInfo.gif" 
+                  width=14></TD>
+                <TD><IMG height="100%" 
+                  src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                  width=6></TD>
+                <TD class=colorback><IMG height="100%" alt="" 
+                  src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                  width=2> 
+                <TD><IMG height="100%" 
+                  src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                  width=5></TD>
+                <TD><SPAN class=textHighlite><B>RELATED CONTENT</B></SPAN><BR><!-- BEGIN: Taxonomy  - Application programming interfaces (API) -->
+                  <TABLE cellSpacing=0 cellPadding=0 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="What is the difference or similarity between SAX, DOM, JDOM_files/bullet_square_999999.gif"></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/topics/0,295493,sid26_tax298940,00.html"><SPAN 
+                        class=a3><B>Application programming interfaces 
+                        (API)</B></SPAN></A></TD></TR><!-- Begin List of Content  -->
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1207097,00.html"><SPAN 
+                        class=a2>API puts LAMP in new light</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1204994,00.html"><SPAN 
+                        class=a2>Apache Incubator's got OpenJPA</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1200637,00.html"><SPAN 
+                        class=a2>Amazon offers Simple Queue 
+                    Service</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1199010,00.html"><SPAN 
+                        class=a2>Ajax via Google Toolkit</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1196850,00.html"><SPAN 
+                        class=a2>New Google Web service challenges 
+                        PayPal</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1192224,00.html"><SPAN 
+                        class=a2>Sun designates Ajax architect</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1180747,00.html"><SPAN 
+                        class=a2>Web services the Microsoft way</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1174109,00.html"><SPAN 
+                        class=a2>Bill Gates waxes serious about Web 
+                        services</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/originalContent/0,289142,sid26_gci1171700,00.html"><SPAN 
+                        class=a2>Yahoo! unveils Ajax Web 
+                    services</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1163792,00.html"><SPAN 
+                        class=a2>Q&amp;A with StrikeIron's Bob 
+                      Brauer</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.bitpipe.com/data/rlist?t=1003423189_76016378"><SPAN 
+                        class=a2>Application programming interfaces (API) 
+                        Research</SPAN></A></TD></TR><!-- End List of Content  --></TBODY></TABLE><!-- END: Taxonomy  - Application programming interfaces (API) -->
+                  <P><!-- BEGIN: Taxonomy  - XML specifications -->
+                  <TABLE cellSpacing=0 cellPadding=0 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="What is the difference or similarity between SAX, DOM, JDOM_files/bullet_square_999999.gif"></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/topics/0,295493,sid26_tax298902,00.html"><SPAN 
+                        class=a3><B>XML specifications</B></SPAN></A></TD></TR><!-- Begin List of Content  -->
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/tip/0,289483,sid26_gci1215513,00.html"><SPAN 
+                        class=a2>SAML remains open, securing XML 
+                        security</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1214584,00.html"><SPAN 
+                        class=a2>Microsoft remakes Frontpage</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/tip/0,289483,sid26_gci1214333,00.html"><SPAN 
+                        class=a2>Using XML pipelines - part 1</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1211092,00.html"><SPAN 
+                        class=a2>W3C updates XML specs</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/tip/0,289483,sid26_gci1201488,00.html"><SPAN 
+                        class=a2>XML tip: I want my XMLTV</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1201070,00.html"><SPAN 
+                        class=a2>W3C ramps up for Semantic Web</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1197722,00.html"><SPAN 
+                        class=a2>OMG offers XML-based systems 
+                      modeling</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1197484,00.html"><SPAN 
+                        class=a2>Microsoft backs Office Open XML to ODF 
+                        translation</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1192960,00.html"><SPAN 
+                        class=a2>New DB2 is XML-enabled</SPAN></A></TD></TR>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                        width=1></TD>
+                      <TD><A class=hoverLink 
+                        href="http://searchwebservices.techtarget.com/newsItem/0,289139,sid26_gci1192213,00.html"><SPAN 
+                        class=a2>Ajax helps IT manage audio 
+                    visual</SPAN></A></TD></TR><!-- End List of Content  --></TBODY></TABLE><!-- END: Taxonomy  - XML specifications --></P></TD></TR></TBODY></TABLE><!-- END: Related Content Splash -->
+            <P><!-- BEGIN: Bitpipe Splash -->
+            <TABLE cellSpacing=0 cellPadding=0 border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><IMG height=14 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/icon_mottInfo.gif" 
+                  width=14></TD>
+                <TD><IMG height="100%" 
+                  src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                  width=6></TD>
+                <TD class=colorback><IMG height="100%" alt="" 
+                  src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                  width=2> 
+                <TD><IMG height="100%" 
+                  src="C:\Documents and Settings\user\Desktop\XML\What is the difference or similarity between SAX, DOM, JDOM_files\spacer(1).gif" 
+                  width=5></TD>
+                <TD><SPAN class=textHighlite><B>RELATED 
+                  RESOURCES</B></SPAN><BR>
+                  <TABLE cellSpacing=0 cellPadding=0 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD vAlign=top><IMG alt="" 
+                        src="What is the difference or similarity between SAX, DOM, JDOM_files/bullet_square_999999.gif"></TD>
+                      <TD class=a2>2020software.com, trial software downloads 
+                        for <A class=hoverLink 
+                        href="http://www.2020software.com/"><SPAN 
+                        class=a2>accounting software</SPAN></A>, <A 
+                        class=hoverLink 
+                        href="http://www.2020software.com/"><SPAN class=a2>ERP 
+                        software, CRM software and business software</SPAN></A> 
+                        systems </TD></TR>
+                    <TR>
+                      <TD vAlign=top><IMG alt="" 
+                        src="What is the difference or similarity between SAX, DOM, JDOM_files/bullet_square_999999.gif"></TD>
+                      <TD class=a2>Search Bitpipe.com for the latest <A 
+                        class=hoverLink 
+                        href="http://searchwebservices.bitpipe.com/"><SPAN 
+                        class=a2>white papers</SPAN></A> and <A class=hoverLink 
+                        href="http://searchwebservices.bitpipe.com/webcasts"><SPAN 
+                        class=a2>business webcasts</SPAN></A></TD></TR>
+                    <TR>
+                      <TD vAlign=top><IMG alt="" 
+                        src="What is the difference or similarity between SAX, DOM, JDOM_files/bullet_square_999999.gif"></TD>
+                      <TD class=a2>Whatis.com, the online <A class=hoverLink 
+                        href="http://whatis.techtarget.com/"><SPAN 
+                        class=a2>computer 
+                  dictionary</SPAN></A></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END: Bitpipe Splash --><BR><IMG 
+            height=5 alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1><BR></P></TD></TR></TBODY></TABLE></TD><!-- Spacer Column Begin -->
+    <TD><IMG height=1 alt="" 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=10></TD><!-- Spacer Column End --><!-- Right Column Begin -->
+    <TD vAlign=top align=left bgColor=white><IMG height=12 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1><BR><!-- BEGIN: iframe --><!-- 310x950 ad start -->
+      <SCRIPT language=JavaScript>
+<!--
+	if (typeof adDcopt == "undefined") var adDcopt = "ist";
+	if (typeof adPageID == "undefined") var adPageID = Math.round(Math.random() * 100000000);
+	if (typeof adString == "undefined") var adString = new String();
+	 adString = JSwriteAD2("swsv", "ate", "310", "950", "ctHugeAd_4", "", adDcopt, adPageID);
+	document.writeln(adString);
+	adDcopt = "";
+// -->
+</SCRIPT>
+<!-- 310x950 ad end --><!-- END: iframe -->
+      <P><!-- BEGIN: search advice -->
+      <CENTER>
+      <TABLE class=bordercolorC cellSpacing=2 cellPadding=0 width=310 
+        border=0><TBODY>
+        <TR>
+          <TD><IMG height=10 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=10></TD></TR>
+        <TR>
+          <TD><IMG height=1 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=10></TD>
+          <TD><B>Search and Browse the Expert Answer Center</B><BR><SPAN 
+            class=a2>Search and browse more than 25,000 question and answer 
+            pairs from more than 250 TechTarget industry experts.</SPAN> </TD>
+          <TD><IMG height=1 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=10></TD></TR>
+        <TR>
+          <TD colSpan=3><IMG height=5 alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD><IMG height=1 alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=10></TD>
+          <TD>
+            <FORM style="MARGIN-BOTTOM: 0px" name=search 
+            action=http://expertanswercenter.techtarget.com/eac/knowledgebaseSearchResults/1,295198,sid26_gci1192213,00.html 
+            method=get>
+            <TABLE cellSpacing=0 cellPadding=0 border=0>
+              <TBODY>
+              <TR>
+                <TD><INPUT class=i3width200 name=query></TD>
+                <TD><IMG height=1 alt="" 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+                  width=5></TD>
+                <TD><INPUT type=image 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/button_search.gif"></TD></TR></TBODY></TABLE></FORM></TD>
+          <TD><IMG height=1 alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=10></TD></TR>
+        <TR>
+          <TD colSpan=3><IMG height=5 alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD><IMG height=1 alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=10></TD>
+          <TD>
+            <TABLE>
+              <TBODY>
+              <TR>
+                <TD colSpan=3><B>Browse our Expert Advice</B> </TD></TR>
+              <TR>
+                <TD vAlign=top><!-- begin category listing -->
+                  <UL class=list_bullet>
+                    <LI class=list_bullet_item><A 
+                    href="http://expertanswercenter.techtarget.com/eac/knowledgebaseCategory/0,295197,sid63_gci1192213_tax296725,00.html"><SPAN 
+                    class=a2>Operating Systems</SPAN></A> 
+                    <LI class=list_bullet_item><A 
+                    href="http://expertanswercenter.techtarget.com/eac/knowledgebaseCategory/0,295197,sid63_gci1192213_tax296726,00.html"><SPAN 
+                    class=a2>IT Management</SPAN></A> 
+                    <LI class=list_bullet_item><A 
+                    href="http://expertanswercenter.techtarget.com/eac/knowledgebaseCategory/0,295197,sid63_gci1192213_tax296727,00.html"><SPAN 
+                    class=a2>Networking</SPAN></A> 
+                    <LI class=list_bullet_item><A 
+                    href="http://expertanswercenter.techtarget.com/eac/knowledgebaseCategory/0,295197,sid63_gci1192213_tax296728,00.html"><SPAN 
+                    class=a2>Database</SPAN></A> </LI></UL></TD>
+                <TD vAlign=top>
+                  <UL class=list_bullet>
+                    <LI class=list_bullet_item><A 
+                    href="http://expertanswercenter.techtarget.com/eac/knowledgebaseCategory/0,295197,sid63_gci1192213_tax296729,00.html"><SPAN 
+                    class=a2>Security</SPAN></A> 
+                    <LI class=list_bullet_item><A 
+                    href="http://expertanswercenter.techtarget.com/eac/knowledgebaseCategory/0,295197,sid63_gci1192213_tax296730,00.html"><SPAN 
+                    class=a2>Servers and Storage</SPAN></A> 
+                    <LI class=list_bullet_item><A 
+                    href="http://expertanswercenter.techtarget.com/eac/knowledgebaseCategory/0,295197,sid63_gci1192213_tax296731,00.html"><SPAN 
+                    class=a2>Applications and Development</SPAN></A> 
+                    <LI class=list_bullet_item><A 
+                    href="http://expertanswercenter.techtarget.com/eac/knowledgebaseCategory/0,295197,sid63_gci1192213_tax296732,00.html"><SPAN 
+                    class=a2>Career Center</SPAN></A> </LI></UL><!-- end category listing --></TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD><IMG height=1 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=10></TD></TR></TBODY></TABLE><BR></CENTER><!-- END: search advice--><!-- Expert Answer Center Ad End --></TD><!-- Right Column Begin --><!-- Spacer Column Begin -->
+    <TD><IMG height=1 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=5></TD><!-- Spacer Column End --></TR></TBODY></TABLE>
+<SCRIPT language=Javascript>
+<!--
+	PAGE_FOOTER_TOP();
+// -->
+</SCRIPT>
+<!-- Vignette V/5 Sat Sep 23 10:36:59 2006 --><!-- techtarget.com, searchWebServices, generated on September 23, 2006, by homer--><!-- Footer AD COMPONENT Built by SS at Sat Sep 23 10:37:00 2006 -->
+<SCRIPT 
+language=Javascript>
+<!--
+
+	var JSfooterAdSense = "off";
+// -->
+</SCRIPT>
+
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR class=color0>
+    <TD><IMG height=3 alt="" 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD></TR></TBODY></TABLE><!-- BEGIN: FOOTERLINKS FOOTER SEARCH -->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR class=color1>
+    <TD><IMG height=1 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=5></TD>
+    <TD class=textOnColor1 width="100%" 
+      height=29><!-- BEGIN: FOOTER LINKS --><A class=textOnColor1 
+      href="http://searchwebservices.techtarget.com/aboutUs/0,289153,sid26,00.html">About 
+      Us</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A class=textOnColor1 
+      href="http://searchwebservices.techtarget.com/contactUs/0,289157,sid26,00.html">Contact 
+      Us</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A class=textOnColor1 
+      href="http://searchwebservices.techtarget.com/buyersGuideForVendors/0,289879,sid26,00.html">For 
+      Advertisers</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A class=textOnColor1 
+      href="http://searchwebservices.techtarget.com/forBusinessPartners/0,289198,sid26,00.html">For 
+      Business Partners</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A class=textOnColor1 
+      href="http://searchwebservices.techtarget.com/reprints/0,296569,sid26,00.html">Reprints</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      class=textOnColor1 
+      href="http://searchwebservices.techtarget.com/rssLanding/0,295701,sid26,00.html">RSS</A><!-- END: FOOTER LINKS --> 
+    </TD>
+    <TD class=color1><!-- BEGIN: FOOTER SEARCH -->
+      <TABLE class=color0 cellSpacing=0 cellPadding=0 border=0>
+        <FORM name=search 
+        action=http://searchWebServices.techtarget.com/search/1,293876,sid26,00.html 
+        method=get>
+        <TBODY>
+        <TR>
+          <TD class=color1><IMG height=29 alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/footer_searchWidget_corner_black.gif" 
+            width=29></TD>
+          <TD class=textF><SPAN class=a2><B>SEARCH</B>&nbsp;</SPAN></TD>
+          <TD><IMG height=1 alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=5></TD>
+          <TD><INPUT class=i3width125 size=8 name=query></TD>
+          <TD><IMG height=1 alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=5></TD>
+          <TD><INPUT type=image 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/button_search_cccccc.gif"></TD>
+          <TD><IMG height=1 alt="" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=5></TD></TR></FORM></TBODY></TABLE><!-- END: FOOTER SEARCH --></TD></TR>
+  <TR class=color1>
+    <TD colSpan=3><IMG height=5 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD></TR></TBODY></TABLE><!-- END: FOOTERLINKS FOOTER SEARCH -->
+<TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+  <TBODY>
+  <TR class=color1>
+    <TD width=1><IMG height=1 alt="" 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD>
+    <TD class=color9 width="100%" colSpan=2><!-- BEGIN: PORTFOLIO BOX -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffffff>
+          <TD width=5><IMG height=1 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=5></TD>
+          <TD width="100%"><IMG 
+            alt="SearchWebServices.com is part of the TechTarget network of industry-specific IT Web sites" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/footerTaglineSite.gif"><IMG 
+            height=18 
+            alt="SearchWebServices.com is part of the TechTarget network of industry-specific IT Web sites" 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/footerTagline.gif" 
+            width=353></TD>
+          <TD class=color1 vAlign=top width=102 rowSpan=4><A 
+            href="http://www.techtarget.com/"><IMG height=104 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/footerTTlogo.gif" 
+            width=102 border=0></A></TD></TR>
+        <TR>
+          <TD colSpan=2 height=2><IMG height=2 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD class=color1 colSpan=2 height=5><IMG height=5 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1></TD></TR>
+        <TR class=color1>
+          <TD width=5 height=1><IMG height=1 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=5></TD>
+          <TD vAlign=top width="100%" height=79>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD class=textOnColor1 vAlign=top noWrap><!--<b>Total: 29</b><br>
+<b>Per Column: 10</b><br>--><!--<b>This Column Counter: </b><br>--><!--<br><b>This Column Ctr: </b><br>--><SPAN 
+                  class=textOnColor1><B>CIO AND IT MANAGEMENT</B></SPAN><BR><A 
+                  class=textOnColor1 
+                  href="http://searchcio.techtarget.com/">SearchCIO.com</A><BR><!--<br><b>This Column Ctr: </b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchsmb.techtarget.com/">SearchSMB.com</A><BR><!--<br><b>This Column Ctr: </b><br>--><A 
+                  class=textOnColor1 
+                  href="http://whatis.techtarget.com/">WhatIs.com</A><BR>
+                  <P><!--<b>This Column Counter: 3</b><br>--><!--<br><b>This Column Ctr: 3</b><br>--><SPAN 
+                  class=textOnColor1><B>STORAGE AND DATA CENTER</B></SPAN><BR><A 
+                  class=textOnColor1 
+                  href="http://searchstorage.techtarget.com/">SearchStorage.com</A><BR><!--<br><b>This Column Ctr: 3</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://search400.techtarget.com/">Search400.com</A><BR><!--<br><b>This Column Ctr: 3</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchdatacenter.techtarget.com/">SearchDataCenter.com</A><BR>
+                  <P><!--<b>This Column Counter: 6</b><br>--></P></TD>
+                <TD width=5><IMG height=1 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+                  width=5></TD>
+                <TD class=textOnColor1 vAlign=top noWrap><!--<br><b>This Column Ctr: 6</b><br>--><SPAN 
+                  class=textOnColor1><B>WINDOWS AND DISTRIBUTED 
+                  COMPUTING</B></SPAN><BR><A class=textOnColor1 
+                  href="http://searchwinit.techtarget.com/">SearchWinIT.com</A><BR><!--<br><b>This Column Ctr: 6</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchexchange.techtarget.com/">SearchExchange.com</A><BR><!--<br><b>This Column Ctr: 6</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchsqlserver.techtarget.com/">SearchSQLServer.com</A><BR><!--<br><b>This Column Ctr: 6</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchwindowssecurity.techtarget.com/">SearchWindowsSecurity.com</A><BR><!--<br><b>This Column Ctr: 6</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchwincomputing.techtarget.com/">SearchWinComputing.com</A><BR><!--<br><b>This Column Ctr: 6</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchservervirtualization.techtarget.com/">SearchServerVirtualization.com</A><BR><!--<br><b>This Column Ctr: 6</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://labmice.techtarget.com/">Labmice.net</A><BR><!--<br><b>This Column Ctr: 6</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchopensource.techtarget.com/">SearchOpenSource.com</A><BR><!--<br><b>This Column Ctr: 6</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchdomino.techtarget.com/">SearchDomino.com</A><BR>
+                  <P><!--<b>This Column Counter: 15</b><br>--><!--<br><b>This Column Ctr: 15</b><br>--><SPAN 
+                  class=textOnColor1><B>NETWORKING</B></SPAN><BR><A 
+                  class=textOnColor1 
+                  href="http://searchnetworking.techtarget.com/">SearchNetworking.com</A><BR><!--<br><b>This Column Ctr: 15</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchvoip.techtarget.com/">SearchVoIP.com</A><BR><!--<br><b>This Column Ctr: 15</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchmobilecomputing.techtarget.com/">SearchMobileComputing.com</A><BR>
+                  <P><!--<b>This Column Counter: 18</b><br>--></P></TD>
+                <TD width=5><IMG height=1 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+                  width=5></TD>
+                <TD class=textOnColor1 vAlign=top noWrap><!--<br><b>This Column Ctr: 18</b><br>--><SPAN 
+                  class=textOnColor1><B>SECURITY</B></SPAN><BR><A 
+                  class=textOnColor1 
+                  href="http://searchsecurity.techtarget.com/">SearchSecurity.com</A><BR>
+                  <P><!--<b>This Column Counter: 19</b><br>-->
+                  <P><!--<b>This Column Counter: 19</b><br>--><!--<br><b>This Column Ctr: 19</b><br>--><SPAN 
+                  class=textOnColor1><B>APPLICATION DEVELOPMENT</B></SPAN><BR><A 
+                  class=textOnColor1 
+                  href="http://www.theserverside.com/">TheServerSide.com</A><BR><!--<br><b>This Column Ctr: 19</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://www.theserverside.net/">TheServerSide.NET</A><BR><!--<br><b>This Column Ctr: 19</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchappsecurity.techtarget.com/">SearchAppSecurity.com</A><BR><!--<br><b>This Column Ctr: 19</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchwebservices.techtarget.com/">SearchWebServices.com</A><BR><!--<br><b>This Column Ctr: 19</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchvb.techtarget.com/">SearchVB.com</A><BR>
+                  <P><!--<b>This Column Counter: 24</b><br>--><!--<br><b>This Column Ctr: 24</b><br>--><SPAN 
+                  class=textOnColor1><B>ENTERPRISE APPLICATIONS</B></SPAN><BR><A 
+                  class=textOnColor1 
+                  href="http://searchcrm.techtarget.com/">SearchCRM.com</A><BR><!--<br><b>This Column Ctr: 24</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchdatamanagement.techtarget.com/">SearchDataManagement.com</A><BR><!--<br><b>This Column Ctr: 24</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchoracle.techtarget.com/">SearchOracle.com</A><BR><!--<br><b>This Column Ctr: 24</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://searchsap.techtarget.com/">SearchSAP.com</A><BR><!--<br><b>This Column Ctr: 24</b><br>--><A 
+                  class=textOnColor1 
+                  href="http://www.2020software.com/">2020software.com</A><BR>
+                  <P><!--<b>This Column Counter: 29</b><br>-->
+                  <P><!--<b>This Column Counter: 29</b><br>-->
+                  <P></P></TD>
+                <TD width=5><IMG height=1 
+                  src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+                  width=5></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=color1>
+          <TD colSpan=3><IMG height=10 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1></TD></TR>
+        <TR class=color1>
+          <TD><IMG height=1 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1></TD>
+          <TD class=textOnColor1 colSpan=2><A class=textOnColor1 
+            href="http://expertanswercenter.techtarget.com/">TechTarget Expert 
+            Answer Center</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A class=textOnColor1 
+            href="http://events.techtarget.com/">TechTarget 
+            Events</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A class=textOnColor1 
+            href="http://www.techtarget.com/">TechTarget Corporate Web 
+            Site</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A class=textOnColor1 
+            href="http://www.techtarget.com/mediakit/">Media 
+            Kit</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A class=textOnColor1 
+            href="http://searchwebservices.techtarget.com/siteMap/0,294352,sid26,00.html">Site 
+            Map</A></TD></TR>
+        <TR class=color1>
+          <TD colSpan=3><IMG height=10 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD colSpan=3><IMG height=2 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1></TD></TR>
+        <TR bgColor=#ffffff>
+          <TD><IMG height=1 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1></TD>
+          <TD colSpan=2><IMG height=2 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1><BR>Explore <A class=text0 
+            href="http://searchtechtarget.techtarget.com/"><B>SearchTechTarget.com</B></A>, 
+            the guide to the TechTarget network of industry-specific IT Web 
+            sites.<BR><IMG height=2 
+            src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+            width=1><BR></TD></TR></TBODY></TABLE><!-- END: PORTFOLIO BOX --></TD>
+    <TD width=1><IMG height=1 alt="" 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD></TR>
+  <TR class=color1>
+    <TD width=1><IMG height=1 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD>
+    <TD class=textOnColor1><B>All Rights Reserved, <A class=textOnColor1 
+      href="http://searchwebservices.techtarget.com/copyright/0,289135,sid26,00.html"><SPAN 
+      class=bold>Copyright 2001 - 2006</SPAN></A>, TechTarget</B></TD>
+    <TD noWrap align=right><A class=textOnColor1 
+      href="http://www.techtarget.com/html/privacy_policy.html" 
+      target=_blank>Privacy Statement</A></TD>
+    <TD width=1><IMG height=1 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD></TR>
+  <TR class=color1>
+    <TD colSpan=4><IMG height=4 
+      src="What is the difference or similarity between SAX, DOM, JDOM_files/spacer.gif" 
+      width=1></TD></TR></TBODY></TABLE>
+<SCRIPT language=Javascript>
+<!--
+	document.write(LIFTSTUDY_QUEUE());
+	if (ISFIXEDWIDTH) document.write(CLOSE_FIXED_WIDTH_TABLE_DISPLAY_CODE_3());
+	document.write(CLOSE_CENTER_PAGE());
+	if (typeof f360I_TRACKING == "function") document.write(f360I_TRACKING());
+// -->
+</SCRIPT>
+<!-- Page Times
+Engine: 0.162 seconds
+Page: 2.011 seconds
+--></BODY></HTML>

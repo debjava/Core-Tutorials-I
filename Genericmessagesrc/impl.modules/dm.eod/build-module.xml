@@ -1,0 +1,48 @@
+<project name="EODModule" default="build">
+
+	<property name="root" value="../.." />
+	<property name="message.module.dir" value="${root}/genericmessage_dist" />
+	<property name="module.base.dir" value="${root}/impl.modules/dm.eod" />
+	<property name="java.src" value="${module.base.dir}/src" />
+	<property name="output.base.dir" value="${module.base.dir}/temp" />
+	<property name="output.class.dir" value="${output.base.dir}/classes" />
+	<property name="eod.module.jar" value="messagedataimpl.jar" />
+	
+	<path id="class.path">
+		<fileset dir="${message.module.dir}/lib" includes="**/*.jar" />
+	</path>
+
+	<target name="init" description="Make dir for initialization">
+		<mkdir dir="${output.base.dir}" />
+		<mkdir dir="${output.class.dir}" />
+	</target>
+
+	<target name="compile.src" depends="init" description="compile java source classes">
+		
+		<echo message="Compiling java srouce files" />		
+
+		<!-- 
+		delete this jar file as it may contains java class which this target is going to compile 
+		-->		
+		<delete file="${message.module.dir}/lib/${eod.module.jar}" />
+
+		<javac classpathref="class.path" srcdir="${java.src}" destdir="${output.class.dir}" />
+
+	</target>
+
+	<target name="build" description="for building whole module, calling target in appropriate sequence">
+		<antcall target="compile.src" />
+
+		<echo message="Creating module implementation jar file" />
+		<jar destfile="${message.module.dir}/lib/${eod.module.jar}" basedir="${output.class.dir}" />
+
+		<antcall target="clean" />
+	</target>
+
+	<target name="dist" depends="clean,build" />
+
+	<target name="clean" description="delete files and folder created for temporary use">
+		<delete dir="${output.base.dir}" />
+	</target>
+
+</project>

@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<ComplexEventDefination>
+<CompositeEventId>CE2000</CompositeEventId>
+<EventWaitingTime>20</EventWaitingTime>
+<RRSEventMDList>
+		<RRSEventMetadata>
+			<MDID>MDID1</MDID>
+			<IndicationIdentifier>Order Recieved</IndicationIdentifier>
+			<EventType>Threshold</EventType>
+			<Description>Happens When a Order is recieved</Description>
+			<Data>Name=String;Age=String;sex=String</Data>
+			<RuleList>RuleID1;</RuleList>
+		</RRSEventMetadata>
+		<RRSEventMetadata>
+			<MDID>MDID2</MDID>
+			<IndicationIdentifier>Credit Check Failed</IndicationIdentifier>
+			<EventType>Alert</EventType>
+			<Description>Happens When a credit check fails due to lack.</Description>
+			<Data>Name=String;Age=String;sex=String</Data>
+			<RuleList>RuleID1;</RuleList>
+		</RRSEventMetadata>
+		<RRSEventMetadata>
+			<MDID>MDID3</MDID>
+			<IndicationIdentifier>Invalid password</IndicationIdentifier>
+			<EventType>Alert</EventType>
+			<Description>Happens When a credit check fails due to lack.</Description>
+			<Data>Name=String;Age=String;sex=String</Data>
+			<RuleList>RuleID1;</RuleList>
+		</RRSEventMetadata>
+		<RRSEventMetadata>
+			<MDID>MDID4</MDID>
+			<IndicationIdentifier>Invalid password</IndicationIdentifier>
+			<EventType>Alert</EventType>
+			<Description>Happens When a credit check fails due to lack.</Description>
+			<Data>Name=String;Age=String;sex=String</Data>
+			<RuleList>RuleID1;</RuleList>
+		</RRSEventMetadata>
+		<RRSEventMetadata>
+			<MDID>MDID5</MDID>
+			<IndicationIdentifier>Invalid password</IndicationIdentifier>
+			<EventType>Alert</EventType>
+			<Description>Happens When a credit check fails due to lack.</Description>
+			<Data>Name=String;Age=String;sex=String</Data>
+			<RuleList>RuleID1;</RuleList>
+		</RRSEventMetadata>
+		<RRSEventMetadata>
+			<MDID>MDID6</MDID>
+			<IndicationIdentifier>Invalid password</IndicationIdentifier>
+			<EventType>Alert</EventType>
+			<Description>Happens When a credit check fails due to lack.</Description>
+			<Data>Name=String;Age=String;sex=String</Data>
+			<RuleList>RuleID1;</RuleList>
+		</RRSEventMetadata>
+		<RRSEventMetadata>
+			<MDID>MDID7</MDID>
+			<IndicationIdentifier>Invalid password</IndicationIdentifier>
+			<EventType>Alert</EventType>
+			<Description>Happens When a credit check fails due to lack.</Description>
+			<Data>Name=String;Age=String;sex=String</Data>
+			<RuleList>RuleID1;</RuleList>
+		</RRSEventMetadata>	
+		<RRSEventMetadata>
+			<MDID>MDID8</MDID>
+			<IndicationIdentifier>Invalid password</IndicationIdentifier>
+			<EventType>Alert</EventType>
+			<Description>Happens When a credit check fails due to lack.</Description>
+			<Data>Name=String;Age=String;sex=String</Data>
+			<RuleList>RuleID1;</RuleList>
+		</RRSEventMetadata>
+		<RRSEventMetadata>
+			<MDID>MDID9</MDID>
+			<IndicationIdentifier>Invalid password</IndicationIdentifier>
+			<EventType>Alert</EventType>
+			<Description>Happens When a credit check fails due to lack.</Description>
+			<Data>Name=String;Age=String;sex=String</Data>
+			<RuleList>RuleID1;</RuleList>
+		</RRSEventMetadata>
+		<RRSEventMetadata>
+			<MDID>MDID10</MDID>
+			<IndicationIdentifier>Invalid password</IndicationIdentifier>
+			<EventType>Alert</EventType>
+			<Description>Happens When a credit check fails due to lack.</Description>
+			<Data>Name=String;Age=String;sex=String</Data>
+			<RuleList>RuleID1;</RuleList>
+		</RRSEventMetadata>
+</RRSEventMDList>
+<!--RRSRuleMDList>
+		<RRSRuleMetadata>
+			<Id>RuleID1</Id>
+		</RRSRuleMetadata>
+		<RRSRuleMetadata>
+			<Id>RuleID2</Id>
+		</RRSRuleMetadata>
+</RRSRuleMDList-->
+</ComplexEventDefination>

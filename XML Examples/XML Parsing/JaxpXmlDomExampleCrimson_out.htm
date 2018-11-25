@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0083)http://www.idevelopment.info/data/Programming/java/xml/JaxpXmlDomExampleCrimson.out -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2800.1528" name=GENERATOR></HEAD>
+<BODY><PRE>--------------------------
+Compile Program
+--------------------------
+javac JaxpXmlDomExample.java
+
+
+--------------------------
+Run Program
+--------------------------
+java  \
+    -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.crimson.jaxp.DocumentBuilderFactoryImpl \
+    -Djavax.xml.parsers.SAXParserFactory=org.apache.crimson.jaxp.SAXParserFactoryImpl \
+    JaxpXmlDomExample DatabaseInventory.xml
+
+
+--------------------------
+Program Output
+--------------------------
+
+
+Passed in File         : DatabaseInventory.xml
+Object to Parse (File) : DatabaseInventory.xml
+Parser Implementation  : class org.apache.crimson.jaxp.DocumentBuilderImpl
+
+&lt;xml version="1.0"&gt;
+
+&lt;DatabaseInventory&gt;
+
+    &lt;DatabaseName&gt;
+        &lt;GlobalDatabaseName&gt;production.iDevelopment.info&lt;/GlobalDatabaseName&gt;
+        &lt;OracleSID&gt;production&lt;/OracleSID&gt;
+        &lt;DatabaseDomain&gt;iDevelopment.info&lt;/DatabaseDomain&gt;
+        &lt;Administrator EmailAlias="jhunter" Extension="6007"&gt;Jeffrey Hunter&lt;/Administrator&gt;
+        &lt;DatabaseAttributes Type="Production" Version="9i"&gt;&lt;/DatabaseAttributes&gt;
+        &lt;Comments&gt;
+      The following database should be considered the most stable for
+      up-to-date data. The backup strategy includes running the database
+      in Archive Log Mode and performing nightly backups. All new accounts
+      need to be approved by the DBA Group before being created.
+    &lt;/Comments&gt;
+  &lt;/DatabaseName&gt;
+
+    &lt;DatabaseName&gt;
+        &lt;GlobalDatabaseName&gt;development.iDevelopment.info&lt;/GlobalDatabaseName&gt;
+        &lt;OracleSID&gt;development&lt;/OracleSID&gt;
+        &lt;DatabaseDomain&gt;iDevelopment.info&lt;/DatabaseDomain&gt;
+        &lt;Administrator EmailAlias="jhunter" Extension="6007"&gt;Jeffrey Hunter&lt;/Administrator&gt;
+        &lt;Administrator EmailAlias="mhunter" Extension="6008"&gt;Melody Hunter&lt;/Administrator&gt;
+        &lt;DatabaseAttributes Type="Development" Version="9i"&gt;&lt;/DatabaseAttributes&gt;
+        &lt;Comments&gt;
+      The following database should contain all hosted applications. Production
+      data will be exported on a weekly basis to ensure all development environments
+      have stable and current data.
+    &lt;/Comments&gt;
+  &lt;/DatabaseName&gt;
+
+    &lt;DatabaseName&gt;
+        &lt;GlobalDatabaseName&gt;testing.iDevelopment.info&lt;/GlobalDatabaseName&gt;
+        &lt;OracleSID&gt;testing&lt;/OracleSID&gt;
+        &lt;DatabaseDomain&gt;iDevelopment.info&lt;/DatabaseDomain&gt;
+        &lt;Administrator EmailAlias="jhunter" Extension="6007"&gt;Jeffrey Hunter&lt;/Administrator&gt;
+        &lt;Administrator EmailAlias="mhunter" Extension="6008"&gt;Melody Hunter&lt;/Administrator&gt;
+        &lt;Administrator EmailAlias="ahunter"&gt;Alex Hunter&lt;/Administrator&gt;
+        &lt;DatabaseAttributes Type="Testing" Version="9i"&gt;&lt;/DatabaseAttributes&gt;
+        &lt;Comments&gt;
+      The following database will host more than half of the testing
+      for our hosting environment.
+    &lt;/Comments&gt;
+  &lt;/DatabaseName&gt;
+
+&lt;/DatabaseInventory&gt;
+</PRE></BODY></HTML>

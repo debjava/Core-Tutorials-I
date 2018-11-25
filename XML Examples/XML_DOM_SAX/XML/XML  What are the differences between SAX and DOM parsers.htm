@@ -1,0 +1,809 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0051)http://www.geekinterview.com/question_details/12797 -->
+<HTML><HEAD><TITLE>XML : What are the differences between SAX and DOM parsers?</TITLE>
+<META 
+content="Programming XML Interview Questions: What are the differences between SAX and DOM parsers?  Hi friends this is hari. SAX Parser is the one which is developed to run the java programs especially. It uses a memory resident model. DOM  is developed by w3c consortium so that it is an open standard. In DOM the xml file is arranged as a tree an" 
+name=description>
+<META content="What are the differences between SAX and DOM parsers?" 
+name=keywords>
+<META http-equiv=Content-Language content=en>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META content=GeekInterview.Com name=author>
+<META content=INDEX,FOLLOW name=ROBOTS>
+<META content=NEVER name=expires><LINK 
+href="XML  What are the differences between SAX and DOM parsers_files/style.css" 
+type=text/css rel=stylesheet>
+<SCRIPT 
+src="XML  What are the differences between SAX and DOM parsers_files/urchin.js" 
+type=text/javascript>
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+_uacct = "UA-61665-1";
+urchinTracker();
+</SCRIPT>
+
+<STYLE type=text/css>.code {
+	BORDER-RIGHT: black 1px dotted; PADDING-RIGHT: 5px; BORDER-TOP: black 1px dotted; PADDING-LEFT: 5px; FONT-SIZE: x-small; PADDING-BOTTOM: 5px; MARGIN: 5px 0px; BORDER-LEFT: black 1px dotted; PADDING-TOP: 5px; BORDER-BOTTOM: black 1px dotted; FONT-FAMILY: Courier New
+}
+</STYLE>
+
+<SCRIPT language=Javascript1.2>_editor_url = "http://www.geekinterview.com/htmlarea/"; var win_ie_ver = parseFloat(navigator.appVersion.split("MSIE")[1]);if (navigator.userAgent.indexOf('Mac')    >= 0) { win_ie_ver = 0; }if (navigator.userAgent.indexOf('Windows CE') >= 0) { win_ie_ver = 0; }if (navigator.userAgent.indexOf('Opera')      >= 0) { win_ie_ver = 0; }if (win_ie_ver >= 5.5) { document.write('<scr' + 'ipt src="' +_editor_url+ 'editor.js"'); document.write(' language="Javascript1.2"></scr' + 'ipt>');} else { document.write('<scr'+'ipt>function editor_generate() { return false; }</scr'+'ipt>'); }</SCRIPT>
+
+<META content="MSHTML 6.00.2800.1106" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=270><A href="http://www.geekinterview.com/"><IMG 
+      alt=GeekInterview.com 
+      src="XML  What are the differences between SAX and DOM parsers_files/logo.jpg" 
+      border=0></A></TD>
+    <TD align=right>
+      <SCRIPT>function gotourl() { var myval = document.getElementById('sel1').value; if (myval!='') location.replace(myval); }</SCRIPT>
+    </TD></TR></TBODY></TABLE>
+<TABLE height=24 cellSpacing=0 cellPadding=2 width="100%" 
+background="XML  What are the differences between SAX and DOM parsers_files/bgtop.gif" 
+border=0>
+  <TBODY>
+  <TR>
+    <TD>&nbsp;&nbsp;&nbsp;<A class=toplink title=GeekInterview.com 
+      href="http://www.geekinterview.com/">Home</A>&nbsp;|&nbsp; <A 
+      class=toplink title=FAQs href="http://www.geekinterview.com/FAQs">Tech 
+      FAQ</A>&nbsp;&nbsp;|&nbsp;&nbsp; <A class=toplink 
+      title="Interview Questions" 
+      href="http://www.geekinterview.com/Interview-Questions">Interview 
+      Questions</A>&nbsp;|&nbsp; <A class=toplink title="Placement Papers" 
+      href="http://www.geekinterview.com/Global-Interview-Questions">Placement 
+      Papers</A>&nbsp;|&nbsp; <A class=toplink title="Articles &amp; Tutorials" 
+      href="http://www.geekinterview.com/articles">Tech 
+      Articles</A>&nbsp;|&nbsp; <A class=toplink title=Learn 
+      href="http://learn.geekinterview.com/">Learn</A>&nbsp;|&nbsp; <A 
+      class=toplink title="Online Testing" 
+      href="http://www.geekinterview.com/quiz">Online Testing</A>&nbsp;|&nbsp; 
+      <A class=toplink title="GeekInterview Forums" 
+      href="http://www.geekinterview.com/talk">Geeks Talk</A>&nbsp;|&nbsp; <A 
+      class=toplink title="Job Postings" 
+      href="http://jobs.geekinterview.com/">Job Postings</A>&nbsp;;|&nbsp; <A 
+      class=toplink href="http://www.geekinterview.com/kb/">Knowledge 
+      Base</A>&nbsp;| <A class=toplink title="Site Search" 
+      href="http://www.geekinterview.com/search.html">Site 
+      Search</A>&nbsp;|&nbsp; <A class=toplink 
+      href="http://www.geekinterview.com/askquestion/76">Add/Ask 
+  Question</A></TD></TR></TBODY></TABLE><BR>
+<TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width=200>
+      <UL style="PADDING-LEFT: 15px; MARGIN: 0px">
+        <LI><A class=vr 
+        href="http://www.geekinterview.com/Interview-Questions">Interview 
+        Questions</A>&nbsp;(<B><FONT color=blue>12314</FONT></B>)
+        <UL 
+        style="PADDING-RIGHT: 0px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px">
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Accounting">Accounting</A>&nbsp;(<B><FONT 
+          color=blue>145</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Concepts">Concepts</A>&nbsp;(<B><FONT 
+          color=blue>209</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Data-Warehouse">Data 
+          Warehousing</A>&nbsp;(<B><FONT color=blue>1209</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Database">Database</A>&nbsp;(<B><FONT 
+          color=blue>213</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/General">General</A>&nbsp;(<B><FONT 
+          color=blue>251</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/J2EE">J2EE</A>&nbsp;(<B><FONT 
+          color=blue>1977</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Mainframe">Mainframe</A>&nbsp;(<B><FONT 
+          color=blue>338</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Microsoft">Microsoft</A>&nbsp;(<B><FONT 
+          color=blue>1434</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Networking">Networking</A>&nbsp;(<B><FONT 
+          color=blue>246</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Operating-System">Operating 
+          System</A>&nbsp;(<B><FONT color=blue>337</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Oracle">Oracle</A>&nbsp;(<B><FONT 
+          color=blue>1198</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Oracle-Apps">Oracle 
+          Apps</A>&nbsp;(<B><FONT color=blue>470</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Peoplesoft">Peoplesoft</A>&nbsp;(<B><FONT 
+          color=blue>353</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Programming">Programming</A>&nbsp;(<B><FONT 
+          color=blue>497</FONT></B>)
+          <UL 
+          style="PADDING-RIGHT: 0px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px">
+            <LI><A class=vr 
+            href="http://www.geekinterview.com/Interview-Questions/Languages">Languages</A>&nbsp;(<B><FONT 
+            color=blue>3</FONT></B>)
+            <LI><A class=vr 
+            href="http://www.geekinterview.com/Interview-Questions/Languages/C">C</A>&nbsp;(<B><FONT 
+            color=blue>264</FONT></B>)
+            <LI><A class=vr 
+            href="http://www.geekinterview.com/Interview-Questions/Languages/C-Plus-Plus">C++</A>&nbsp;(<B><FONT 
+            color=blue>97</FONT></B>)
+            <LI><A class=vr 
+            href="http://www.geekinterview.com/Interview-Questions/Microsoft/XML"><U>XML</U></A>&nbsp;(<B><FONT 
+            color=blue>8</FONT></B>)
+            <UL 
+            style="PADDING-RIGHT: 0px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px"></UL>
+            <LI><A class=vr 
+            href="http://www.geekinterview.com/Interview-Questions/Programming/Perl">Perl</A>&nbsp;(<B><FONT 
+            color=blue>39</FONT></B>)
+            <LI><A class=vr 
+            href="http://www.geekinterview.com/Interview-Questions/Programming/VBA">VBA</A>&nbsp;(<B><FONT 
+            color=blue>53</FONT></B>)
+            <LI><A class=vr 
+            href="http://www.geekinterview.com/Interview-Questions/Programming/PHP">PHP</A>&nbsp;(<B><FONT 
+            color=blue>22</FONT></B>)
+            <LI><A class=vr 
+            href="http://www.geekinterview.com/Interview-Questions/Programming/Delphi">Delphi</A>&nbsp;(<B><FONT 
+            color=blue>2</FONT></B>)</LI></UL>
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/SAP-R-3">SAP 
+          R/3</A>&nbsp;(<B><FONT color=blue>447</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Siebel">Siebel</A>&nbsp;(<B><FONT 
+          color=blue>169</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Testing">Testing</A>&nbsp;(<B><FONT 
+          color=blue>1671</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Testing-Tools">Testing 
+          Tools</A>&nbsp;(<B><FONT color=blue>1017</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Clarify-CRM">Clarify 
+          CRM</A>&nbsp;(<B><FONT color=blue>104</FONT></B>)
+          <LI><A class=vr 
+          href="http://www.geekinterview.com/Interview-Questions/Web">Web</A>&nbsp;(<B><FONT 
+          color=blue>28</FONT></B>)</LI></UL>
+        <LI><A class=vr 
+        href="http://www.geekinterview.com/Certification-Dumps">Certification</A>&nbsp;(<B><FONT 
+        color=blue>3970</FONT></B>)
+        <LI><A class=vr 
+        href="http://www.geekinterview.com/Global-Interview-Questions">Placement 
+        Papers</A>&nbsp;(<B><FONT color=blue>3706</FONT></B>)
+        <LI><A class=vr href="http://www.geekinterview.com/FAQs">Tech 
+        FAQs</A>&nbsp;(<B><FONT color=blue>3233</FONT></B>)
+        <LI><A class=vr href="http://www.geekinterview.com/Career-Advice">Career 
+        Advice</A>&nbsp;(<B><FONT color=blue>358</FONT></B>)
+        <LI><A class=vr 
+        href="http://www.geekinterview.com/Engineering">Engineering</A>&nbsp;(<B><FONT 
+        color=blue>80</FONT></B>)
+        <LI><A class=vr href="http://www.geekinterview.com/kb">Knowledge 
+        Base</A>&nbsp;(<B><FONT color=blue>96</FONT></B>)</U><BR><BR></LI></UL></TD>
+    <TD vAlign=top>
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD class=td1 vAlign=top colSpan=2><A class=vr 
+            href="http://www.geekinterview.com/"><B>GeekInterview.com</B></A>&nbsp; 
+            &gt;&nbsp; <A class=vr 
+            href="http://www.geekinterview.com/Interview-Questions"><B>Interview 
+            Questions</B></A> &nbsp;&gt;&nbsp; <A class=vr 
+            href="http://www.geekinterview.com/Interview-Questions/Programming"><B>Programming</B></A> 
+            &nbsp;&gt;&nbsp; <A class=vr 
+            href="http://www.geekinterview.com/Interview-Questions/Microsoft/XML"><B>XML</B></A><BR>
+            <HR style="HEIGHT: 1px">
+          </TD></TR>
+        <TR>
+          <TD class=td1><B>Last Update:</B> September 15, 
+            2006&nbsp;&nbsp;&nbsp;<B></B></TD>
+          <TD class=td1 vAlign=bottom align=right><A class=vr 
+            href="http://www.geekinterview.com/question_details/12795"><B>Go To 
+            First</B></A>&nbsp;&nbsp;&nbsp;<A class=vr 
+            href="http://www.geekinterview.com/question_details/12796"><B>Previous 
+            Question</B></A>&nbsp;&nbsp;&nbsp;|&nbsp;<A class=vr 
+            href="http://www.geekinterview.com/question_details/12798"><B>Next 
+            Question</B></A></TD></TR></TBODY></TABLE>
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#8080ff>
+          <TD class=td1><B><FONT color=#ffffff><A 
+            href="http://www.geekinterview.com/Interview-Questions/Microsoft/XML">XML</A> 
+            &nbsp;&nbsp;| &nbsp; <B>Question 3 of 8</FONT></B>&nbsp;&nbsp; 
+            &nbsp;<FONT color=#ffffff>|</FONT></B></TD>
+          <TD class=td1 align=right><FONT 
+            style="FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: #ffffff">&nbsp;<A 
+            class=vr 
+            onclick="window.open('http://www.geekinterview.com/question_print/12797')" 
+            href="http://www.geekinterview.com/question_details/12797#">Print</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+            class=vr 
+            onclick="window.open('http://www.geekinterview.com/question_send/12797')" 
+            href="http://www.geekinterview.com/question_details/12797#">Send To 
+            Friend</A>&nbsp;&nbsp;</FONT></TD></TR>
+        <TR>
+          <TD colSpan=2><FONT class=tdvamsee style="FONT-SIZE: 16px">What are 
+            the differences between SAX and DOM parsers?<BR><BR><BR>
+            <P align=left>
+            <SCRIPT type=text/javascript><!--
+google_ad_client = "pub-7791055634298603";
+google_ad_width = 250;
+google_ad_height = 250;
+google_ad_format = "250x250_as";
+google_ad_type = "text_image";
+google_ad_channel ="7889673425";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0033CC";
+google_color_url = "000000";
+google_color_text = "000000";
+//--></SCRIPT>
+
+            <SCRIPT 
+            src="XML  What are the differences between SAX and DOM parsers_files/show_ads.js" 
+            type=text/javascript>
+</SCRIPT>
+            </P></FONT><BR>
+            <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR bgColor=#336699>
+                <TD class=td1><B><FONT color=#ffffff>Total Answers and 
+                  Comments: 
+      8</FONT></B></TD></TR></TBODY></TABLE><BR></TD></TR></TBODY></TABLE><A 
+      name=top>&nbsp;</A>
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD><A 
+            href="http://www.geekinterview.com/question_details/12797/reply"><IMG 
+            src="XML  What are the differences between SAX and DOM parsers_files/reply.png" 
+            border=0></A>&nbsp;</TD>
+          <TD class=td1 align=right><B><FONT style="FONT-SIZE: 13px">Sort by 
+            Date</FONT> <A class=vr 
+            href="http://www.geekinterview.com/question_details/12797/page0/sort1"><FONT 
+            style="FONT-SIZE: 13px">asc</FONT></A> <FONT 
+            style="FONT-SIZE: 13px">/</FONT> <A class=vr 
+            href="http://www.geekinterview.com/question_details/12797/page0/sort2"><FONT 
+            style="FONT-SIZE: 13px">desc</FONT></A></B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT 
+            class=td1><B>Show Page&nbsp;&nbsp; 
+            [&nbsp;<B>1</B>&nbsp;]&nbsp;</B>&nbsp;</FONT></TD></TR></TBODY></TABLE>
+      <TABLE borderColor=#000000 cellSpacing=0 cellPadding=2 width="100%" 
+      border=0>
+        <TBODY>
+        <TR bgColor=#b7b7ff>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 0px solid; BORDER-LEFT: #ffffff 1px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid"><B>June 
+            16, 2005 17:33:20</B></TD>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 1px solid; BORDER-LEFT: #ffffff 0px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid" 
+          align=right><B><A class=vr 
+            href="http://www.geekinterview.com/answerdetail/1290">#1</A></B></TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdusername vAlign=top>&nbsp;<FONT class=tdusername>K.Hari 
+            Kishore</FONT></TD>
+          <TD class=tdusername vAlign=top 
+            align=right><B></B>&nbsp;&nbsp;<B>Member Since: Visitor 
+            &nbsp;&nbsp;&nbsp;Total Comments: N/A</B>&nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=td1 vAlign=top colSpan=2>
+            <HR style="HEIGHT: 1px">
+            &nbsp;<B>RE: What are the differences between SAX and DOM 
+            parsers?<BR></B>
+            <HR style="HEIGHT: 1px">
+            &nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdvamsee colSpan=2>Hi friends this is hari. SAX Parser is 
+            the one which is developed to run the java programs especially. It 
+            uses a memory resident model. DOM is developed by w3c consortium so 
+            that it is an open standard. In DOM the xml file is arranged as a 
+            tree and backward and forward search is possible for searching the 
+            tags and evaluating the data which it holds. It depends upon the 
+            application and ease of data accessiblity. If we want to extract the 
+            data from a xml file once we have to move to SAX, which is one time 
+            top to bottom read approach and if we want ot randomly pick the data 
+            in an xml file then the tree reperesentation of DOM model is to be 
+            put into use. Thats all !</TD></TR>
+        <TR bgColor=#f6f6f4>
+          <TD align=right colSpan=2><FONT 
+            style="FONT-SIZE: 12px">&nbsp;&nbsp;&nbsp;&nbsp;<A 
+            href="http://www.geekinterview.com/question_details/12797/reply"><IMG 
+            src="XML  What are the differences between SAX and DOM parsers_files/reply.png" 
+            border=0></A>&nbsp;</FONT></TD></TR></TBODY></TABLE><BR>
+      <TABLE borderColor=#000000 cellSpacing=0 cellPadding=2 width="100%" 
+      border=0>
+        <TBODY>
+        <TR bgColor=#b7b7ff>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 0px solid; BORDER-LEFT: #ffffff 1px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid"><B>December 
+            19, 2005 16:43:12</B></TD>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 1px solid; BORDER-LEFT: #ffffff 0px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid" 
+          align=right><B><A class=vr 
+            href="http://www.geekinterview.com/answerdetail/24484">#2</A></B></TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdusername vAlign=top>&nbsp;<FONT class=tdusername><A 
+            class=tdusername 
+            href="http://www.geekinterview.com/user-profile/13297">Prasanna 
+            Balaraman</A></FONT></TD>
+          <TD class=tdusername vAlign=top align=right><B>J2EE 
+            Expert</B>&nbsp;&nbsp;<B>Member Since: December 2005 
+            &nbsp;&nbsp;&nbsp;Total Comments: 5</B>&nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=td1 vAlign=top colSpan=2>
+            <HR style="HEIGHT: 1px">
+            &nbsp;<B>RE: What are the differences between SAX and DOM 
+            parse...</B>
+            <HR style="HEIGHT: 1px">
+            &nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdvamsee colSpan=2>
+            <P>Both SAX and DOM are used to parse the XML document. Both has 
+            advantages and disadvantages and can be used in our programming 
+            depending on the situation</P>
+            <P>SAX:</P>
+            <P>1. Parses node by node</P>
+            <P>2. Doesnt store the XML in memory</P>
+            <P>3. We cant insert or delete a node</P>
+            <P>4. Top to bottom traversing</P>
+            <P>DOM</P>
+            <P>1. Stores the entire XML document into memory before 
+            processing</P>
+            <P>2. Occupies more memory</P>
+            <P>3. We can insert or delete nodes</P>
+            <P>4. Traverse in any direction.</P>
+            <P>If we need to find a node and doesnt need to insert or delete we 
+            can go with SAX itself otherwise DOM provided we have more 
+            memory.</P>
+            <P>Prasanna Balaraman.</P></TD></TR>
+        <TR bgColor=#f6f6f4>
+          <TD align=right colSpan=2><FONT 
+            style="FONT-SIZE: 12px">&nbsp;&nbsp;&nbsp;&nbsp;<A 
+            href="http://www.geekinterview.com/question_details/12797/reply"><IMG 
+            src="XML  What are the differences between SAX and DOM parsers_files/reply.png" 
+            border=0></A>&nbsp;</FONT></TD></TR></TBODY></TABLE><BR>
+      <TABLE borderColor=#000000 cellSpacing=0 cellPadding=2 width="100%" 
+      border=0>
+        <TBODY>
+        <TR bgColor=#b7b7ff>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 0px solid; BORDER-LEFT: #ffffff 1px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid"><B>May 
+            10, 2006 03:28:46</B></TD>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 1px solid; BORDER-LEFT: #ffffff 0px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid" 
+          align=right><B><A class=vr 
+            href="http://www.geekinterview.com/answerdetail/38965">#3</A></B></TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdusername vAlign=top>&nbsp;<FONT class=tdusername>Sathish 
+            Kola</FONT></TD>
+          <TD class=tdusername vAlign=top 
+            align=right><B></B>&nbsp;&nbsp;<B>Member Since: Visitor 
+            &nbsp;&nbsp;&nbsp;Total Comments: N/A</B>&nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=td1 vAlign=top colSpan=2>
+            <HR style="HEIGHT: 1px">
+            &nbsp;<B>RE: What are the differences between SAX and DOM 
+            parse...</B>
+            <HR style="HEIGHT: 1px">
+            &nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdvamsee colSpan=2>
+            <P>Hi,</P>
+            <P>I felt very happy by seaing this comparsions and differences od 
+            SAX and DOM</P>
+            <P>Thanks</P>
+            <P>Sathish Kola</P></TD></TR>
+        <TR bgColor=#f6f6f4>
+          <TD align=right colSpan=2><FONT 
+            style="FONT-SIZE: 12px">&nbsp;&nbsp;&nbsp;&nbsp;<A 
+            href="http://www.geekinterview.com/question_details/12797/reply"><IMG 
+            src="XML  What are the differences between SAX and DOM parsers_files/reply.png" 
+            border=0></A>&nbsp;</FONT></TD></TR></TBODY></TABLE><BR>
+      <TABLE borderColor=#000000 cellSpacing=0 cellPadding=2 width="100%" 
+      border=0>
+        <TBODY>
+        <TR bgColor=#b7b7ff>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 0px solid; BORDER-LEFT: #ffffff 1px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid"><B>August 
+            06, 2006 12:18:54</B></TD>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 1px solid; BORDER-LEFT: #ffffff 0px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid" 
+          align=right><B><A class=vr 
+            href="http://www.geekinterview.com/answerdetail/47772">#4</A></B></TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdusername vAlign=top>&nbsp;<FONT 
+            class=tdusername>Srinivas A</FONT></TD>
+          <TD class=tdusername vAlign=top 
+            align=right><B></B>&nbsp;&nbsp;<B>Member Since: Visitor 
+            &nbsp;&nbsp;&nbsp;Total Comments: N/A</B>&nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=td1 vAlign=top colSpan=2>
+            <HR style="HEIGHT: 1px">
+            &nbsp;<B>RE: What are the differences between SAX and DOM 
+            parse...</B>
+            <HR style="HEIGHT: 1px">
+            &nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdvamsee colSpan=2>
+            <P>Thanks All,</P>
+            <P>Differences are prettey clear.</P>
+            <P>--Srinivas A</P></TD></TR>
+        <TR bgColor=#f6f6f4>
+          <TD align=right colSpan=2><FONT 
+            style="FONT-SIZE: 12px">&nbsp;&nbsp;&nbsp;&nbsp;<A 
+            href="http://www.geekinterview.com/question_details/12797/reply"><IMG 
+            src="XML  What are the differences between SAX and DOM parsers_files/reply.png" 
+            border=0></A>&nbsp;</FONT></TD></TR></TBODY></TABLE><BR>
+      <TABLE borderColor=#000000 cellSpacing=0 cellPadding=2 width="100%" 
+      border=0>
+        <TBODY>
+        <TR bgColor=#b7b7ff>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 0px solid; BORDER-LEFT: #ffffff 1px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid"><B>August 
+            10, 2006 07:45:55</B></TD>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 1px solid; BORDER-LEFT: #ffffff 0px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid" 
+          align=right><B><A class=vr 
+            href="http://www.geekinterview.com/answerdetail/48251">#5</A></B></TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdusername vAlign=top>&nbsp;<FONT class=tdusername>Subhash 
+            Thakur</FONT></TD>
+          <TD class=tdusername vAlign=top 
+            align=right><B></B>&nbsp;&nbsp;<B>Member Since: Visitor 
+            &nbsp;&nbsp;&nbsp;Total Comments: N/A</B>&nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=td1 vAlign=top colSpan=2>
+            <HR style="HEIGHT: 1px">
+            &nbsp;<B>RE: What are the differences between SAX and DOM 
+            parse...</B>
+            <HR style="HEIGHT: 1px">
+            &nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdvamsee colSpan=2>Hi Prassanna,Thanks for simple and 
+            clear differentiations.regards,Subhash Thakur</TD></TR>
+        <TR bgColor=#f6f6f4>
+          <TD align=right colSpan=2><FONT 
+            style="FONT-SIZE: 12px">&nbsp;&nbsp;&nbsp;&nbsp;<A 
+            href="http://www.geekinterview.com/question_details/12797/reply"><IMG 
+            src="XML  What are the differences between SAX and DOM parsers_files/reply.png" 
+            border=0></A>&nbsp;</FONT></TD></TR></TBODY></TABLE><BR>
+      <TABLE borderColor=#000000 cellSpacing=0 cellPadding=2 width="100%" 
+      border=0>
+        <TBODY>
+        <TR bgColor=#b7b7ff>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 0px solid; BORDER-LEFT: #ffffff 1px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid"><B>August 
+            15, 2006 17:36:48</B></TD>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 1px solid; BORDER-LEFT: #ffffff 0px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid" 
+          align=right><B><A class=vr 
+            href="http://www.geekinterview.com/answerdetail/48715">#6</A></B></TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdusername vAlign=top>&nbsp;<FONT 
+            class=tdusername>Kalyan</FONT></TD>
+          <TD class=tdusername vAlign=top 
+            align=right><B></B>&nbsp;&nbsp;<B>Member Since: Visitor 
+            &nbsp;&nbsp;&nbsp;Total Comments: N/A</B>&nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=td1 vAlign=top colSpan=2>
+            <HR style="HEIGHT: 1px">
+            &nbsp;<B>RE: What are the differences between SAX and DOM 
+            parse...</B>
+            <HR style="HEIGHT: 1px">
+            &nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdvamsee colSpan=2>Thanks Prasanna !! Your explanation was 
+            so clear.</TD></TR>
+        <TR bgColor=#f6f6f4>
+          <TD align=right colSpan=2><FONT 
+            style="FONT-SIZE: 12px">&nbsp;&nbsp;&nbsp;&nbsp;<A 
+            href="http://www.geekinterview.com/question_details/12797/reply"><IMG 
+            src="XML  What are the differences between SAX and DOM parsers_files/reply.png" 
+            border=0></A>&nbsp;</FONT></TD></TR></TBODY></TABLE><BR>
+      <TABLE borderColor=#000000 cellSpacing=0 cellPadding=2 width="100%" 
+      border=0>
+        <TBODY>
+        <TR bgColor=#b7b7ff>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 0px solid; BORDER-LEFT: #ffffff 1px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid"><B>September 
+            01, 2006 03:09:22</B></TD>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 1px solid; BORDER-LEFT: #ffffff 0px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid" 
+          align=right><B><A class=vr 
+            href="http://www.geekinterview.com/answerdetail/50363">#7</A></B></TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdusername vAlign=top>&nbsp;<FONT class=tdusername>avinash 
+            verma</FONT></TD>
+          <TD class=tdusername vAlign=top 
+            align=right><B></B>&nbsp;&nbsp;<B>Member Since: Visitor 
+            &nbsp;&nbsp;&nbsp;Total Comments: N/A</B>&nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=td1 vAlign=top colSpan=2>
+            <HR style="HEIGHT: 1px">
+            &nbsp;<B>RE: What are the differences between SAX and DOM 
+            parse...</B>
+            <HR style="HEIGHT: 1px">
+            &nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdvamsee colSpan=2>
+            <P>Hi ,thanks for share your knowledge on SAX and Dom parse . Please 
+            send me more article relataed to these parser. I am very thankful to 
+            you.</P>
+            <P>thanks and regards</P>
+            <P>AvinashV.</P></TD></TR>
+        <TR bgColor=#f6f6f4>
+          <TD align=right colSpan=2><FONT 
+            style="FONT-SIZE: 12px">&nbsp;&nbsp;&nbsp;&nbsp;<A 
+            href="http://www.geekinterview.com/question_details/12797/reply"><IMG 
+            src="XML  What are the differences between SAX and DOM parsers_files/reply.png" 
+            border=0></A>&nbsp;</FONT></TD></TR></TBODY></TABLE><BR>
+      <TABLE borderColor=#000000 cellSpacing=0 cellPadding=2 width="100%" 
+      border=0>
+        <TBODY>
+        <TR bgColor=#b7b7ff>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 0px solid; BORDER-LEFT: #ffffff 1px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid"><B>September 
+            15, 2006 08:23:32</B></TD>
+          <TD class=td1 
+          style="BORDER-RIGHT: #ffffff 1px solid; BORDER-LEFT: #ffffff 0px solid; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #ffffff; BORDER-BOTTOM: #ffffff 1px solid" 
+          align=right><B><A class=vr 
+            href="http://www.geekinterview.com/answerdetail/52079">#8</A></B></TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdusername vAlign=top>&nbsp;<FONT class=tdusername>Guru 
+            Brahmam</FONT></TD>
+          <TD class=tdusername vAlign=top 
+            align=right><B></B>&nbsp;&nbsp;<B>Member Since: Visitor 
+            &nbsp;&nbsp;&nbsp;Total Comments: N/A</B>&nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=td1 vAlign=top colSpan=2>
+            <HR style="HEIGHT: 1px">
+            &nbsp;<B>RE: What are the differences between SAX and DOM 
+            parse...</B>
+            <HR style="HEIGHT: 1px">
+            &nbsp;</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD class=tdvamsee colSpan=2>
+            <P>Hi,</P>
+            <P>Thanks Prasanna, those are simple and precise differences.</P>
+            <P>Guru Brahmam</P></TD></TR>
+        <TR bgColor=#f6f6f4>
+          <TD align=right colSpan=2><FONT 
+            style="FONT-SIZE: 12px">&nbsp;&nbsp;&nbsp;&nbsp;<A 
+            href="http://www.geekinterview.com/question_details/12797/reply"><IMG 
+            src="XML  What are the differences between SAX and DOM parsers_files/reply.png" 
+            border=0></A>&nbsp;</FONT></TD></TR></TBODY></TABLE><BR>
+      <P align=right><FONT class=td1><B>Show Page&nbsp;&nbsp; 
+      [&nbsp;<B>1</B>&nbsp;]&nbsp;</B></P>
+      <CENTER><A 
+      href="http://www.geekinterview.com/question_details/12797/reply"><IMG 
+      src="XML  What are the differences between SAX and DOM parsers_files/reply.png" 
+      border=0></A>&nbsp;<BR><A class=vr 
+      href="http://www.geekinterview.com/question_details/12797#top">Go To 
+      Top<A><BR><BR><BR>
+      <SCRIPT type=text/javascript><!--
+google_ad_client = "pub-7791055634298603";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="8432236728";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0033CC";
+google_color_url = "000000";
+google_color_text = "000000"; 
+//--></SCRIPT>
+
+      <SCRIPT 
+      src="XML  What are the differences between SAX and DOM parsers_files/show_ads.js" 
+      type=text/javascript>
+</SCRIPT>
+      </CENTER><BR><BR>
+      <TABLE borderColor=#ffffff cellSpacing=0 cellPadding=1 width="100%" 
+      border=1>
+        <TBODY>
+        <TR bgColor=#336699>
+          <TD class=td1 height=20><FONT color=#ffffff>&nbsp;<B><FONT 
+            class=tdvamsee>Related Questions</FONT></B></FONT></TD></TR>
+        <TR>
+          <TD>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" align=center 
+            bgColor=#ffffff border=0>
+              <TBODY>
+              <TR>
+                <TD class=tdvamsee><B>1</B>. <A 
+                  href="http://www.geekinterview.com/question_details/12797"><FONT 
+                  class=tdvamsee>What are the differences between SAX and DOM 
+                  parsers?</FONT></A><FONT class=tdvamsee> </FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>2</B>. <A 
+                  href="http://www.geekinterview.com/question_details/29222"><FONT 
+                  class=tdvamsee>Tell about DOM &amp; SAX 
+                  parsers</FONT></A><FONT class=tdvamsee> </FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>3</B>. <A 
+                  href="http://www.geekinterview.com/question_details/19890"><FONT 
+                  class=tdvamsee>In Benchmarking, Gap analysis is a method that 
+                  helps identify the performance or operational differences 
+                  between your process and that of your benchma</FONT></A><FONT 
+                  class=tdvamsee> A) TrueB) False</FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>4</B>. <A 
+                  href="http://www.geekinterview.com/question_details/25358"><FONT 
+                  class=tdvamsee>what are differences between different GDE 
+                  versions(1. 10, 1. 11, 1. 12, 1. 13and 1. 15)?what are 
+                  differences between different versions of Co-op? 
+                  </FONT></A><FONT class=tdvamsee></FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>5</B>. <A 
+                  href="http://www.geekinterview.com/question_details/6167"><FONT 
+                  class=tdvamsee>What are the differences between COBOL and 
+                  COBOL II?</FONT></A><FONT class=tdvamsee> There are at least 
+                  five differences: COBOL II supports structured programming by 
+                  using in line PERFORMs and explicit scope terminators, it 
+                  introduce</FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>6</B>. <A 
+                  href="http://www.geekinterview.com/question_details/30880"><FONT 
+                  class=tdvamsee>What are the differences between interface and 
+                  integration testing?Are system specification and functional 
+                  specification the same?What are the differe</FONT></A><FONT 
+                  class=tdvamsee> </FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>7</B>. <A 
+                  href="http://www.geekinterview.com/question_details/5558"><FONT 
+                  class=tdvamsee>What are the key differences between C &amp; 
+                  C++</FONT></A><FONT class=tdvamsee> </FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>8</B>. <A 
+                  href="http://www.geekinterview.com/question_details/33477"><FONT 
+                  class=tdvamsee>what are the differences between ADO. net 1. 0 
+                  and ADO. net 2. 0</FONT></A><FONT class=tdvamsee> 
+</FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>9</B>. <A 
+                  href="http://www.geekinterview.com/question_details/33000"><FONT 
+                  class=tdvamsee>what are the differences between c++ and 
+                  java?</FONT></A><FONT class=tdvamsee> </FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>10</B>. <A 
+                  href="http://www.geekinterview.com/question_details/32474"><FONT 
+                  class=tdvamsee>What are the differences between the win runner 
+                  and qtp?</FONT></A><FONT class=tdvamsee> 
+            </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+      <TABLE borderColor=#ffffff cellSpacing=0 cellPadding=1 width="100%" 
+      border=1>
+        <TBODY>
+        <TR bgColor=#336699>
+          <TD class=td1 height=20><FONT color=#ffffff>&nbsp;<B><FONT 
+            class=tdvamsee>Related Articles</FONT></B></FONT></TD></TR>
+        <TR>
+          <TD>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" align=center 
+            bgColor=#ffffff border=0>
+              <TBODY>
+              <TR>
+                <TD class=tdvamsee><B>1</B>. <A 
+                  href="http://www.geekinterview.com/articles/xml-interview-questions.html"><FONT 
+                  class=tdvamsee>XML Interview Questions</FONT></A><FONT 
+                  class=tdvamsee>: XML Interview Questions1 &nbsp; &nbsp; &nbsp; 
+                  &nbsp;What is a schema? What are the limitations of a DTD?2 
+                  &nbsp; &nbsp; &nbsp; &nbsp;What parser would you use for 
+                  searching a huge XML file?3 &nbsp; &nbsp; &nbsp; &nbsp;What 
+                  are the differences between SAX and DOM parsers?4 &nbsp; 
+                  &nbsp; &nbsp; &nbsp;</FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>2</B>. <A 
+                  href="http://www.geekinterview.com/articles/ASPNet-Fundamentals.html"><FONT 
+                  class=tdvamsee>ASP.Net Fundamentals</FONT></A><FONT 
+                  class=tdvamsee>: The purpose of this article is to give a 
+                  little look "under the hood" of ASP.Net, to familiarize you 
+                  with the similarities and differences between ASP.Net and ASP. 
+                  You may be surprised to discover that the 2 technologies are 
+                  not really that much different. If you are unfamiliar with the 
+                  fund</FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>3</B>. <A 
+                  href="http://www.geekinterview.com/articles/VBNET-2005-Free-Training-Differences-between-VBNET-10-and-VBNET-20.html"><FONT 
+                  class=tdvamsee>VB.NET 2005 Free Training: Differences between 
+                  VB.NET 1.0 and VB.NET 2.0</FONT></A><FONT class=tdvamsee>: 
+                  VB.NET 2005 Free Training: Differences between VB.NET 1.0 and 
+                  VB.NET 2.0: VB.NET 2005 comes with a number of enhancements. 
+                  The IntelliSense Code snippets, the Windows Forms designer 
+                  updates, IntelliSense filtering, debugger data tips, exception 
+                  Assistant etc make the software a pleasure to work 
+                with</FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>4</B>. <A 
+                  href="http://www.geekinterview.com/articles/Differences-Between-Microsoft-Visual-Basic-NET-and-Microsoft-Visual-C-NET.html"><FONT 
+                  class=tdvamsee>Differences Between Microsoft Visual Basic .NET 
+                  and Microsoft Visual C# .NET</FONT></A><FONT class=tdvamsee>: 
+                  This article points to the "Differences Between Microsoft 
+                  Visual Basic .NET and Microsoft Visual C# .NET" white 
+                  paper</FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>5</B>. <A 
+                  href="http://www.geekinterview.com/articles/Java-and-XML-Basics-Part-2.html"><FONT 
+                  class=tdvamsee>Java and XML Basics, Part 2</FONT></A><FONT 
+                  class=tdvamsee>: ( Page 1 of 6 ) Last time, we learned about 
+                  JAXP, Xerces, DOM and the javax.xml.parsers Java Package. How 
+                  about getting a little taste of the SAX interfaces? We look at 
+                  available classes and interfaces, and learn how to use SAX for 
+                  XML Processing. Given SAX's power, perhaps we can look forward 
+                  to th</FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>6</B>. <A 
+                  href="http://www.geekinterview.com/articles/Practicing-Safer-SAX.html"><FONT 
+                  class=tdvamsee>Practicing Safer SAX</FONT></A><FONT 
+                  class=tdvamsee>: October 2002 Issue I t's amazing what you can 
+                  find in the back of your cupboard. Just last weekend, I found 
+                  a half-bottle of an inexpensive 1991 Merlot that had gotten 
+                  mixed in with the salad oil and vinegar bottles. How 
+                  appropriate: Now I have some new red wine vinegar I didn't 
+                  know I had! Well, we</FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>7</B>. <A 
+                  href="http://www.geekinterview.com/articles/Parsers-Part-II-Building-a-Java-Class-Browser.html"><FONT 
+                  class=tdvamsee>Parsers, Part II: Building a Java Class 
+                  Browser</FONT></A><FONT class=tdvamsee>: Greg Voss, JavaSoft 
+                  Terence Parr, MageLang Institute January 1997 If you're a 
+                  typical programmer--with a background in Computer Science--you 
+                  look upon parser technology as fondly as your last trip to the 
+                  dentist. Unless you are YACC freak, you were only too happy to 
+                  leave behind the semester or two </FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>8</B>. <A 
+                  href="http://www.geekinterview.com/articles/Parsing-XML-in-J2MEtm.html"><FONT 
+                  class=tdvamsee>Parsing XML in J2ME[tm]</FONT></A><FONT 
+                  class=tdvamsee>: XML in a MIDP Environment by Jonathan Knudsen 
+                  March 7, 2002 Download: [source code] [MIDlet suite JAD] 
+                  [MIDlet suite JAR] Note: This article contains essentially the 
+                  same information as JavaOne session #2716, Parsing XML in J2ME 
+                  , presented March 28, 2002. The convergence of J2ME and XML is 
+                  currentl</FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>9</B>. <A 
+                  href="http://www.geekinterview.com/articles/Gender-Differences-Exist-In-Internet-Use-Study.html"><FONT 
+                  class=tdvamsee>Gender Differences Exist In Internet Use: 
+                  Study</FONT></A><FONT class=tdvamsee>: While both use the 
+                  Internet in equal numbers, men are more focused on getting 
+                  information while women are more about communications and on 
+                  getting support for problems, the report says.</FONT></TD></TR>
+              <TR>
+                <TD class=tdvamsee><B>10</B>. <A 
+                  href="http://www.geekinterview.com/articles/SmartAdvice-Businesses-Wise-To-Set-AcceptableUse-Internet-Policies-1.html"><FONT 
+                  class=tdvamsee>SmartAdvice: Businesses Wise To Set 
+                  Acceptable-Use Internet Policies</FONT></A><FONT 
+                  class=tdvamsee>: It's important to spell out what can and 
+                  can't be downloaded on company PCs, The Advisory Council says. 
+                  Also, be prepared to manage the cultural differences to 
+                  succeed in doing business in 
+          China.</FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></A></FONT></TD>
+    <TD vAlign=top width=120><BR>
+      <CENTER></CENTER></TD></TR></TBODY></TABLE><BR><BR>
+<HR style="HEIGHT: 1px" width="75%" noShade>
+
+<CENTER><BR><A class=vr href="http://www.geekinterview.com/about.html">About 
+Us</A>&nbsp;&nbsp;|&nbsp;&nbsp; <A class=vr 
+href="http://www.geekinterview.com/privacy.html">Privacy 
+Policy</A>&nbsp;&nbsp;|&nbsp;&nbsp; <A class=vr 
+href="http://www.geekinterview.com/contact.html">Contact</A>&nbsp;&nbsp;|&nbsp;&nbsp; 
+<A class=vr href="http://www.geekinterview.com/sitemap.html">Site 
+Map</A>&nbsp;&nbsp;|&nbsp;&nbsp; <A class=vr 
+href="http://www.geekinterview.com/addquestion">Add 
+Question</A>&nbsp;&nbsp;|&nbsp;&nbsp; <A class=vr 
+href="http://www.geekinterview.com/propose-category">Propose 
+Category</A>&nbsp;&nbsp;|&nbsp;&nbsp; <A class=vr 
+href="http://www.geekinterview.com/articles/rssfeeds.html">RSS 
+Feeds</A>&nbsp;&nbsp;|&nbsp;&nbsp; <A class=vr 
+href="http://www.geekinterview.com/articles/sitemap.html">Articles 
+Sitemap</A>&nbsp;&nbsp;|&nbsp;&nbsp; <A class=vr 
+href="http://www.geekinterview.com/links.html">Partner 
+Links</A>&nbsp;&nbsp;|&nbsp;&nbsp; <A class=vr 
+href="http://www.geekinterview.com/new.html">Site 
+Updates</A>&nbsp;&nbsp;|&nbsp;&nbsp; <A class=vr 
+href="http://www.geekinterview.com/articles/add-resource.html">Add Resource</A> 
+<FONT class=td1><BR><BR>Copyright © 2005 - 2006 GeekInterview.com. All Rights 
+Reserved<BR></FONT></CENTER></BODY></HTML>

@@ -1,0 +1,239 @@
+<project name="messagemodule" basedir="." default="create_third_party_distribution">
+
+		<property file="${basedir}/build.properties"/>
+		<property name="src.dir"							value="${basedir}/src"/>
+		<property name="bin.dir"							value="${basedir}/bin"/>
+		<property name="lib.dir"							value="${basedir}/lib"/>
+		<property name="config.dir"							value="${basedir}/configuration"/>
+		<property name="dist.config.dir"					value="${basedir}/config"/>
+		<property name="dist.dir"							value="${basedir}/dist"/>
+		<property name="docs.dir"							value="${basedir}/docs"/>
+		<property name="test.dir"							value="${basedir}/test"/>
+		<property name="thirdparty.dist.dir"				value="${basedir}/genericmessage_dist"/>
+		<property name="jar.file.name"						value="coremessageapi.jar"/>
+		<property name="ui.jar.file.name"					value="ui.jar"/>
+		<property name="run.jar.file.name"					value="run.jar"/>
+		<property name="run.bat.file.name"					value="run.bat"/>
+		<property name="ui.bat.file.name"					value="ui.bat"/>
+		<property name="images.dir"							value="${basedir}/images"/>
+		<property name="messagedata.jar.file.name"			value="${basedir}/messagedata.jar"/>
+		<property name="logprop.file.name"					value="${config.dir}/log4j.properties"/>
+		
+		
+<!--
+######################################################################################
+	Setting the classpath for compiling the java source code.
+
+######################################################################################
+-->
+	    <path id="classpath">
+			<fileset dir="${lib.dir}" includes="**/*.jar" />
+	    </path>
+<!--
+######################################################################################
+	Deleting the already existing directories and creating the new directories.
+
+######################################################################################
+-->
+		<target name="init" description="Deleting and creating the directories">
+			<echo>Deleting and creating the directories</echo>
+			<delete		dir="${bin.dir}"/>
+			<delete		dir="${dist.dir}"/>
+			<delete		dir="${docs.dir}"/>
+			<delete		dir="${thirdparty.dist.dir}"/>
+			<delete		file="${basedir}/jar.file.name"/>
+			<mkdir		dir="${bin.dir}"/>
+			<mkdir		dir="${dist.dir}"/>
+			<mkdir		dir="${docs.dir}"/>
+			<mkdir		dir="${thirdparty.dist.dir}"/>
+		</target>
+
+<!--
+######################################################################################
+	Compiling the java source code and storing the java classes inside bin
+    directory of the application.Copying the other configurations.
+######################################################################################
+-->
+		<target name="compile" depends="init" description="compiling the java source">
+			<echo>Compiling the java source files</echo>
+			<javac srcdir="${src.dir}" destdir="${bin.dir}" source="1.4" debug="on" includejavaruntime="true">
+				<classpath refid="classpath"/>
+			</javac>
+			<javac srcdir="${test.dir}" destdir="${bin.dir}" source="1.4" debug="on" includejavaruntime="true">
+				<classpath refid="classpath"/>
+			</javac>
+		</target>
+<!--
+######################################################################################
+	Copying the respective and relevent files and directories to the respective 
+	directories .
+######################################################################################
+-->
+		<target name="copy" depends="compile" description="Copying the files and directories">
+			<echo>Copying the files and folder</echo>
+			<!-- Coying the config files -->
+			<copy todir="${dist.dir}">
+				<fileset dir="${bin.dir}"/>
+			</copy>
+			<!-- Copying the related jar files -->
+			
+			<copy todir="${dist.dir}">
+				<fileset dir="${config.dir}" excludes="**/*.bat"/>
+			</copy>
+
+			<!-- Copying the log4j.properties file to bin-->
+			<copy file="${logprop.file.name}" todir="${bin.dir}"/>
+				
+		</target>
+<!--
+######################################################################################
+	Creating the executable message data interface api jar file . Deprecated target
+######################################################################################
+-->
+		<target name="createMsgDataJar" depends="copy" description="creating the messagedata.jar">
+			<echo>Creating the jar file for messagedata.jar</echo>
+			<jar destfile="${messagedata.jar.file.name}" basedir="${dist.dir}" includes="com/iit/core/msg/data/**.class">
+				<manifest>
+					<attribute name="Specification-Title"			value="Generic Message Framework Specification" />
+					<attribute name="Specification-Version"			value="1.1" />
+					<attribute name="Implementation-Vendor-Id"		value="com.iit" />
+					<attribute name="Implementation-Vendor"			value="Ideal Invent Technologies" />
+					<attribute name="Specification-Vendor"			value="Ideal Invent Technologies" />
+
+					<attribute name="Sealed"						value="true" />
+					<attribute name="Author"						value="Debadatta Mishra" />
+			  </manifest>
+			</jar>
+		</target>
+<!--
+######################################################################################
+	Creating the executable core message api jar file 
+######################################################################################
+-->
+		<target name="createCoreMsgAPIJar" depends="copy" description="Creating the jar file and directory">
+			<echo>Creating the jar file </echo>
+			<jar destfile="${basedir}/${jar.file.name}" basedir="${dist.dir}" excludes="com/iit/core/scheduler/**.class,RoughTesting.class,StopScheduler.class,
+			TestDatabaseConfiguration,TestLoader.class,TestMessageConfiguration.class,
+			TestScheduler.class,TestSchedulerConfiguration.class,com/iit/core/ui/**.class">
+			  <manifest>
+				<attribute name="Specification-Title"				value="Generic Message Framework Specification" />
+					<attribute name="Specification-Version"			value="1.1" />
+					<attribute name="Implementation-Vendor-Id"		value="com.iit" />
+					<attribute name="Implementation-Vendor"			value="Ideal Invent Technologies" />
+					<attribute name="Specification-Vendor"			value="Ideal Invent Technologies" />
+					<attribute name="Class-Path"					value="${classpath3}" />
+					<attribute name="Sealed"						value="true" />
+					<attribute name="Author"						value="Debadatta Mishra" />
+			  </manifest>
+			</jar>
+		</target>
+
+<!--
+######################################################################################
+	Creating the run jar file 
+######################################################################################
+-->
+	<target name="createRunJar" depends="createCoreMsgAPIJar" description="Creating the jar file and directory">
+			<echo>Creating the jar file and war directory</echo>
+			<jar destfile="${basedir}/${run.jar.file.name}" basedir="${dist.dir}" includes="com/iit/core/scheduler/**.class,TestScheduler.class">
+				 <manifest>
+					<attribute name="Specification-Title"			value="Generic Message Framework Specification" />
+					<attribute name="Specification-Version"			value="1.1" />
+					<attribute name="Implementation-Vendor-Id"		value="com.iit" />
+					<attribute name="Implementation-Vendor"			value="Ideal Invent Technologies" />
+					<attribute name="Specification-Vendor"			value="Ideal Invent Technologies" />
+					<attribute name="Main-Class"					value="TestScheduler" />
+					<attribute name="Class-Path"					value="${classpath3}" />
+					<attribute name="Sealed"						value="true" />
+					<attribute name="Author"						value="Debadatta Mishra" />
+				</manifest>
+			</jar>			  
+		</target>
+
+<!--
+######################################################################################
+	Creating the ui jar file 
+######################################################################################
+-->
+	<target name="createUIJar" depends="createRunJar" description="Creating the jar file and directory">
+			<echo>Creating the jar file and war directory</echo>
+			<jar destfile="${basedir}/${ui.jar.file.name}" basedir="${dist.dir}" includes="com/iit/core/ui/**.class">
+				 <manifest>
+					<attribute name="Specification-Title"			value="Generic Message Framework Specification" />
+					<attribute name="Specification-Version"			value="1.1" />
+					<attribute name="Implementation-Vendor-Id"		value="com.iit" />
+					<attribute name="Implementation-Vendor"			value="Ideal Invent Technologies" />
+					<attribute name="Specification-Vendor"			value="Ideal Invent Technologies" />
+
+					<attribute name="Main-Class"					value="com.iit.core.ui.Mail" />
+					<attribute name="Class-Path"					value="${classpath}" />
+					<attribute name="Sealed"						value="true" />
+					<attribute name="Author"						value="Praveen Kumar" />
+				</manifest>
+			</jar>			  
+		</target>
+
+<!--
+######################################################################################
+	Packing for third party distribution
+######################################################################################
+-->
+		<target name="create_third_party_distribution" depends="createUIJar" description="packaging for third party">
+			<echo>Packing for third party distribution</echo>
+			<copy file="${config.dir}/${run.bat.file.name}"				todir="${thirdparty.dist.dir}"/>
+			<copy file="${config.dir}/${ui.bat.file.name}"				todir="${thirdparty.dist.dir}"/>
+
+			<!-- Copy the lib directory -->
+			<copy todir="${thirdparty.dist.dir}/lib">
+				<fileset dir="${lib.dir}" excludes="**/CVS"/>
+			</copy>	
+
+			<!-- Copy the config directory -->
+			<copy todir="${thirdparty.dist.dir}/config">
+				<fileset dir="${dist.config.dir}" excludes="**/CVS"/>
+			</copy>	
+
+			<!-- Copy the images directory -->
+			<copy todir="${thirdparty.dist.dir}/images">
+				<fileset dir="${images.dir}" excludes="**/CVS"/>
+			</copy>	
+			<!-- Create a directory called logs inside the distribution directoru -->
+			<mkdir dir="${thirdparty.dist.dir}/logs"/>
+
+			<copy file="${basedir}/${ui.jar.file.name}"					todir="${thirdparty.dist.dir}"/>
+			<copy file="${basedir}/${run.jar.file.name}"				todir="${thirdparty.dist.dir}"/>
+			<copy file="${basedir}/${jar.file.name}"					todir="${thirdparty.dist.dir}/lib"/>
+
+			<delete file="${basedir}/${ui.jar.file.name}"/>
+			<delete file="${basedir}/${run.jar.file.name}"/>
+			<delete file="${basedir}/${jar.file.name}"/>
+			<delete dir="${dist.dir}"/>
+		</target>
+
+<!--
+######################################################################################
+	Generating javadocs
+######################################################################################
+-->
+	<target name="javadocs" depends="createUIJar" description="generating java docs">
+		<javadoc
+			   destdir="${docs.dir}/api"
+			   author="true"
+			   version="true"
+			   use="true"
+			   windowtitle="Test API">
+
+		<fileset dir="src" defaultexcludes="yes">
+		  <include name="com/iit/core/**"/>
+		</fileset>
+
+		<doctitle><![CDATA[<h1>GenericMessageFramework</h1>]]></doctitle>
+		<bottom><![CDATA[<i>Copyright &#169; 2007 Ideal Invent Technologies,Bangalore. All Rights Reserved.</i>]]></bottom>
+		<tag name="todo" scope="all" description="To do:"/>
+		<group title="Group 1 Packages" packages="com.iit.core.**"/>
+		<link href="http://developer.java.sun.com/developer/products/xml/docs/api/"/>
+	  </javadoc>
+</target>
+
+
+</project>

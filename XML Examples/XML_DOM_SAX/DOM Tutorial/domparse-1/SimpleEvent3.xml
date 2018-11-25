@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<AlertingManagedElement>
+<Name>OESystem</Name>
+<RRSEventMDList>
+	<RRSEventMetadata>
+	
+		<MDID>mdid7</MDID>
+		<IndicationIdentifier>Order Recieved</IndicationIdentifier>
+		<EventType>Threshold</EventType>
+		<Description>Happens When a Order is recieved</Description>
+	</RRSEventMetadata>
+	<RRSEventMetadata>
+		<MDID>mdid8</MDID>
+		<IndicationIdentifier>Credit Check Failed</IndicationIdentifier>
+		<EventType>Alert</EventType>
+		<Description>Happens When a credit check fails due to lack.</Description>
+	</RRSEventMetadata>
+	<RRSEventMetadata>
+		<MDID>mdid9</MDID>
+		<IndicationIdentifier>Invalid password</IndicationIdentifier>
+		<EventType>Alert</EventType>
+		<Description>Happens When a credit check fails due to lack.</Description>
+	</RRSEventMetadata>
+</RRSEventMDList>
+</AlertingManagedElement>

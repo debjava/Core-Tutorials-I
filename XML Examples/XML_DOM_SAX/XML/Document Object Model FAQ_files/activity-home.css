@@ -1,0 +1,117 @@
+BODY {
+	MARGIN-LEFT: 10%; MARGIN-RIGHT: 5%; FONT-FAMILY: sans-serif
+}
+H1 {
+	MARGIN-LEFT: -8%
+}
+H2 {
+	MARGIN-LEFT: -4%
+}
+H2 {
+	COLOR: #990066
+}
+H3 {
+	COLOR: black
+}
+PRE {
+	FONT-WEIGHT: bold; COLOR: green
+}
+EM {
+	FONT-WEIGHT: bold; FONT-STYLE: italic
+}
+STRONG {
+	FONT-WEIGHT: bold; TEXT-TRANSFORM: uppercase
+}
+B {
+	COLOR: #990066
+}
+TD {
+	BACKGROUND: #ffbfbf
+}
+TH {
+	BACKGROUND: #a0a0a4
+}
+CAPTION {
+	MARGIN-TOP: 1em; TEXT-DECORATION: underline
+}
+.splash {
+	COLOR: #009966
+}
+P.banner {
+	MARGIN-LEFT: -4%
+}
+B.black {
+	COLOR: black
+}
+B.pink {
+	COLOR: #990066
+}
+P.pink {
+	COLOR: #990066
+}
+BLOCKQUOTE {
+	COLOR: black; FONT-STYLE: italic; FONT-FAMILY: "Comic Sans MS", sans-serif
+}
+PRE {
+	FONT-FAMILY: monospace
+}
+DIV.disclaimer {
+	MARGIN-LEFT: -8%
+}
+DIV.color {
+	BORDER-RIGHT: medium none; PADDING-RIGHT: 0.5em; BORDER-TOP: medium none; PADDING-LEFT: 0.5em; BACKGROUND: rgb(255,204,255); PADDING-BOTTOM: 0.5em; BORDER-LEFT: medium none; PADDING-TOP: 0.5em; BORDER-BOTTOM: medium none
+}
+H3.c3 {
+	TEXT-ALIGN: center
+}
+P.c2 {
+	TEXT-ALIGN: center
+}
+H1.c1 {
+	TEXT-ALIGN: left
+}
+BODY {
+	BACKGROUND: white; COLOR: black
+}
+DIV.main {
+	MARGIN-LEFT: 5%; MARGIN-RIGHT: 2%
+}
+H1 {
+	FONT-FAMILY: arial, helvetica, sans-serif
+}
+H2 {
+	FONT-FAMILY: arial, helvetica, sans-serif
+}
+H3 {
+	FONT-FAMILY: arial, helvetica, sans-serif
+}
+H2 {
+	MARGIN-LEFT: -2%
+}
+.date {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-WEIGHT: bold; BACKGROUND: #dfd; VERTICAL-ALIGN: top; BORDER-LEFT: medium none; COLOR: #000; BORDER-BOTTOM: medium none; FONT-STYLE: italic
+}
+.format {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-WEIGHT: bold; BACKGROUND: #dfd; VERTICAL-ALIGN: top; BORDER-LEFT: medium none; COLOR: #000; BORDER-BOTTOM: medium none; FONT-STYLE: italic
+}
+TD {
+	MARGIN: 6px
+}
+.offsite:link {
+	COLOR: #393
+}
+.offsite:visited {
+	COLOR: #666
+}
+.newslist {
+	MARGIN: 3px 8px
+}
+PRE {
+	FONT-FAMILY: Syntax, "Courier New", Courier, monospace
+}
+.qdlogo {
+	FONT-WEIGHT: bold; VERTICAL-ALIGN: middle; COLOR: #903; FONT-FAMILY: Hattenschweiller, Impact, serif; HEIGHT: 48px
+}
+.filler {
+	COLOR: #777; FONT-STYLE: italic
+}
