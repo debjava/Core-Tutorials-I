@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+  <form-beans>
+    <form-bean name="userFormBean"
+               type="coreservlets.UserFormBean"/>
+    <form-bean name="colorBean2"
+               type="coreservlets.ColorBean2"/>
+  </form-beans>
+  <action-mappings>
+    <action path="/accountMod" 
+            type="coreservlets.ModifyAccountAction"
+            name="userFormBean"
+            scope="request"
+            parameter="operation">
+      <forward name="create-failed" 
+               path="/WEB-INF/results/create-failed.jsp"/>
+      <forward name="create-success" 
+               path="/WEB-INF/results/create-confirm.jsp"/>
+      <forward name="change-failed" 
+               path="/WEB-INF/results/change-failed.jsp"/>
+      <forward name="change-success" 
+               path="/WEB-INF/results/change-confirm.jsp"/>
+     <forward name="delete-failed" 
+               path="/WEB-INF/results/delete-failed.jsp"/>
+      <forward name="delete-success" 
+               path="/WEB-INF/results/delete-confirm.jsp"/>
+    </action>
+    <action path="/showColors2" 
+            type="org.apache.struts.actions.ForwardAction"
+            name="colorBean2"
+            scope="session"
+            parameter="/ShowColors2"/>
+  </action-mappings>
+</struts-config>
+

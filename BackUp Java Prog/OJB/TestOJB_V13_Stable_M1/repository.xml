@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <!DOCTYPE descriptor-repository PUBLIC
+       "-//Apache Software Foundation//DTD OJB Repository//EN"
+       "repository.dtd" 
+[
+
+<!ENTITY database SYSTEM "repository_database.xml">
+<!ENTITY internal SYSTEM "repository_internal.xml">
+<!ENTITY user SYSTEM "repository_user.xml">
+]>
+
+
+<descriptor-repository version="1.0"
+                       isolation-level="read-uncommitted"
+                       proxy-prefetching-limit="50">
+
+<!-- ****************************************DATABASE CONFIGURATION **********************************--> 	&database; 
+
+<!-- ****************************************OJB INTERNAL CONFIGURATION ******************************-->
+	&internal; 
+    
+<!-- ****************************************USER MAPPING ********************************************-->
+   &user; 
+
+</descriptor-repository>

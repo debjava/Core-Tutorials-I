@@ -1,0 +1,21 @@
+ <class-descriptor
+   	  class="test.Obj1"
+	  auto-retrieve="true"
+	  auto-update="object"
+      auto-delete="object"
+
+   	  table="OJB_Tab1301"
+   >
+      <field-descriptor
+         name="id"
+         column="id"
+         jdbc-type="VARCHAR"
+         primarykey="true"
+         autoincrement="true"
+      />
+      <field-descriptor
+         name="name"
+         column="name"
+         jdbc-type="VARCHAR"
+      />      
+   </class-descriptor>

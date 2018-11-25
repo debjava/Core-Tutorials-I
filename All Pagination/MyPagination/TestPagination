@@ -1,0 +1,716 @@
+It sounds to me like a deficiency in the tag lib. I would say that
+maintaining page information in the session scope is a bad idea if you are
+only storing partial results. If you are placing your whole result into the
+session then you can use a system like mine that reads the list from the
+session and splits it according to the page you are one. This maintains the
+users results without hitting the database each time.
+
+So the process would go something like this:
+1) Initial call on database
+2) Translate resultsSet to a list of beans
+3) Store the list of beans in the session
+4) maintain page references in you next, page numbers, and previous (ie
+<<previous 1 2 3 4 next>>)
+5) when a new page is clicked an action is called
+6) the session stored list is retrieved in the action and the appropriate
+results are prepared for that page
+7) the results are passed to the page as a request attribute.
+8) user standard taglibs to display results and set up pagination
+6) if a user does a new search then the database is polled again and a new
+result populates the session scope bean list.
+
+Depending on the potential size of your results there are some other
+techniques that you can implement to avoid an enormous list from existing in
+each users session scope. But, that is another topic.
+
+Brandon Goodin
+Phase Web and Multimedia
+P(406)862-2245
+F(406)862-0354
+http://www.phase.ws
+
+-----Original Message-----
+From: Chen, Dean (Zhun) [mailto:Dean.Chen@gs.com]
+Sent: Tuesday, October 01, 2002 11:58 AM
+To: 'Struts Users Mailing List'
+Subject: RE: pagination & session scope issue
+
+
+I'm using Lists that represent recordsets. The resultsets per request
+changes frequently.
+
+Dean Chen
+
+-----Original Message-----
+From: Brandon Goodin [mailto:mail@phase.ws]
+Sent: Tuesday, October 01, 2002 12:43 PM
+To: Struts Users Mailing List
+Subject: RE: pagination & session scope issue
+
+
+It is a jvm level thing. I have a cache that is instantiated at app startup.
+It works in a shared hosting environment too becuz each app runs it's own
+classLoader. When the app needs to lookup data it looks in the cache first
+under a key that is determined by you (usually a unique id that is produced
+by a combination of lookup parameters). If the key is there then it pulls
+the cached results(A Bean List) from it. It sounds like you may need
+something that is more like a persistence layer. Are you caching recordsets
+or Lists?
+
+Brandon Goodin
+Phase Web and Multimedia
+P(406)862-2245
+F(406)862-0354
+http://www.phase.ws
+
+-----Original Message-----
+From: Chen, Dean (Zhun) [mailto:Dean.Chen@gs.com]
+Sent: Tuesday, October 01, 2002 10:19 AM
+To: 'Struts Users Mailing List'
+Subject: RE: pagination & session scope issue
+
+
+When u cache it, do you cache it in session scope or in application scope?
+If you cache it in application scope, how does each form know which cache to
+use.
+I don't have a problem paginating... but the combination of session scope &
+pagination is a problem.
+
+Thanks
+
+Dean Chen
+
+
+-----Original Message-----
+From: Brandon Goodin [mailto:mail@phase.ws]
+Sent: Tuesday, October 01, 2002 12:06 PM
+To: Struts Users Mailing List
+Subject: RE: pagination & session scope issue
+
+
+if your data doesn't need to be live all the time... cache it and set an
+appropriate timeout. I wrote a simple caching mechanism that works great.
+
+This will reduce database lookups then you can create your pagination on the
+backend with Some classes.
+
+I have a set of classes i called Scroller,ScrollerBean, and
+ScrollerPageBean.
+
+The Scroller handles the splitting up of the List according to the page size
+specified and the size of the list passed and handles all the logic for
+determing the values that are stored in the ScrollerBean and
+ScrollerPageBean. The ScrollerBean holds all the values for the actual List,
+pageNumberList, next, nextPage, previous, previousPage, resultSize, etc. The
+ScrollerPageBean holds data specific to each page (i.e. pageLabel,
+pageValue, isSelected). Oh, also the Scroller does not return the whole List
+
+of objects to the page. It trims it down to the appropriate subList of the
+cached results.
+
+Scroller - populates ScrollerBean and ScrollerPageBean
+
+ScrollerBean - contains shared values for paging and contains a collection
+of ScrollerPageBeans
+	properties:
+	* int next - nextPage Number
+	* boolean isNext - is there a next page
+	* int previous - previous Page number
+	* boolean isPrevious - is there a previous page
+	* resultSize - this holds the total result size of the initial
+result set
+	* List objects - A list of beans usually generated from a recordset
+to bean
+list translation
+	* List scrollerPageBeans - A list of page values for generation of
+page
+list (ex 1 2 3 4)
+
+ScrollerPageBean - contains page specific paging values
+	* int pageNum - array location of page Number to be passed back when
+the
+page is selected
+	* int currPage - viewable page number (pageNum +1) so if pageNum is
+0 (the
+index in the List) then the currPage would be 1
+	* boolean selected - a boolean indicating if this is the current
+page being
+viewed.
+
+All of this is then passed to the page where you can easily use tag libs to
+produce a page list.
+
+Brandon Goodin
+Phase Web and Multimedia
+P(406)862-2245
+F(406)862-0354
+http://www.phase.ws
+
+-----Original Message-----
+From: Chen, Dean (Zhun) [mailto:Dean.Chen@gs.com]
+Sent: Tuesday, October 01, 2002 9:46 AM
+To: 'Struts Users Mailing List'
+Subject: pagination & session scope issue
+
+
+Hi,
+I'm currently using Pager from JSPTags.com to do pagination. However, I'm
+running into problems because it requires the data  to be kept in session
+scope. Basically the problem is that if 2 windows for a single application
+are open, the pagination mechanism fails because it uses the latest data in
+session scope.
+Is there a way around this besides going back to the database for every
+pagination?
+
+How does big websites like amazon, google, yahoo solve this problem??
+
+Thanks a lot.
+
+Dean Chen
+************************************************************************************************
+
+Hi,
+
+Here is the Example, of paging. It is just a single JSP file. If required move the logic to java file. Copy the below code and execute the JSP file to make sure every thing works fine. If any questions let me know..
+
+<%@ page import="java.util.ArrayList,
+                 java.util.Iterator,
+                 java.util.List"%>
+<%
+    ArrayList arrayList = null;
+    boolean check = true;
+//    session.removeAttribute("arrayList");
+    /* if you have the arrayList in the session Object avoid the DB Call
+        and get the ArrayList from the session Object
+    */
+    if(null == session.getAttribute("arrayList"))
+    {
+        /** need to get the ArrayList from the DB */
+       arrayList = new ArrayList();
+       arrayList.add("First");
+       for(int i=0; i<10; i++)
+       {
+           arrayList.add(i+"");
+       }
+        arrayList.add("Last");
+        session.setAttribute("arrayList", arrayList);
+    }else{
+       arrayList = (ArrayList)session.getAttribute("arrayList");
+    }
+
+    int arrayListSize = arrayList.size();
+    // Number of Records that need to displayed per page
+    // make the increment value 5 and check it will display only 5 records per page
+    int increment = 2;
+    int fromIndex = 0;
+    int toIndex = increment;
+    String uri = request.getRequestURI();
+    String previous= "Previous";
+    String next = "Next";
+    List displayList = null;
+    if( null != request.getParameter("next"))
+    {
+        fromIndex = Integer.parseInt(request.getParameter("next"));
+        toIndex = increment + fromIndex;
+        if( toIndex+1 > arrayListSize)
+        {
+            toIndex = arrayListSize;
+            check = false;
+        }
+        if( fromIndex > arrayListSize)
+            fromIndex = 0;
+    }
+
+    if( null != request.getParameter("prev"))
+    {
+        toIndex = Integer.parseInt(request.getParameter("prev"));
+        fromIndex = toIndex - increment;
+    }
+    if(arrayListSize > 0)
+      displayList = arrayList.subList(fromIndex, toIndex);
+    if(fromIndex != 0)
+       previous = "<a href="+ uri +"?prev="+ fromIndex +"> Previous </a>";
+    if(toIndex != 0 && check)
+       next = "<a href="+ uri +"?next="+ toIndex +"> Next </a>";
+
+    out.println(arrayList);
+    out.println("<br>");
+    out.println(displayList);
+    out.println("<br>");
+    out.println(next);
+    out.println("<br>");
+    out.println(previous);
+%>
+
+Cheers,
+Venu 
+ 
+RicardoPereira (Programmer) 22 Jan 04 13:19  
+Yes, with this i got the next and previous links but the records showed are very strange, look:
+
+[extranet.TblClientes@ed5d9d, extranet.TblClientes@19d12cc, extranet.TblClientes@13d1402, extranet.TblClientes@eca36e, First, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, Last] 
+[extranet.TblClientes@ed5d9d, extranet.TblClientes@19d12cc] 
+Next 
+Previous 
+--------------------
+
+With the simple bean i have this code:
+
+<%
+
+ArrayList LC=form.getLC();
+    for( int x=0;x<LC.size();x++) 
+      {
+        TC qryClt=(TC) LC.get(x);
+out.println("qryClt.getSitio() + 
+"," + qryClt.getCliente() + 
+        "'>" + qryClt.getSitio() + " | " + qryClt.getCliente() + ");
+}
+%>
+
+
+How do i adapt whis code to the code you give me?
+
+Thanks
+Ricardo 
+ 
+venur (MIS) 22 Jan 04 15:35  
+Hi,
+
+I have marked the changes with RED Color. If not copy the below code it should work. But donot forget to import the bean into this jsp file.
+
+<%@ page import="java.util.ArrayList,
+                 java.util.Iterator,
+                 java.util.List"%>
+<%
+    ArrayList arrayList = null;
+    boolean check = true;
+//    session.removeAttribute("arrayList");
+    /* if you have the arrayList in the session Object avoid the DB Call
+        and get the ArrayList from the session Object
+    */
+    if(null == session.getAttribute("arrayList"))
+    {
+        /** need to get the ArrayList from the DB */
+         arrayList = form.getLC();
+        session.setAttribute("arrayList", arrayList);
+    }else{
+       arrayList = (ArrayList)session.getAttribute("arrayList");
+    }
+
+    int arrayListSize = arrayList.size();
+    // Number of Records that need to displayed per page
+    // make the increment value 5 and check it will display only 5 records per page
+    int increment = 2;
+    int fromIndex = 0;
+    int toIndex = increment;
+    String uri = request.getRequestURI();
+    String previous= "Previous";
+    String next = "Next";
+    List displayList = null;
+    if( null != request.getParameter("next"))
+    {
+        fromIndex = Integer.parseInt(request.getParameter("next"));
+        toIndex = increment + fromIndex;
+        if( toIndex+1 > arrayListSize)
+        {
+            toIndex = arrayListSize;
+            check = false;
+        }
+        if( fromIndex > arrayListSize)
+            fromIndex = 0;
+    }
+
+    if( null != request.getParameter("prev"))
+    {
+        toIndex = Integer.parseInt(request.getParameter("prev"));
+        fromIndex = toIndex - increment;
+    }
+    if(arrayListSize > 0)
+      displayList = arrayList.subList(fromIndex, toIndex);
+    if(fromIndex != 0)
+       previous = "<a href="+ uri +"?prev="+ fromIndex +"> Previous </a>";
+    if(toIndex != 0 && check)
+       next = "<a href="+ uri +"?next="+ toIndex +"> Next </a>";
+
+    out.println(arrayList);
+    out.println("<br>");
+    //out.println(displayList);
+    
+    Iterator iterator = displayList.iterator();
+    while(iterator.hasNext())
+    {
+    TC qryClt=(TC) iterator.next();
+    out.println(qryClt.getSitio() + "," + qryClt.getCliente() + "'>" + qryClt.getSitio() + " | " + qryClt.getCliente() + "");
+
+    }
+    
+    out.println("<br>");
+    out.println(next);
+    out.println("<br>");
+    out.println(previous);
+%>
+
+Cheers
+Venu
+
+ 
+ 
+RicardoPereira (Programmer) 23 Jan 04 3:45  
+It works :) 
+
+Thanks
+Ricardo
+
+ 
+ 
+RicardoPereira (Programmer) 11 Feb 04 6:41  
+If i put int increment = 5 and i had only 4 records i got an error message that says:
+org.apache.jasper.JasperException: toIndex = 5
+
+What should be done to return all the 4 records even if they are lower than the maximun defined per page?
+
+Thanks
+Ricardo
+ 
+ 
+******************************* Pagination from Blog *************************************************
+Pagination in JSP
+
+
+We often have the requirement to paginate large amounts of records retrieved from database into pages. I have first used the Pager Tag Library from jsptags.com. It works fine when there is a small quantity of data. But with the increase of data size, it becomes more and more slow. It seems that it fetch all the data from database each time when we navigate between pages (Maybe I'm wrong). So, I implemented my own pagination bean used for MySQL.
+
+The main idea is as follows:
+
+1. Run two queries: One (SELECT with the LIMIT) to gets the rows which match that limit. The second (SELECT COUNT()) to get the number of results that match the query. Both have the same FROM clause and WHERE clause.
+
+SELECT COUNT(*) AS cnt FROM invoice
+
+SELECT invoiceno, password FROM invoice LIMIT ?, ?
+
+2. When the page is requested for the first time, get the total number of records using the second query.
+
+3. Append two additional parameters used for pagination to the end of the requested URL, current page number and total number of records.
+
+invoice.jsp?pageno=1&numofrec=800000
+4. Generate the pagination links (First, Prev, Next, Last and Go to):
+
+The following is the souce code:
+
+Pagination Java Bean, PaginationUtil.java
+
+package com.esurfer.util;
+public class PaginationUtil {
+ /* 
+ function:  Pagination
+ author:  esurfer
+ date:   2005-08-28
+ parameter:
+  1. numOfRec-- total number of records
+  2. recPerPage-- number of rows per page
+  3. currPage--current page number
+  4. url--the requested url
+ return: pagination links with First, Prev, Next, Last, Go to
+ */ 
+ public static String Pagination(int numOfRec, int recPerPage, int currPage, String url) {
+  StringBuffer ressurl = new StringBuffer();
+  
+  String spChar = "?";
+  if (url.indexOf(spChar) != -1) spChar = "&";
+
+  if (numOfRec > recPerPage) {   int pages = (int)java.lang.Math.ceil((double)numOfRec / (double)recPerPage);  // Get total number of pages      ressurl.append("<div nowrap>\n");   ressurl.append("<font face=arial size=-1>");   ressurl.append("Results Page: ").append(currPage).append(" / ").append(pages);      // Display link to first page   ressurl.append("&nbsp;<b><a href=\"").append(url).append(spChar).append("pageno=1&numofrec=")       .append(numOfRec).append("\">First</a></b>\n");      // Link to previous page   if (currPage > 1) {       ressurl.append("|&nbsp;<b><a href=\"").append(url).append(spChar).append("pageno=")          .append(currPage - 1).append("&numofrec=").append(numOfRec).append("\">Prev</a></b>\n");   }      // Display link to next page   if (currPage < pages) {       ressurl.append("|&nbsp;<b><a href=\"").append(url).append(spChar).append("pageno=")          .append(currPage + 1).append("&numofrec=").append(numOfRec).append("\">Next</a></b>\n");   }      // Link to last page   ressurl.append("|&nbsp;<b><a href=\"").append(url).append(spChar).append("pageno=")       .append(pages).append("&numofrec=").append(numOfRec).append("\">Last</a></b>\n");      // Drop down navigation    ressurl.append("&nbsp;&nbsp;Go to?&nbsp;<select id=\"pageno\" name=\"pageno\" onchange=\"pagination()\">\n");      // If number of pages > 200    //    display only 20 pagination links in the drop down list   // else   //    display all pagination links in the drop down list   int iBeginPageNo = 1, iEndPageNo = pages;   if (pages >= 200) {           // Calculate the beginning index       int temp = currPage - 20;           if (temp <= 0) {           iBeginPageNo = 1;       } else {           iBeginPageNo = temp;       }                       // Calculate the ending index       temp = currPage + 20;       if (temp >= pages) {           iEndPageNo = pages;       } else {           iEndPageNo = temp;       }          }   for (int i = iBeginPageNo; i <= iEndPageNo; i++) {       if (i == currPage) {           ressurl.append("<option value=\"").append(i).append("\" selected>").append(i).append("</option>\n");       } else {           ressurl.append("<option value=\"").append(i).append("\">").append(i).append("</option>\n");       }   }   ressurl.append("</select></font>\n");   ressurl.append("</div>\n");   ressurl.append("<script type\"=text/javascript\">\n");   ressurl.append("function pagination() {\n");   ressurl.append("location.href='").append(url).append(spChar).append("pageno=' + document.getElementById('pageno').value")     .append(" + '&numofrec=").append(numOfRec).append("';\n");   ressurl.append("}\n");   ressurl.append("</script>\n");  }  return ressurl.toString(); }}
+Invoice Java Bean, Invoice.java
+
+package com.esurfer.report;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import com.esurfer.db.DBConn;
+import com.esurfer.util.PaginationUtil;
+public class Invoice {
+    static String sqlcnt = "SELECT COUNT(*) AS cnt FROM invoice";;
+    static String url = "invoice.jsp";
+    static int recPerPage = 15;
+    
+    public static String getInvoiceList(int numOfRec, int currPage) {
+        int iStartLimit;
+        if (currPage == 1) {
+            numOfRec = DBConn.getNumOfRec(sqlcnt); // get total number of records only the first time
+            iStartLimit = 0;
+         currPage = 1;
+        } else {
+         iStartLimit = (currPage -1) * recPerPage;
+        }
+        StringBuffer result = new StringBuffer();
+        StringBuffer sql = new StringBuffer("SELECT invoiceno, password FROM invoice").append(" LIMIT ").append("?, ?");
+        ArrayList list = DBConn.searchToMapList(sql.toString(), new Object[]{new Integer(iStartLimit), new Integer(recPerPage)});
+        Iterator iterator = list.iterator();
+        Map map = null;
+  while (iterator.hasNext()) {
+      map = (Map)iterator.next();
+      result.append("").append(map.get("invoiceno")).append("").append(map.get("password")).append("\n");
+  }
+  result.append("").append(PaginationUtil.Pagination(numOfRec, recPerPage, currPage, url)).append("");
+  iterator = null;
+  list = null;
+  map = null;
+        return result.toString();
+    }
+}
+Testing in JSP, test.jsp
+
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %><%@page import="com.esurfer.report.*"%><%String numofrec = request.getParameter("numofrec");if (numofrec == null) numofrec = "0";String pageno = request.getParameter("pageno");if (pageno == null) pageno = "1";%><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><title>Pagination Test</title></head><body><table border="1" cellpadding="0" cellspacing="0" width="100%"><thead>  <tr><th>Invoice No</th><th>Password</th></tr></thead><tbody><%=Invoice.getInvoiceList(Integer.parseInt(numofrec), Integer.parseInt(pageno))%></tbody></table></body></html>
+
+*************************************************************************************
+<%@ page import="java.util.*, java.sql.*, sun.jdbc.rowset.*" %>
+
+<html>
+<head>
+<title>[insert your title here]</title>
+</head>
+
+<body bgcolor="#ffffee" text="blue">
+<form target="_top" name=viewForm action="pagination_test.jsp" method="post">
+<%! int numPages = 0; %>
+<%
+String columnName = "";
+int count = 0;
+int totalCols = 0;
+int increment = 1;
+int numRows = 0; 
+
+String startIndexString = request.getParameter("startIndex");
+
+if(startIndexString == null) {
+startIndexString = "1";
+}
+
+int startIndex = Integer.parseInt(startIndexString); 
+
+try{
+
+totalCols = 1;
+%>
+<table border=1 align=center width="100%">
+<tr>
+<% 
+for(int j=1; j<=totalCols; j++) {
+columnName = "testing "; //(String) resultSetMetaData.getColumnName(j);
+%><td>
+<b><% out.print(columnName+j); %></b>
+</td>
+<%}%>
+</tr>
+<% 
+
+
+
+List list = new ArrayList();
+
+
+for( int i=0; i<20; i++){
+
+list.add("item"+i);
+
+}
+
+
+numRows = list.size();
+
+out.println(" total no. of records : "+ numRows );
+
+int numRecordsPerPage = 7;
+
+out.println(" Num of Records per page : " + numRecordsPerPage + "\n" );
+
+
+numPages = numRows /numRecordsPerPage; 
+
+int remain = numRows % numRecordsPerPage;
+
+
+if(remain != 0){
+
+numPages = numPages +1;
+
+}
+
+out.println(" \n no. of pages : " + numPages );
+
+if((startIndex + numRecordsPerPage) <= numRows) {
+
+increment = startIndex + numRecordsPerPage;
+}
+else{
+
+if (remain == 0){
+
+increment = startIndex + numRecordsPerPage;
+
+}else{
+
+increment = startIndex + remain;
+}
+}
+
+
+for(count = startIndex; count < increment; count++) {
+
+
+%><tr><%
+for(int i=1; i<=totalCols; i++) {
+
+%><td><% out.println(list.get(count-1)); %></td><%
+} 
+%></tr><%
+
+} 
+%>
+</table>
+<br>
+<br>
+<% 
+
+%>
+<table width = "100%">
+<tr>
+Displaying Records: 
+<% if(startIndex + numRecordsPerPage < numRows){%>
+<%= " " + startIndex %> - <%= increment - 1 %>
+<%}else{%>
+<%= " " + startIndex %> - <%= numRows %>
+<%}%>
+
+<%if(startIndex != 1) {%> 
+<a href="pagination_test.jsp?startIndex=<%=startIndex-numRecordsPerPage%>">Previous</a>
+<%}%>
+
+<%increment += numRecordsPerPage;%> 
+<%if(startIndex + numRecordsPerPage <= numRows){%> 
+<a href="pagination_test.jsp?startIndex=<%=startIndex+numRecordsPerPage %>">Next</a>
+<%}%>
+</tr>
+</table>
+<% 
+}catch(Exception exc){
+out.println(exc.toString());
+} // end try-catch 
+%>
+
+</form>
+</body>
+</html>
+
+
+************************************* Using Ajax, from Sun Forum *************************************
+
+HI 
+This is the code written using the span tag. For your case you may need to use div tag. 
+
+
+function retrieveURL(url,nameOfFormToPost) 
+{
+//get the (form based) params to push up as part of the get request
+url=url+getFormAsString(nameOfFormToPost);
+//Do the Ajax call
+if (window.XMLHttpRequest) // Non-IE browsers
+{
+req = new XMLHttpRequest();
+req.onreadystatechange = processStateChange;
+try 
+{
+req.open("GET", url, true); //was get
+}
+catch (e) 
+{
+alert("Problem Communicating with Server\n"+e);
+}
+req.send(null);
+}
+else if (window.ActiveXObject) // IE
+{
+req = new ActiveXObject("Microsoft.XMLHTTP");
+if (req) 
+{
+req.onreadystatechange = processStateChange;
+req.open("GET", url, true);
+req.send();
+}
+}
+}
+
+function processStateChange() 
+{
+if (req.readyState == 4) // Complete
+{
+if (req.status == 200) // OK response
+{
+////alert("Ajax response:"+req.responseText);
+
+//Split the text response into Span elements
+spanElements = splitTextIntoSpan(req.responseText);
+
+//Use these span elements to update the page
+replaceExistingWithNewHtml(spanElements); }
+else 
+{
+alert("Problem with server response:\n " + req.statusText);
+}
+}
+}
+
+function splitTextIntoSpan(textToSplit)
+{
+//Split the document
+returnElements=textToSplit.split("</span>")
+
+//Process each of the elements 
+for ( var i=returnElements.length-1; i>=0; --i )
+{
+///alert(returnElements);
+
+//Remove everything before the 1st span
+spanPos = returnElements.indexOf("<span"); 
+
+//if we find a match , take out everything before the span
+if(spanPos>0)
+{
+subString=returnElements.substring(spanPos);
+returnElements=subString;
+}
+}
+
+return returnElements;
+}
+function replaceExistingWithNewHtml(newTextElements)
+{
+//loop through newTextElements
+for ( var i=newTextElements.length-1; i>=0; --i )
+{
+//check that this begins with <span
+if(newTextElements.indexOf("><span")>-1)
+{
+//get the name - between the 1st and 2nd quote mark
+startNamePos=newTextElements.indexOf('"')+1;
+endNamePos=newTextElements.indexOf('"',startNamePos);
+name=newTextElements.substring(startNamePos,endNamePos);
+
+//get the content - everything after the first > mark
+startContentPos=newTextElements.indexOf('>')+1;
+content=newTextElements.substring(startContentPos);
+
+//Now update the existing Document with this element
+
+//check that this element exists in the document
+if(document.getElementById(name))
+{
+//alert("Replacing Element:"+name);
+document.getElementById(name).innerHTML = content;
+} 
+else 
+{
+//alert("Element:"+name+"not found in existing document");
+}
+}
+}
+}

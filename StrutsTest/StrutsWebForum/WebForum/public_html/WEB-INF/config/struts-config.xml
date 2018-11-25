@@ -1,0 +1,88 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+
+  <!-- =============================================== Form Bean Definitions -->  
+  <form-beans>
+
+    <form-bean name="loginForm" type="com.johntopley.webforum.controller.form.LoginForm" />  
+  
+    <form-bean name="newReplyForm" type="com.johntopley.webforum.controller.form.NewReplyForm" />  
+
+    <form-bean name="newTopicForm" type="com.johntopley.webforum.controller.form.NewTopicForm" />
+
+    <form-bean name="newUserForm" type="com.johntopley.webforum.controller.form.NewUserForm" />
+       
+  </form-beans>
+
+  <!-- ======================================== Global Exception Definitions -->
+  <global-exceptions>
+
+    <exception type="java.lang.Throwable" key="app.exception" path="/WEB-INF/pages/error.jsp" scope="request"/>
+
+  </global-exceptions>
+  
+  <!-- ========================================== Global Forward Definitions -->  
+  <global-forwards>
+
+    <forward name="Login" path="/Login.do" />
+
+    <forward name="Logout" path="/Logout.do" />
+
+    <forward name="NewReply" path="/NewReply.do" />
+
+    <forward name="NewTopic" path="/NewTopic.do" />
+
+    <forward name="Register" path="/Register.do" />
+
+    <!--
+     | Setting redirect to true ensures the cookie containing the user ID isn't
+     | cached after logging out.
+     +-->
+    <forward name="ViewTopics" path="/ViewTopics.do" redirect="true" />
+
+    <forward name="ViewTopic" path="/ViewTopic.do" />
+    
+  </global-forwards>
+  
+  <!-- ========================================== Action Mapping Definitions -->
+  <action-mappings>
+  
+    <action path="/Login" forward="/WEB-INF/pages/login.jsp" />
+
+    <action path="/Logout" type="com.johntopley.webforum.controller.action.LogoutAction" />
+
+    <action path="/LoginSubmit" type="com.johntopley.webforum.controller.action.LoginSubmitAction" name="loginForm" input="/WEB-INF/pages/login.jsp" validate="true" scope="request" />
+
+    <action path="/NewReply" forward="/WEB-INF/pages/newreply.jsp" />
+
+    <action path="/NewReplySubmit" type="com.johntopley.webforum.controller.action.NewReplySubmitAction" name="newReplyForm" input="/WEB-INF/pages/newreply.jsp" validate="true" scope="request" />
+
+    <action path="/NewTopic" forward="/WEB-INF/pages/newtopic.jsp"/>
+
+    <action path="/NewTopicSubmit" type="com.johntopley.webforum.controller.action.NewTopicSubmitAction" name="newTopicForm" input="/WEB-INF/pages/newtopic.jsp" validate="true" scope="request" />
+
+    <action path="/Register" forward="/WEB-INF/pages/register.jsp" />
+
+    <action path="/RegisterSubmit" type="com.johntopley.webforum.controller.action.RegisterSubmitAction" name="newUserForm" input="/WEB-INF/pages/register.jsp" validate="true" scope="request" />
+
+    <action path="/ViewTopics" type="com.johntopley.webforum.controller.action.ViewTopicsAction" scope="request">
+      <forward name="Topics" path="/WEB-INF/pages/topics.jsp"/>
+    </action>
+
+    <action path="/ViewTopic" type="com.johntopley.webforum.controller.action.ViewTopicAction" scope="request">
+      <forward name="Topic" path="/WEB-INF/pages/topic.jsp"/>
+    </action>
+    
+  </action-mappings>  
+  
+  <!-- ======================================== Message Resource Definitions -->
+  <!--
+   | Setting null to false displays bad key values on the page.
+   +-->
+  <message-resources parameter="com.johntopley.webforum.view.Resources" null="false"/>
+  
+  <message-resources parameter="com.johntopley.webforum.view.GlobalErrors" null="false" key="GlobalErrors"/>
+  
+  <!-- ================================================= Plug-In Definitions -->  
+</struts-config>

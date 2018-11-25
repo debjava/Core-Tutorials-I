@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+   id="solutionsacceleratorstudio"
+   name="Solutionsacceleratorstudio Plug-in"
+   version="1.0.0"
+   provider-name="">
+
+   <runtime>
+      <library name="solutionsacceleratorstudio.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+   </requires>
+   
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="DatabaseView"
+            id="SAS">
+      </category>
+      <view
+            name="Database View"
+            icon="icons/sample.gif"
+            category="SAS"
+            class="com.rrs.corona.solutionsacceleratorstudio.plugin.DatabaseViewer"
+            id="com.rrs.corona.solutionsacceleratorstudio.plugin.DatabaseViewer">
+      </view>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="DataObjectView"
+            id="SAS">
+      </category>
+      <view
+            name="DataObject View"
+            icon="icons/sample.gif"
+            category="SAS"
+            class="com.rrs.corona.solutionsacceleratorstudio.dataobject.DataObjectView"
+            id="com.rrs.corona.solutionsacceleratorstudio.dataobject.DataObjectView">
+      </view>
+   </extension>
+   
+   <extension
+            point="org.eclipse.ui.perspectives">
+        <perspective
+              class="com.rrs.corona.solutionsacceleratorstudio.DatabasePerspective"
+              icon="icons/sample.gif"
+              fixed="false"
+              name="DatabasePerspective"
+              id="com.rrs.corona.solutionsacceleratorstudio.DatabasePerspective">
+        </perspective>
+     </extension>
+   <!-- Solutions Accelerator Studio Menu -->
+    <extension
+            point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="File Action Set"
+            visible="true"
+            id="my_actions">           
+          
+          
+            <!-- Creating SolutionAccelerator Menu /-->       
+               <menu
+                   label="&amp;SAS"
+                   path="additions"
+                   id="solution.accelerator">
+                   <separator name="sas_separator"/>
+                   <separator name="sas1_separator"/>
+               </menu>
+    
+                 <!-- Menu Item to Configure the Category XML file /-->  
+                  <action
+                  label="&amp;Find Data Source"
+                  class="com.rrs.corona.solutionsacceleratorstudio.plugin.FindData"
+				  definitionId="com.rrs.corona.solutionsacceleratorstudio.FindData"								
+                  menubarPath="solution.accelerator/group1"
+                  id="com.rrs.corona.solutionsacceleratorstudio.FindData">
+               </action> 
+               
+               
+                 <action
+                  label="&amp;Manage Data Source"
+                  class="com.rrs.corona.solutionsacceleratorstudio.plugin.ManageDataSource"				 
+                  menubarPath="solution.accelerator/sas1_separator"
+                  id="com.rrs.corona.solutionsacceleratorstudio.ManageDataSource">
+               </action>
+               
+               <action
+                  label="&amp;Delete Data Source"
+                  class="com.rrs.corona.solutionsacceleratorstudio.plugin.DeleteDataSource"
+                  menubarPath="solution.accelerator/sas1_separator"
+                  id="com.rrs.corona.solutionsacceleratorstudio.DeleteDataSource">
+               </action>
+               
+               <action
+                  label="&amp;Rename Data Source"
+                  class="com.rrs.corona.solutionsacceleratorstudio.plugin.RenameDataSource"
+                  menubarPath="solution.accelerator/sas1_separator"
+                  id="com.rrs.corona.solutionsacceleratorstudio.RenameDataSource">
+               </action>
+                   
+               <action
+                  label="&amp;Create Data Source"
+                  class="com.rrs.corona.solutionsacceleratorstudio.plugin.CreateDataSource"
+                  menubarPath="solution.accelerator/sas1_separator"
+                  id="com.rrs.corona.solutionsacceleratorstudio.CreateDataSource">
+               </action>
+                    
+       </actionSet>
+       
+      </extension>
+
+	  <!-- Use of shortcut keys -->
+
+   <extension
+           point="org.eclipse.ui.commands">
+         <command
+            name="command.find.name"
+            description="command.find.description"
+            id="com.rrs.corona.solutionsacceleratorstudio.FindData">
+         </command>
+  </extension>
+
+  <extension
+   	    point="org.eclipse.ui.bindings">
+     <key
+        commandId="com.rrs.corona.solutionsacceleratorstudio.FindData"
+        sequence="M1+F"
+        schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" />
+	</extension>
+
+	<extension id="ide" point="org.eclipse.core.runtime.products"> 
+      <product name="SolutionsAcceleratorStudio" application="org.eclipse.ui.ide.workbench" description="%productBlurb"> 
+           <property name="windowImages" value="icons/blue-ball.gif,eclipse32.gif,eclipse48.gif,icons/blue-ball.png,eclipse32.png,eclipse48.png"/> 
+          <property name="aboutImage"              value="icons/blue-ball.gif"/>
+          <property name="aboutText"               value="%productBlurb"/> 
+          <property name="appName"                 value="sas"/> 
+          <property name="preferenceCustomization" value="plugin_customization.ini"/> 
+      </product> 
+   </extension>
+
+</plugin>

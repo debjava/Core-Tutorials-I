@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> New Document </TITLE>
+</HEAD>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+
+<BODY>
+
+<h1><font color="RED"> Hi <bean:write name="loginForm" property="username"/> , You are not a registered user </font></h1>
+
+<br> For Registration <a href="/register22.html">click</a> here</br>
+
+</BODY>
+</HTML>

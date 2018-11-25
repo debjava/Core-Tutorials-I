@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE server>
+
+<server>
+<classpath codebase="deploy" archives="MyServiceTest.jar"/>
+  	<mbean code="com.dds.test.MyService"
+		name ="deba.test:service=SeflTest_V1">
+	</mbean>
+</server>

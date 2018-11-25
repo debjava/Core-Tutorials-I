@@ -1,0 +1,29 @@
+<project name="OJB_Test_V8" default="run">
+
+    <property name="sourcedir"		value="${basedir}/src"/> 
+    <property name="targetdir"		value="${basedir}/bin"/>
+    <property name="librarydir"		value="${basedir}/lib"/>
+
+    <path id="libraries">
+        <fileset dir="${librarydir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="clean">
+        <delete dir="${targetdir}"/>
+        <mkdir dir="${targetdir}"/>
+    </target>
+
+    <target name="compile" depends="clean">
+      <javac srcdir="${sourcedir}"
+             destdir="${targetdir}"
+             classpathref="libraries"/>
+    </target>
+
+    <target name="run" depends="compile">
+        <java fork="true" classname="com.dds.test.orm.test.Manager" classpathref="libraries">
+        </java>
+    </target>
+
+</project>

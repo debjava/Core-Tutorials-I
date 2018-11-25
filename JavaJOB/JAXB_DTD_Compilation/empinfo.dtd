@@ -1,0 +1,8 @@
+<!ELEMENT Adrs (#PCDATA)>
+<!ELEMENT Desgn (#PCDATA)>
+<!ELEMENT EmpInfo (Info)>
+<!ATTLIST EmpInfo
+	xmlns CDATA #REQUIRED
+>
+<!ELEMENT Info (Name, Desgn, Adrs)>
+<!ELEMENT Name (#PCDATA)>

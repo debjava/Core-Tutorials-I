@@ -1,0 +1,26 @@
+
+<DatabaseConfig>
+	<database>
+		<dbUser>
+			<user>scott</user>
+			<password>tiger</password>
+			<tableInfo>
+				<tableName>Test</tableName>
+				<FieldInfo>
+					<FieldName>name</FieldName>
+					<FieldType>varchar2</FieldType>
+				</FieldInfo>
+
+				<FieldInfo>
+					<FieldName>name</FieldName>
+					<FieldType>varchar2</FieldType>
+				</FieldInfo>
+
+				<FieldInfo>
+					<FieldName>name</FieldName>
+					<FieldType>varchar2</FieldType>
+				</FieldInfo>
+			</tableInfo>
+		</dbUser>
+	</database>
+</DatabaseConfig>

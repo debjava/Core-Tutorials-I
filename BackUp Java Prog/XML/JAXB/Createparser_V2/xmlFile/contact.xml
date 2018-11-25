@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<addressBook>
+    <contact>
+        <name>John Doe</name>
+        <email>john@acme.com</email>
+    </contact>
+    <contact>
+        <name>Jane Smith</name>
+        <email>jane@acme.org</email>
+    </contact>
+    <contact>
+        <name>Bob Cole</name>
+        <email>bob@acme.net</email>
+    </contact>	
+	<contact>
+        <name>PIKU</name>
+        <email>piku@acme.net</email>
+    </contact>
+	<contact>
+        <name>Lilu</name>
+        <email>lilu@acme.net</email>
+    </contact>
+	<contact>
+        <name>Arzoo</name>
+        <email>arzoo@acme.net</email>
+    </contact>
+</addressBook>

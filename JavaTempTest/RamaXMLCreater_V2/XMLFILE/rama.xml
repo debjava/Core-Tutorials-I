@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<addressBook>
+	<contact>
+		<name>Rama</name>
+		<email>rkb@rediffmail.com</email>
+		
+		<OfficialContact>
+			<officeName>hp</officeName>
+			<officeEmail>rkb@hp.com</officeEmail>
+			<Project>
+				<projectName>RFID</projectName>
+				<clientName>hP</clientName>
+			</Project>
+		</OfficialContact>
+		<PersonalContact>
+			<Name>jharsuguda</Name>
+			<Email>rama@hp.com</Email>
+			<HomeName>BrajrajNagar</HomeName>
+		</PersonalContact>
+	</contact>
+	
+</addressBook>

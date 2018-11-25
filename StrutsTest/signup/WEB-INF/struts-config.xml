@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config> 
+  <form-beans>
+    <form-bean name="contactFormBean"
+               type="coreservlets.ContactFormBean"/>
+  </form-beans>
+  <global-forwards>
+    <forward name="success" 
+             path="/WEB-INF/results/confirmation.jsp"/>
+  </global-forwards>
+  <action-mappings>
+    <action path="/actions/signup1" 
+            type="coreservlets.SignupAction1"
+            name="contactFormBean"
+            scope="request">
+      <forward name="missing-value" 
+               path="/WEB-INF/results/missing-value.jsp"/>
+    </action>
+    <action path="/actions/signup2" 
+            type="coreservlets.SignupAction2"
+            name="contactFormBean"
+            scope="request">
+      <forward name="missing-value" 
+               path="/forms/signup2.jsp"/>
+    </action>
+  </action-mappings>
+</struts-config>
+

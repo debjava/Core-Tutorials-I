@@ -1,0 +1,25 @@
+<DBDetails>
+	<DataSourceInfo>
+		<DBName>orcl</DBName>
+		<DBPort>1521</DBPort>
+		<DBUser>scott</DBUser>
+		<DBPassword>tiger</DBPassword>
+	</DataSourceInfo>
+	<TableInfo>
+		<Table>
+			<TableName>EKM</TableName>
+			<FieldInfo>
+				<FieldName>empID</FieldName>
+				<FieldType>varchar2</FieldType>
+				<FieldSize>20</FieldSize>
+				<PrimaryKey>true</PrimaryKey>
+			</FieldInfo>
+			<FieldInfo>
+				<FieldName>name</FieldName>
+				<FieldType>varchar2</FieldType>
+				<FieldSize>20</FieldSize>
+				<PrimaryKey>false</PrimaryKey>
+			</FieldInfo>
+		</Table>
+	</TableInfo>
+</DBDetails>

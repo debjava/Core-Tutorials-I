@@ -1,0 +1,34 @@
+<project name="jbossservice-tutorial" default="Deploy">
+
+    <property name="sourcedir"				value="${basedir}/src"/>
+    <property name="targetdir"				value="${basedir}/bin"/>
+    <property name="librarydir"				value="${basedir}/lib"/>
+	<property name="jboss.deploy.dir"		value="C:\rr\jboss-4.0.3SP1\server\default\deploy"/>
+	
+    <path id="libraries">
+        <fileset dir="${librarydir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="clean">
+        <delete dir="${targetdir}"/>
+        <mkdir dir="${targetdir}"/>
+    </target>
+
+    <target name="compile" depends="clean">
+      <javac srcdir="${sourcedir}"
+             destdir="${targetdir}"
+             classpathref="libraries"/>
+    </target>
+
+	<target name="CreateJar" depends="compile" description="Creating jar file">
+		<jar destfile="${targetdir}/debatest.jar" basedir="${targetdir}"/>
+	</target>
+
+	<target name="Deploy" depends="CreateJar" description="Deployoing the jar file in Jboss">
+		<copy file="${basedir}/test-service.xml"		todir="${jboss.deploy.dir}" />
+		<copy file="${targetdir}/debatest.jar"			todir="${jboss.deploy.dir}" />
+	</target>
+
+</project>

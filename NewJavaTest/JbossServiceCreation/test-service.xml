@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE server>
+
+<server>
+
+<classpath codebase="deploy" archives="debatest.jar"/>
+  	<mbean code="com.dds.test.TestService"
+		name ="deba.test:service=Test1">
+	</mbean>
+</server>

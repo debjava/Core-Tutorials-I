@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/antlr-2.7.3.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/classes12.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/commons-collections-2.1.1.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/commons-dbcp-1.1.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/commons-lang-2.0.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/commons-pool-1.1.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/commons-transaction-1.1b2-dev.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/db-ojb-1.0.3.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/db-ojb-1.0.3-tools.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/hsqldb.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/log4j-1.2.8.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/torque-3.0.2.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/velocity-1.3.1.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/xdoclet-1.2.2.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/xdoclet-ojb-module-1.2.2.jar"/>
+	<classpathentry kind="lib" path="E:/Works/TestOJB_V10/lib/xjavadoc-1.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

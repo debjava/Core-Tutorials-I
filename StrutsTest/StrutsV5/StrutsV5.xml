@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Struts2App" default="DeployToJboss" basedir=".">
+
+<property name="src.dir"				value="${basedir}/src"/>
+<property name="web.dir"				value="${basedir}/WEB-INF"/>
+<property name="classes.dir"			value="${web.dir}/classes"/>
+<property name="lib.dir"				value="${web.dir}/lib"/>
+<property name="war.dir"				value="${basedir}/war"/>
+<property name="war.file.name"			value="${war.dir}/strutsv5.war"/>
+<property name="deploy.dir"				value="C:/rr/jboss-4.0.3SP1/server/default/deploy"/>
+
+
+ <path id="libraries">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+ </path>
+
+<target name="init" description=" To clean the previous files and folders">
+	<echo message="deleting and creating new directories"/>
+	<delete dir="${war.dir}"/>
+	<delete file="${${war.dir}/struts2app.war}"/>
+	<delete>
+    <fileset dir="${classes.dir}" includes="**/*.class"/>
+  </delete>
+
+	<mkdir dir="${war.dir}"/>
+</target>
+
+<target name="compile" depends="init" description="To compile the java files">
+	<echo message="Compiling the java source files"/>
+	<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="libraries"/>
+</target>
+
+<target name="createWar" depends="compile" description="Creation of war file">
+	<jar destfile="${war.file.name}"  basedir="${basedir}"  excludes="**/*.java"/>
+</target>
+
+<target name="DeployToJboss" depends="createWar" description="deploying to Jboss server">
+	<echo message="Deploying to Jboss server"/>
+	<copy file="${war.file.name}" todir="${deploy.dir}"/>
+
+</target>
+
+</project>

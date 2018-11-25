@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ===================================================== -->
+<!-- Build file for the Struts WebForum application.       -->
+<!-- Copyright (c) 2005 John Topley (www.johntopley.com)   -->
+<!-- ===================================================== -->
+<project name="webforum" default="dist" basedir=".">
+  <description>
+    Build file for the Struts WebForum application.
+  </description>
+
+  <!-- ===================================================== -->
+  <!-- Property declarations                                 -->
+  <!-- ===================================================== -->
+  <!-- Property used to access OS environment variables. -->
+  <property environment="env" />
+
+  <!-- Apache Tomcat installation directory. -->
+  <property name="tomcat.dir"
+            location="${env.TOMCAT_HOME}" />
+
+  <!-- Source, output and library directories. -->
+  <property name="classes.dir"
+            location="classes" />
+  <property name="dist.dir"
+            location="dist" />
+  <property name="j2ee.lib.dir"
+            location="${tomcat.dir}/common/lib" />
+  <property name="src.dir"
+            location="src" />
+  <property name="web.src.dir"
+            location="public_html" />
+  <property name="web.lib.dir"
+            location="${web.src.dir}/WEB-INF/lib" />
+            
+  <!-- Distribution file name. -->
+  <property name="dist.warfile"
+            location="${dist.dir}/WebForum.war" />
+
+  <!-- Javadoc properties. -->
+  <property name="javadoc.dir"
+            location="doc/api" />
+  <property name="javadoc.title"
+            value="Struts WebForum API Documentation" />
+            
+  <!-- Classpath. -->
+  <path id="classpath">
+    <pathelement path="${j2ee.lib.dir}/servlet-api.jar" />
+    <fileset dir="${web.lib.dir}">
+      <include name="**/*.jar" />
+    </fileset>
+  </path>
+
+  <!-- ===================================================== -->
+  <!-- Clean target.                                         -->
+  <!-- ===================================================== -->
+  <target name="clean"
+          description="Clean up output directories.">
+
+    <delete dir="${classes.dir}" />
+    <delete dir="${dist.dir}" />
+  </target>
+
+  <!-- ===================================================== -->
+  <!-- Compile target.                                       -->
+  <!-- ===================================================== -->
+  <target name="compile" depends="-init"
+          description="Compile all targets.">
+
+    <mkdir dir="${classes.dir}" />
+    
+    <!-- Copy Struts resource files to classes directory. -->
+    <copy todir="${classes.dir}">
+      <fileset dir="${src.dir}"
+               includes="**/*.properties"/>
+    </copy>
+
+    <javac srcdir="${src.dir}" destdir="${classes.dir}">
+      <classpath refid="classpath" />
+    </javac>
+  </target>
+  
+  <!-- ===================================================== -->
+  <!-- Dist target.                                          -->
+  <!-- ===================================================== -->
+  <target name="dist" depends="compile"
+          description="Create the binary distribution.">
+          
+    <delete dir="${dist.dir}" />
+    <mkdir dir="${dist.dir}" />
+
+    <war basedir="${web.src.dir}"
+         destfile="${dist.warfile}"
+         compress="true"
+         webxml="${web.src.dir}/WEB-INF/web.xml"
+         excludes="**/web.xml">
+         <classes dir="${classes.dir}" />
+    </war>
+  </target>
+
+  <!-- ===================================================== -->
+  <!-- Help target.                                          -->
+  <!-- ===================================================== -->
+  <target name="help" depends="usage" />
+
+  <!-- ===================================================== -->
+  <!-- Init target (hidden).                                 -->
+  <!-- ===================================================== -->
+  <target name="-init">
+
+    <!-- Create the time stamp. -->
+    <tstamp>
+      <format property="TODAY_UK" pattern="dd MMM yyyy HH.mm" locale="en_GB" />
+    </tstamp>
+  </target>
+
+  <!-- ===================================================== -->
+  <!-- Javadocs target.                                      -->
+  <!-- ===================================================== -->
+  <target name="javadocs"
+    description="Generate the Javadoc pages.">
+
+    <delete dir="${javadoc.dir}" />
+    <mkdir dir="${javadoc.dir}" />
+
+    <javadoc destdir="${javadoc.dir}"
+             author="true"
+             version="true"
+             Windowtitle="${javadoc.title}">
+      <fileset dir="${src.dir}" />
+      <classpath refid="classpath" />
+    </javadoc>
+  </target>
+
+  <!-- ===================================================== -->
+  <!-- Usage target.                                         -->
+  <!-- ===================================================== -->
+  <target name="usage"
+    description="Display usage information.">
+
+    <echo message="  Execute 'ant -projecthelp' for build file help." />
+    <echo message="  Execute 'ant -help' for Ant help." />
+  </target>
+</project>

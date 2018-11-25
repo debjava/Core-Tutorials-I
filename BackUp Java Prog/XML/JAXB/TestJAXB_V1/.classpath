@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="bind-choice/src"/>
+	<classpathentry kind="lib" path="bind-choice/lib/activation.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/ant.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/ant-junit.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/ant-launcher.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/ant-nodeps.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/ant-trax.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/commons-collections.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/commons-digester.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/dom.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/jaas.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/jaxb-api.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/jaxb-impl.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/jaxb-libs.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/jaxb-xjc.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/jaxp-api.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/jax-qname.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/jta-spec1_0_1.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/mail.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/namespace.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/relaxngDatatype.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/sax.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/xalan.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/xmlsec.jar"/>
+	<classpathentry kind="lib" path="bind-choice/lib/xsdlib.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

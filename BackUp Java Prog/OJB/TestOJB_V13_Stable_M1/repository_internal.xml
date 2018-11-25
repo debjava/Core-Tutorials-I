@@ -1,0 +1,36 @@
+ <class-descriptor
+      class="org.apache.ojb.broker.util.sequence.HighLowSequence"
+      table="OJB_HL_SEQ"
+   >
+       <object-cache class="org.apache.ojb.broker.cache.ObjectCacheEmptyImpl">
+       </object-cache>
+
+       <field-descriptor
+         name="tableName"
+         column="TABLENAME"
+         jdbc-type="VARCHAR"
+         primarykey="true"
+      />
+      <field-descriptor
+         name="fieldName"
+         column="FIELDNAME"
+         jdbc-type="VARCHAR"
+         primarykey="true"
+      />
+      <field-descriptor
+         name="maxKey"
+         column="MAX_KEY"
+         jdbc-type="BIGINT"
+      />
+      <field-descriptor
+         name="grabSize"
+         column="GRAB_SIZE"
+         jdbc-type="INTEGER"
+      />
+      <field-descriptor
+         name="version"
+         column="VERSION"
+         jdbc-type="INTEGER"
+         locking="true"
+      />
+   </class-descriptor> 

@@ -1,0 +1,40 @@
+<?xml version="1.0" standalone="yes"?>
+<project basedir="." default="CompileJavaSrcFile">
+
+	<property name="lib.dir"		value="${basedir}/lib"/>
+
+  <path id="classpath">
+    <fileset dir="${lib.dir}" includes="*.jar" />
+  </path>
+
+  <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+    <classpath refid="classpath" />
+  </taskdef>
+
+  <!--compile Schema and Java source files-->
+
+  <target name="clean" description="Deletes all the generated artifacts.">
+    <delete dir="gen-src" />
+    <delete dir="classes" />
+  </target>
+
+  <target name="CompileSchema" description="Compiling Schema" depends="clean">
+  <echo message="Compiling the schema..." />
+    <mkdir dir="gen-src" />
+    <xjc schema="metricEvent.xsd" destdir="gen-src">
+      <produces dir="gen-src" includes="**/*.java" />
+    </xjc>
+  </target>
+
+  <target name="CompileJavaSrcFile" description="Compiling Java Source File" depends="CompileSchema">
+	<echo message="Compiling the java source files..." />
+    <mkdir dir="classes" />
+    <javac destdir="classes" debug="on">
+      <src path="src" />
+      <src path="gen-src" />
+      <classpath refid="classpath" />
+    </javac>
+  </target>
+ 
+</project>
+

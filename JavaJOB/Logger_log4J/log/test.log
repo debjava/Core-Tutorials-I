@@ -1,0 +1,282 @@
+INFO - ************* Multiplication Begins Here *******************
+INFO - Multiplication of Nos ::: 230
+INFO - Addition of two Nos ::: 14
+INFO - Subtraction of Nos ::: 6
+INFO - ************* Multiplication Begins Here *******************
+INFO - Multiplication of Nos ::: 230
+INFO - 
+
+INFO - I am in class MyTest
+INFO - ******* HatiGhodaBagha **********
+INFO - 
+
+INFO - I am in class MyTest
+INFO - ******* HatiGhodaBagha **********
+INFO - 
+
+INFO - I am in class MyTest
+INFO - ******* HatiGhodaBagha **********
+DEBUG - Exception is thrown here ........... 
+DEBUG - Exception is thrown here ........... 
+WARN - / by zero
+WARN - / by zero
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - ******* HatiGhodaBagha **********
+DEBUG - Exception is thrown here ........... 
+DEBUG - Exception is thrown here ........... 
+WARN - / by zero
+WARN - / by zero
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - ******* HatiGhodaBagha **********
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - ******* HatiGhodaBagha **********
+INFO - null
+INFO - null
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - ******* HatiGhodaBagha **********
+INFO - null
+INFO - null
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - ******* HatiGhodaBagha **********
+INFO - null
+INFO - null
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - ******* HatiGhodaBagha **********
+INFO - null
+INFO - null
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - ******* HatiGhodaBagha **********
+INFO - null
+INFO - null
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - ******* HatiGhodaBagha **********
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - java.lang.NullPointerException
+INFO - java.lang.NullPointerException
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - java.lang.NullPointerException
+INFO - java.lang.NullPointerException
+INFO - [Ljava.lang.StackTraceElement;@1bf216a
+INFO - [Ljava.lang.StackTraceElement;@1bf216a
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - java.lang.NullPointerException
+INFO - java.lang.NullPointerException
+INFO - null
+INFO - null
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - java.lang.NullPointerException
+INFO - java.lang.NullPointerException
+INFO - null
+INFO - null
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - java.lang.NullPointerException
+INFO - java.lang.NullPointerException
+INFO - null
+INFO - null
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - java.lang.NullPointerException
+INFO - java.lang.NullPointerException
+INFO - null
+INFO - null
+INFO - ************* Multiplication Begins Here *******************
+INFO - ************* Multiplication Begins Here *******************
+INFO - 230
+INFO - ************* Multiplication Begins Here *******************
+INFO - Values ::: 230
+INFO - I am in MyTest class
+INFO - I am in MyTest class
+INFO - I am in MyTest class
+INFO - I am in MyTest class
+INFO - I am in MyTest class
+INFO - I am in MyTest class
+INFO - I am in MyTest class
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - I am in MyTest class
+INFO - I am in MyTest class
+INFO - java.lang.NullPointerException
+INFO - java.lang.NullPointerException
+ERROR - 
+java.lang.NullPointerException
+	at com.dds.test.MyTest.show(MyTest.java:22)
+	at com.dds.test.MyTest.main(MyTest.java:75)
+ERROR - 
+java.lang.NullPointerException
+	at com.dds.test.MyTest.show(MyTest.java:22)
+	at com.dds.test.MyTest.main(MyTest.java:75)
+INFO - I am in MyTest class
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - I am in MyTest class
+INFO - I am in MyTest class
+INFO - java.lang.NullPointerException
+INFO - java.lang.NullPointerException
+ERROR - 
+java.lang.NullPointerException
+	at com.dds.test.MyTest.show(MyTest.java:22)
+	at com.dds.test.MyTest.main(MyTest.java:43)
+ERROR - 
+java.lang.NullPointerException
+	at com.dds.test.MyTest.show(MyTest.java:22)
+	at com.dds.test.MyTest.main(MyTest.java:43)
+INFO - I am in MyTest class
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - I am in MyTest class
+INFO - I am in MyTest class
+INFO - java.lang.NullPointerException
+INFO - java.lang.NullPointerException
+ERROR - 
+java.lang.NullPointerException
+	at com.dds.test.MyTest.show(MyTest.java:22)
+	at com.dds.test.MyTest.main(MyTest.java:40)
+ERROR - 
+java.lang.NullPointerException
+	at com.dds.test.MyTest.show(MyTest.java:22)
+	at com.dds.test.MyTest.main(MyTest.java:40)
+INFO - I am in MyTest class
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - I am in MyTest class
+INFO - I am in MyTest class
+ERROR - 
+java.lang.NullPointerException
+	at com.dds.test.MyTest.show(MyTest.java:22)
+	at com.dds.test.MyTest.main(MyTest.java:40)
+ERROR - 
+java.lang.NullPointerException
+	at com.dds.test.MyTest.show(MyTest.java:22)
+	at com.dds.test.MyTest.main(MyTest.java:40)
+INFO - ************* Multiplication Begins Here *******************
+INFO - Values ::: 230
+INFO - I am in MyTest class
+INFO - 1
+INFO - 
+
+INFO - I am in class MyTest
+INFO - I am in MyTest class
+INFO - I am in MyTest class
+ERROR - 
+java.lang.NullPointerException
+	at com.dds.test.MyTest.show(MyTest.java:22)
+	at com.dds.test.MyTest.main(MyTest.java:40)
+ERROR - 
+java.lang.NullPointerException
+	at com.dds.test.MyTest.show(MyTest.java:22)
+	at com.dds.test.MyTest.main(MyTest.java:40)
+INFO - ************* Multiplication Begins Here *******************
+INFO - Values ::: 230

@@ -1,0 +1,264 @@
+Google Type pagination - Abstract from SUN forum
+*********************
+
+Hello there. As I have sought out a reasonable solution for paging nagivation and compared designs such as Google's search result paging to designs such as this forum's paging navigation, I have decided to go with this forum's design which I found somewhat better and more of a challenge. I did however, step it up a notch and attempt to improve it by acheiving a constant page group return size (with the exception of undersized page group lists and end groups that don't span the default page group size). This is one behaviour I noticed this forum's paging lacking. You can notice it when you are first starting your paging through the forum, the number of pages listed varies each time you page forward/backward until you reach a stable point deeper into the pages.
+
+This paging utility, however, maintains a constant page group list size which may be preferred when looking to fit the navigator into a constrained area.
+
+Anyhow, the following is a complete working example:
+
+package web.util;
+ 
+import java.util.ArrayList;
+import java.util.List;
+ 
+/**
+ *
+ * @author javious
+ */
+public class Pagination {
+    
+    /** Creates a new instance of Pagination */
+    public Pagination() {
+    }
+    
+    /**
+     * 
+     * 
+     * @param totalItems is the total of all items to be paged.
+     * @param currentPage is a page from the returning list to be currently displayed.
+     * @param defaultCursorPosition (zero based) is the usual position within the 
+     *        returning list in which
+     *        we want to display the current page. Should the current page be less than
+     *        this position, then this parameter gets overridden with the page's position.
+     *        Should the current page be greater than the final(of the last page group)
+     *        page position minus the preferred page position, then this
+     *        parameter gets overridden with the page's position.
+     * @return List of page numbers in relation to the supplied parameters.
+     */
+    public static List<Integer> getList(int totalItems,
+                                        int currentPage,
+                                        int resultPageSize,
+                                        int pageGroupSize,
+                                        int defaultCursorPosition)
+    {
+        List<Integer> pageList = new ArrayList<Integer>();
+ 
+        // first obtain the first item index of the absolute last page of
+        // all known records.
+        int finalPageItemStartIndex = (totalItems - totalItems % resultPageSize);
+        if(totalItems % resultPageSize == 0)
+        {
+            finalPageItemStartIndex-=resultPageSize;
+        }
+        
+        // Now obtain the final page index
+        int finalPage = 0;
+        if(finalPageItemStartIndex > 0)
+        {
+            finalPage = 1+(int)Math.ceil((double)finalPageItemStartIndex/resultPageSize);
+        }
+        int offset = pageGroupSize;
+        if(currentPage > defaultCursorPosition)
+        {
+            offset -= defaultCursorPosition;
+        }
+        else
+        {
+            offset -= (int)Math.min(pageGroupSize, currentPage);
+        }
+        int endPage = Math.min(finalPage, currentPage + offset);
+        int startPage = 0;
+        if(currentPage > defaultCursorPosition && finalPage >= endPage)
+        {
+            startPage = Math.max(1,endPage - pageGroupSize + 1);
+            pageList.add(0);
+        }
+        for(int i=startPage;i<endPage;i++)
+        {
+            pageList.add(i);
+        }
+        return pageList;
+    }
+}
+
+
+and the initial servlet
+
+package web;
+ 
+import java.io.*;
+import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
+ 
+import javax.servlet.*;
+import javax.servlet.http.*;
+import web.util.Pagination;
+ 
+/**
+ *
+ * @author javious
+ * @version
+ */
+public class PaginationTest extends HttpServlet {
+    
+    private static final int testItems[][] = {new int[210],
+                                        new int[133],
+                                        new int[7], // good test for within boundaries
+                                        new int[111],
+                                        new int[10], // good test of matching group size.
+                                        new int[20] // good test of divisible
+    };
+    static {
+        for(int i=0;i<testItems.length;i++)
+        {
+            for(int j=0;j<testItems[i].length;j++){
+                testItems[i][j] = (int)Math.ceil(Math.random()*10000);
+            }
+        }
+    }
+ 
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+ 
+        int resultPageSize = 10;
+        int pageGroupSize = 10;
+        int defaultPageCursorPosition = 3;
+ 
+        response.setContentType("text/html;charset=UTF-8");
+        
+        // add parent total so jsp can list links for them.
+        request.setAttribute("parentTotal", testItems.length);
+        
+        String sParentIndx = request.getParameter("parentId");
+        String sCurrentPage = request.getParameter("itemPg");
+        
+        int parentIndex = (sParentIndx != null ? Integer.parseInt(sParentIndx) : 0);
+        int currentPage = (sCurrentPage != null ? Integer.parseInt(sCurrentPage) : 0);
+        request.setAttribute("parentId", parentIndex);
+        request.setAttribute("itemPg", currentPage);
+        
+        int targetItems[] = testItems[parentIndex];
+        int totalItems = targetItems.length;
+        
+ 
+        int startIndex = currentPage*resultPageSize;
+        request.setAttribute("pageStart", startIndex+1);
+        int maxResultIndex = Math.min(totalItems, startIndex + resultPageSize);
+        
+        List pageItems = new ArrayList();
+        for(int i=currentPage*resultPageSize;i<maxResultIndex;i++)
+        {
+            pageItems.add(targetItems[i]);
+        }
+        request.setAttribute("pageItems", pageItems);
+        
+        // add totalPages so jsp can determine whether or not
+        // to show "previous" link
+        int totalPages = totalItems/resultPageSize; // 2 pages = 0 to 1
+        if(totalItems % resultPageSize > 0)
+        {
+            totalPages++;
+        }
+        request.setAttribute("totalPages", totalPages);
+        
+        // add this so jsp can tell when to add "..."
+        request.setAttribute("defaultPageCursorPosition", defaultPageCursorPosition);
+        List pageList = Pagination.getList(totalItems, currentPage,
+                resultPageSize, pageGroupSize, defaultPageCursorPosition);
+        
+        request.setAttribute("pageList", pageList);
+        request.getRequestDispatcher("pagination_test.jsp").forward(request,response);
+    }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        processRequest(request, response);
+    }
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        processRequest(request, response);
+    }
+    
+    public String getServletInfo() {
+        return "Short description";
+    }
+}
+
+
+and now for the nagivator portion of your JSP/JSTL
+
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<%--
+The taglib directive below imports the JSTL library. If you uncomment it,
+    you must also add the JSTL library to the project. The Add Library... action
+    on Libraries node in Projects view can be used to add the JSTL 1.1 library.
+    --%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+     
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+       "http://www.w3.org/TR/html4/loose.dtd">
+        
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSP Page</title>
+<STYLE type="text/css">
+.pagingLink {text-decoration: none}
+</STYLE>
+</head>
+<body>
+<h1>Parent Lists</h1>
+<c:forEach begin="0" end="${parentTotal-1}" var="indx" varStatus="loopStat">
+<c:choose>
+<c:when test="${parentId == indx}">
+<b>${loopStat.count}</b>
+</c:when>
+<c:otherwise>
+<a href="PaginationTest?parentId=${indx}">${loopStat.count}</a>
+</c:otherwise>
+</c:choose>
+</c:forEach>
+<h1>Items</h1>
+<ol start="${pageStart}">
+<c:forEach var="item" items="${pageItems}" varStatus="loopStat">
+<li>${item}
+</c:forEach>
+</ol>
+<table border="0" cellpadding="2" cellspacing="1">
+<tr>
+<c:if test="${itemPg-1 >= 0}">
+<td><a class="pagingLink" href="PaginationTest?parentId=${parentId}&itemPg=${itemPg-1}"><<</a>
+</td>
+</c:if>
+<%-- Loop through paging numbers list --%>
+<c:forEach var="pg" items="${pageList}" varStatus="loopStat">
+<c:if test="${!(loopStat.index eq 0 and loopStat.last)}">
+<td>
+<c:if test="${loopStat.count > 1}">
+|
+</c:if>
+<c:choose>
+<c:when test="${itemPg == pg}">
+<b>${pg+1}</b>
+</c:when>
+<c:otherwise>
+<a class="pagingLink" href="PaginationTest?parentId=${parentId}&itemPg=${pg}">${pg+1}</a>
+<c:if test="${loopStat.count == 1 && itemPg > defaultPageCursorPosition}">...</c:if>
+</c:otherwise>
+</c:choose>
+</td>
+</c:if>
+</c:forEach>
+<c:if test="${itemPg+1 < totalPages}">
+<td><a class="pagingLink" href="PaginationTest?parentId=${parentId}&itemPg=${itemPg+1}">>></a>
+</td>
+</c:if>
+</tr>
+</table>
+</body>
+</html>
+

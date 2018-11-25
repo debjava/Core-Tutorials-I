@@ -1,0 +1,55 @@
+<project name="hibernate-tutorial" default="hibernate">
+
+    <property name="sourcedir" value="${basedir}/src"/>
+    <property name="targetdir" value="${basedir}/bin"/>
+    <property name="librarydir" value="${basedir}/lib"/>
+    <property name="dist" value="${basedir}/dist"/>
+    <path id="libraries">
+        <fileset dir="${librarydir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+	<target name="hibernate">
+		<echo message="Generating Files"/>
+		<taskdef name="hibernatedoclet" classname="xdoclet.modules.hibernate.HibernateDocletTask" 
+		classpathref="libraries" />
+
+		<hibernatedoclet destdir="${sourcedir}" 
+		excludedtags="@version,@author,@todo,@see"
+		force="true"
+		verbose="true">
+		<fileset dir="${sourcedir}">
+			<include name="**/test/*.java" />
+		</fileset>
+		<hibernate version ="2.0"/>
+		</hibernatedoclet>
+	</target>
+
+<!--    <target name="clean">
+        <delete dir="${targetdir}"/>
+        <mkdir dir="${targetdir}"/>
+    </target>
+
+    <target name="compile" depends="clean, copy-resources">
+      <javac srcdir="${sourcedir}"
+             destdir="${targetdir}"
+             classpathref="libraries"/>
+    </target>
+
+    <target name="copy-resources">
+        <copy todir="${targetdir}">
+            <fileset dir="${sourcedir}">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="run" depends="compile">
+        <java fork="true" classname="events.EventManager" classpathref="libraries">
+            <classpath path="${targetdir}"/>
+            <arg value="${action}"/>
+        </java>
+    </target> -->
+
+</project>

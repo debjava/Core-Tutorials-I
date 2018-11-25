@@ -1,0 +1,1 @@
+create table OJB_EMP5(id varchar2(20),name varchar2(30) );

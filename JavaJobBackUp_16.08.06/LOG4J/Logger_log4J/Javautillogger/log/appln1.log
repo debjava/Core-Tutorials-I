@@ -1,0 +1,12 @@
+Aug 17, 2006 8:43:16 PM com.dds.util.MyLogger printInfo
+INFO: Now String ::: asdfgh
+Aug 17, 2006 8:43:40 PM com.dds.util.MyLogger printException
+SEVERE: 
+java.lang.NullPointerException
+	at com.dds.test.Test.show(Test.java:14)
+	at com.dds.test.Test.main(Test.java:28)
+Aug 17, 2006 8:45:08 PM com.dds.util.MyLogger printException
+SEVERE: 
+java.lang.NullPointerException
+	at com.dds.test.Test.show(Test.java:14)
+	at com.dds.test.Test.main(Test.java:28)

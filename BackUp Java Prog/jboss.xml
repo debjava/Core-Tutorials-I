@@ -1,0 +1,12 @@
+<project name="jboss" default="compile">
+
+<property name="jboss.src.dir"			value="F:/jboss-4.0.3SP1-src/build"/>
+
+<target name="compile" description="To compile jboss source code">
+
+	<exec dir="${jboss.src.dir}"		executable="cmd">
+		<arg line="/c build.bat"/>
+	</exec>
+
+</target>
+</project>

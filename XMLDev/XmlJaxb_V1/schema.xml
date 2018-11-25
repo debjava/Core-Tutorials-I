@@ -1,0 +1,38 @@
+<project basedir="." default="SchemaCompile">
+
+<property name="src.dir"					value="${basedir}/src"/>
+<property name="lib.dir"					value="${basedir}/lib"/>
+<property name="bin.dir"					value="${basedir}/bin"/>
+<property name="package.dir"				value="com.vps.dds.jax"/>
+<property name="gen-src"					value="${basedir}/gen-src"/>
+<property name="${jaxb.prop}"				value="${gen-src}/com/vps/dds/jax"/>
+<property name ="schema.dir"				value="${src.dir}/databaseconfig"/>
+
+ <path id="libraries">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+  <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+    <classpath refid="libraries" />
+  </taskdef>
+
+
+<target name="init" description="To clean and create directories and files">
+	<delete dir="gen-src"/>
+	<delete dir="${bin.dir}"/>
+	<mkdir dir="gen-src"/>
+	<mkdir dir="${bin.dir}"/>
+
+</target>
+
+<target name="SchemaCompile" depends ="init" description="To compile xml schema">
+	<echo message="Compiling schema files..........................."/>
+  <xjc target="gen-src" package="com.vps.dds.jax">
+    <schema  dir="${schema.dir}"  includes="*.xsd"/>
+  </xjc>
+</target>
+
+
+</project>

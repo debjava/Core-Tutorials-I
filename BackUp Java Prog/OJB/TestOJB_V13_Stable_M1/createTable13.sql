@@ -1,0 +1,1 @@
+create table OJB_Tab1301(id varchar2(30),name varchar2(30) );

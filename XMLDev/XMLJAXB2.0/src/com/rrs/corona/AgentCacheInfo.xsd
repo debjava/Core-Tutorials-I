@@ -1,0 +1,21 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:hotwire="http://com/rrs/corona/hotwire/agent" 
+        targetNamespace="http://com/rrs/corona/hotwire/agent" 
+        elementFormDefault="qualified" 
+        attributeFormDefault="qualified" id="NewDataSet">
+	<xsd:element name="CoronaAgents">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="hotwire:Agent"  minOccurs="0" maxOccurs="unbounded"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Agent">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Name"  type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+				<xsd:element name="Timestamp"  type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

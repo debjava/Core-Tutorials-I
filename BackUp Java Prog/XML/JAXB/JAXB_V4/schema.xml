@@ -1,0 +1,39 @@
+<?xml version="1.0" standalone="yes"?>
+
+<project basedir="." default="compile">
+
+  <property name="librarydir"								value="${basedir}/lib"/>
+  <property name ="src.dir"									value="${basedir}/src"/>
+  <property name ="schema.dir"								value="${src.dir}/example"/>
+  <property name="schema.file"								value="${schema.dir}/example.xsd"/>
+
+    <path id="libraries">
+        <fileset dir="${librarydir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+  <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+    <classpath refid="libraries" />
+  </taskdef>
+<!--
+  <target name="compile" description="Compile all Java source files">
+    <echo message="Compiling the schema..." />
+    <mkdir dir="gen-src" />
+    <xjc schema="example.xsd" basedir="${schema.file}" package="com.rrs.corona" target="gen-src">
+      <produces dir="gen-src" includes="**/*.java" />
+    </xjc>
+  </target>
+
+-->
+  <target name="compile">
+  <!-- compile all xsd files in the src dir and put the output in the build dir -->
+  <mkdir dir="gen-src" />
+  <xjc target="gen-src" package="com.rrs.corona">
+    <schema  dir="${schema.dir}"  includes="*.xsd"/>
+    <!-- <binding dir="src" includes="*.xjb"/> -->
+  </xjc>
+</target>
+
+</project>
+

@@ -1,0 +1,21 @@
+<project name="ANTSQL" basedir="." default="create">
+
+<property name="sqlName"				value="${basedir}/create.sql"/>
+
+<target name="create" description="To run the sql script through ant script">
+<echo message="running the sql script"/>
+
+<sql	
+		rdbms="oracle"
+		userid="scott"
+		password="tiger"
+		driver="oracle.jdbc.OracleDriver"
+		print="yes"
+		url="jdbc:oracle:thin:@localhost:1521:orcl1"
+		output="outputfile.txt"
+		> <!-- like spooling, if utput attribute is not present,the out put will be shown in the dos console-->
+<transaction src="${basedir}/create.sql"/>
+</sql>
+</target>
+
+</project>

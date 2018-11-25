@@ -1,0 +1,31 @@
+<!--
+ Copyright 2004 Sun Microsystems, Inc. All rights reserved.
+ SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+-->
+
+<xsd:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+           jxb:version="1.0">
+
+  <xsd:element name="FooBar">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="foo" type="xsd:int"/>
+        <xsd:choice>
+          <xsd:element name="phoneNumber" type="xsd:string"/>
+          <xsd:element name="speedDial" type="xsd:int"/> 
+        </xsd:choice>
+        <xsd:group ref="ModelGroupChoice"/>
+      </xsd:sequence>
+      <xsd:attribute name="zip" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:group name="ModelGroupChoice">
+    <xsd:choice>
+      <xsd:element name="bool" type="xsd:boolean"/>
+      <xsd:element name="comment" type="xsd:string"/> 
+      <xsd:element name="value" type="xsd:int"/> 
+    </xsd:choice>
+  </xsd:group>
+</xsd:schema>

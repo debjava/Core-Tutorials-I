@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE server>
+
+<server>
+<classpath codebase="deploy" archives="timerservice.jar"/>
+  	<mbean code="com.dds.jmsser.test.JMSService"
+		name ="deba.test3:service=JMSService_V3">
+		<depends>jboss.mq.destination:service=Topic,name=liluTopic</depends>
+		<depends>jboss.mq:service=InvocationLayer,type=UIL2</depends>	
+	</mbean>
+</server>

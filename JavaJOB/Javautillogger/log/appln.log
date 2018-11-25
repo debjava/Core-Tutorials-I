@@ -1,0 +1,8 @@
+Aug 17, 2006 8:20:12 PM com.dds.test.TestutilLogger main
+INFO: First line written.......
+Aug 17, 2006 8:20:12 PM com.dds.test.TestutilLogger main
+SEVERE: It is severe ***********
+Aug 17, 2006 8:20:37 PM com.dds.test.TestutilLogger main
+INFO: First line written.......
+Aug 17, 2006 8:20:37 PM com.dds.test.TestutilLogger main
+SEVERE: It is severe ***********

@@ -1,0 +1,14 @@
+<DatabaseCongiguration>
+	<Database>
+		<DriverClass>oracle.jdbc.driver.OracleDriver</DriverClass>
+		<DatabaseURL>jdbc:oracle:thin:@localhost:1521:orcl</DatabaseURL>
+		<DatabaseUser>scott</DatabaseUser>
+		<DatabasePassword>tiger</DatabasePassword>
+	</Database>
+	<Database>
+		<DriverClass>oracle.jdbc.driver.OracleDriver</DriverClass>
+		<DatabaseURL>jdbc:oracle:thin:@localhost:1521:orcl1</DatabaseURL>
+		<DatabaseUser>piku</DatabaseUser>
+		<DatabasePassword>pikupiku</DatabasePassword>
+	</Database>
+</DatabaseCongiguration>

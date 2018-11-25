@@ -1,0 +1,361 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0201)http://www.google.com/codesearch?hl=en&q=show:7wBsGusVc78:W1qIJ5okBqo:snJEwreKJvI&sa=N&ct=rd&cs_p=http://svn.jahia.org/svn/jahia/trunk&cs_f=core/src/java/org/jahia/utils/pagination/PaginatableList.java -->
+<HTML><HEAD><TITLE>core/src/java/org/jahia/utils/pagination/PaginatableList.java - Google Code Search</TITLE>
+<META http-equiv=content-type content="text/html; charset=UTF-8">
+<STYLE>BODY {
+	MARGIN: 3px 8px 8px; COLOR: black; FONT-FAMILY: Arial, sans-serif; BACKGROUND-COLOR: white
+}
+.j {
+	BORDER-RIGHT: silver 1px solid; PADDING-RIGHT: 0.5em; BORDER-TOP: silver 1px solid; MARGIN-TOP: 4px; PADDING-LEFT: 0.5em; MARGIN-BOTTOM: 4px; PADDING-BOTTOM: 0.5em; BORDER-LEFT: silver 1px solid; WIDTH: 85%; COLOR: #222; PADDING-TOP: 0.5em; BORDER-BOTTOM: silver 1px solid; BACKGROUND-COLOR: #f5f5f5; WORD-WRAP: break-word
+}
+#title {
+	PADDING-RIGHT: 0px; BORDER-TOP: #36c 1px solid; PADDING-LEFT: 3px; PADDING-BOTTOM: 1px; MARGIN: 5px 0px 0px; PADDING-TOP: 1px; BACKGROUND-COLOR: #e5ecf9
+}
+.expl {
+	FONT-SIZE: small; MARGIN-LEFT: 2em; MARGIN-RIGHT: 2em
+}
+.f {
+	FONT-SIZE: small; MARGIN-BOTTOM: 1.5em
+}
+.hl {
+	FONT-WEIGHT: bold; COLOR: #000
+}
+.h {
+	MARGIN-TOP: 1em; MARGIN-BOTTOM: 0px
+}
+.k {
+	BACKGROUND-COLOR: #36c
+}
+.a {
+	FONT-SIZE: small; COLOR: green
+}
+.a A {
+	FONT-SIZE: small; COLOR: green
+}
+A:active {
+	COLOR: #f00
+}
+A:link {
+	COLOR: #00c
+}
+A:visited {
+	COLOR: #551a8b
+}
+A.s {
+	FONT-SIZE: small; COLOR: #77c
+}
+.s A {
+	FONT-SIZE: small; COLOR: #77c
+}
+.a {
+	FONT-SIZE: small; COLOR: green
+}
+.a A {
+	FONT-SIZE: small; COLOR: green
+}
+.i {
+	FONT-SIZE: small; COLOR: #a90a08
+}
+.i:link {
+	FONT-SIZE: small; COLOR: #a90a08
+}
+.n .i {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt
+}
+.n A {
+	FONT-SIZE: 10pt; COLOR: #000
+}
+.b A {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: #00c
+}
+CODE {
+	FONT-SIZE: 100%; COLOR: #007000; FONT-FAMILY: "bogus font here",monospace
+}
+CODE.fn {
+	FONT-SIZE: 100%; COLOR: #007000; FONT-FAMILY: "bogus font here",monospace
+}
+DIV.n {
+	MARGIN-TOP: 1ex
+}
+IMG {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+.chl {
+	BACKGROUND: #ffa
+}
+.cchl {
+	BACKGROUND: #aff
+}
+.cc {
+	COLOR: #060
+}
+.input_table TR TD {
+	VERTICAL-ALIGN: top
+}
+</STYLE>
+
+<SCRIPT type=text/javascript>
+<!--
+function sf(){}
+// --></SCRIPT>
+
+<META content="MSHTML 6.00.2900.3132" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff onload=sf()>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=left><A href="http://www.google.com/codesearch"><IMG 
+      height=55 alt="Go To Google Code Search Home" 
+      src="PaginableList_files/codesearch_logo_sm.gif" width=150 vspace=12 
+      border=0></A></TD>
+    <TD width=10></TD>
+    <TD align=left><FONT size=-1>This is Google's cached copy of <CODE 
+      class=fn>core/src/java/org/jahia/utils/pagination/PaginatableList.java</CODE> 
+      from<BR><SPAN class=a><A 
+      href="http://www.google.com/codesearch/url?hl=en&amp;q=show:6jwObt_1iY4:SES_MX_PT5c&amp;sa=N&amp;ct=rpc&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk">http://www.google.com/codesearch/url?hl=en&amp;q=show:6jwObt_1iY4:SES_MX_PT5c&amp;sa=N&amp;ct=rpc&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk</A></SPAN> 
+      <BR><BR><I>Google is neither affiliated with the authors of this page nor 
+      responsible for its content.</I></FONT></TD></TR>
+  <TR height=10>
+    <TD colSpan=3></TD></TR>
+  <TR bgColor=#000000 height=1>
+    <TD bgColor=#000000 colSpan=3></TD></TR></TBODY></TABLE><BR>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=left colSpan=4><PRE><A href="http://www.google.com/codesearch?hl=en&amp;q=show:6jwObt_1iY4:SES_MX_PT5c&amp;sa=N&amp;ct=rdp&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk">http://www.google.com/codesearch?hl=en&amp;q=show:6jwObt_1iY4:SES_MX_PT5c&amp;sa=N&amp;ct=rdp&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk</A>/<A href="http://www.google.com/codesearch?hl=en&amp;q=show:JzGdvl3Qcq4:rjm1LA1VKHI&amp;sa=N&amp;ct=rdp&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk&amp;cs_f=core">core</A>/<A href="http://www.google.com/codesearch?hl=en&amp;q=show:5U75KXluPx4:LajseuJzzRE&amp;sa=N&amp;ct=rdp&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk&amp;cs_f=core/src">src</A>/<A href="http://www.google.com/codesearch?hl=en&amp;q=show:UgpBUFOSx9U:hP1quBYeWzU&amp;sa=N&amp;ct=rdp&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk&amp;cs_f=core/src/java">java</A>/<A href="http://www.google.com/codesearch?hl=en&amp;q=show:ImYOCZLaKC0:xhZhtHFL9Y4&amp;sa=N&amp;ct=rdp&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk&amp;cs_f=core/src/java/org">org</A>/<A href="http://www.google.com/codesearch?hl=en&amp;q=show:ukHEf8FOA-I:Rfk0whaTbvI&amp;sa=N&amp;ct=rdp&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk&amp;cs_f=core/src/java/org/jahia">jahia</A>/<A href="http://www.google.com/codesearch?hl=en&amp;q=show:P0dnacYKr0c:EIBC-dLlkr0&amp;sa=N&amp;ct=rdp&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk&amp;cs_f=core/src/java/org/jahia/utils">utils</A>/<A href="http://www.google.com/codesearch?hl=en&amp;q=show:W1qIJ5okBqo:V0jXWldda2A&amp;sa=N&amp;ct=rdp&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk&amp;cs_f=core/src/java/org/jahia/utils/pagination">pagination</A>/</PRE></TD></TR>
+  <TR>
+    <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+    <TD vAlign=top align=left><PRE><B>PaginatableList.java</B>
+<A href="http://www.google.com/codesearch?hl=en&amp;q=show:41N1-spf32I:W1qIJ5okBqo:nMR6tuLvbk8&amp;sa=N&amp;ct=rd&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk&amp;cs_f=core/src/java/org/jahia/utils/pagination/PaginatablePrebuiltList.java">PaginatablePrebuiltList.java</A>
+<A href="http://www.google.com/codesearch?hl=en&amp;q=show:YSTg8aeFvE8:W1qIJ5okBqo:g0DoBfPF8Kg&amp;sa=N&amp;ct=rd&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk&amp;cs_f=core/src/java/org/jahia/utils/pagination/Paginator.java">Paginator.java</A>
+</PRE></TD>
+    <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+    <TD vAlign=top align=left width="100%"><PRE><SPAN class=cc>/*
+ * Copyright 2002-2006 Jahia Ltd
+ *
+ * Licensed under the JAHIA COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (JCDDL),
+ * Version 1.0 (the "License"), or (at your option) any later version; you may
+ * not use this file except in compliance with the License. You should have
+ * received a copy of the License along with this program; if not, you may obtain
+ * a copy of the License at
+ *
+ *  http://www.jahia.org/license/
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</SPAN><SPAN class=cc>//</SPAN>
+<SPAN class=cc>//  PaginatableList</SPAN>
+<SPAN class=cc>//</SPAN>
+<SPAN class=cc>//</SPAN>
+
+package org.jahia.utils.pagination;
+
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+<SPAN class=cc>//------------------------------------------------import com.workingdogs.village.*;</SPAN>
+
+<SPAN class=cc>//------------------------------------------------import org.joist.database.*;</SPAN>
+
+<SPAN class=cc>/**
+ * An abstract class describing a list which can be paginated.
+ *
+ * @author MJ
+ */</SPAN>
+abstract public class PaginatableList extends ArrayList
+{
+    protected int itemsPerPage;
+
+    <SPAN class=cc>/**
+     * Returns a sublist of this list, the contents determined by
+     * the page requested.
+     */</SPAN>
+    public List getPage(Integer page) throws SQLException
+    {
+        int start = firstItem(page);
+        int finish = lastItem(page);
+        return subList(start,finish);
+    }
+
+    <SPAN class=cc>/**
+     * Prints out an HTML navigation bar for the given page;
+     */</SPAN>
+    public String navigationBar(String linkText, Integer page)
+    throws SQLException
+    {
+        boolean prependDots = false;
+        boolean appendDots = false;
+        int pageNo = page.intValue();
+        int pages = numberOfPages();
+        int startPage = pageNo - 5;
+        if (startPage &lt;= 0) startPage = 1;
+        if (startPage &gt; 1) prependDots = true;
+        int endPage = pageNo + 4;
+        if (endPage &lt; 10) endPage = 10;
+        if (endPage &gt; pages) endPage = pages;
+        if (endPage &lt; (pages-1)) appendDots = true;
+
+        String extra = appendQueryString();
+        if (!extra.equals("")) {
+            if (linkText.lastIndexOf("?") == -1) {
+                linkText += "?";
+            } else {
+                linkText += "&amp;";
+            }
+            linkText += extra;
+        }
+
+        StringBuffer bar = new StringBuffer();
+        if (startPage != endPage) {
+            if (pageNo != 1) {
+                bar.append(makeLink(linkText, pageNo-1, "Prev"));
+            } else {
+                bar.append("Prev");
+            }
+            bar.append(" | ");
+
+            if (prependDots) bar.append(" ... | ");
+
+            for (int i = startPage; i &lt;= endPage; i++) {
+                String linkedText = i + " " + makeGuide(new Integer(i));
+
+                if (i == pageNo) {
+                    bar.append(linkedText);
+                } else {
+                    bar.append(makeLink(linkText, i, linkedText));
+                }
+                if (i &lt; endPage) {
+                    bar.append (" | ");
+                }
+            }
+
+            bar.append(" | ");
+
+            if (prependDots) bar.append(" ... | ");
+
+            if (pageNo != endPage) {
+                bar.append(makeLink(linkText, pageNo+1, "Next"));
+            } else {
+                bar.append("Next");
+            }
+        }
+        return bar.toString();
+    }
+
+    <SPAN class=cc>/**
+     * Makes a link to the given page.
+     */</SPAN>
+    protected String makeLink(String linkText, int pageNo, String linkedText)
+    {
+        StringBuffer link = new StringBuffer();
+        link.append("&lt;a href=\"").append(linkText);
+        if (linkText.lastIndexOf("?") == -1) {
+            link.append("?");
+        } else {
+            link.append("&amp;");
+        }
+        link.append("page=").append(pageNo).append("\"&gt;").append(linkedText);
+        link.append("&lt;/a&gt;");
+        return link.toString();
+    }
+
+    <SPAN class=cc>/**
+     * Makes a guide to the given page for use in the navbar. A
+     * list of Users, for instance, might print "(A-N)" for a page
+     * in which the first entry had a name beginning with A and the
+     * last entry had a name beginning with N.
+     */</SPAN>
+    public String makeGuide(Integer page) throws SQLException
+    {
+        return "";
+    }
+
+    <SPAN class=cc>/**
+     * Generate whatever text is neccessary to mantain this list's
+     * state in a link to another page. A list which had had a filter
+     * applied to it would need to return fields which would reinstate
+     * the filter.
+     */</SPAN>
+    public String appendQueryString()
+    {
+        return "";
+    }
+
+    <SPAN class=cc>/**
+     * Returns the number of items in the list.
+     */</SPAN>
+    public int numberOfItems() throws SQLException
+    {
+        return size();
+    }
+
+    <SPAN class=cc>/**
+     * Returns the number of pages the list will occupy.
+     */</SPAN>
+    public int numberOfPages() throws SQLException
+    {
+        int entries = numberOfItems();
+        int pages = entries / itemsPerPage;
+        int entriesOnExtraPage = entries % itemsPerPage;
+        if (entriesOnExtraPage != 0) pages++;
+        return pages;
+    }
+
+    <SPAN class=cc>/**
+     * Returns the maximum number of items that should be on any
+     * given page. If the list was created with 0 items per page,
+     * display the whole list.
+     */</SPAN>
+    public int itemsOnPage() throws SQLException
+    {
+        int itemsOnPage = itemsPerPage;
+        if (itemsOnPage == 0) {
+            itemsOnPage = numberOfItems();
+        }
+        return itemsOnPage;
+    }
+
+    <SPAN class=cc>/**
+     * Returns the index of the first item on the given page.
+     */</SPAN>
+    public int firstItem(Integer pageNo) throws SQLException
+    {
+        int itemsOnThisPage = itemsOnPage();
+
+        int start = ((pageNo.intValue()-1) * itemsOnThisPage);
+        if (start &gt;= numberOfItems()) {
+            start = 0;
+        }
+        return start;
+    }
+
+    <SPAN class=cc>/**
+     * Returns the index of the last item on the given page.
+     */</SPAN>
+    public int lastItem(Integer pageNo) throws SQLException
+    {
+        int finish = firstItem(pageNo) + itemsOnPage();
+        if (finish &gt;= numberOfItems()) {
+            finish = numberOfItems();
+        }
+        return finish;
+    }
+
+}
+</PRE></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR bgColor=#000000 height=1>
+    <TD bgColor=#000000 colSpan=3></TD></TR>
+  <TR height=10>
+    <TD></TD></TR>
+  <TR>
+    <TD><FONT size=-1><CODE 
+      class=fn>core/src/java/org/jahia/utils/pagination/PaginatableList.java</CODE> 
+      from<BR><SPAN class=a><A 
+      href="http://www.google.com/codesearch/url?hl=en&amp;q=show:6jwObt_1iY4:SES_MX_PT5c&amp;sa=N&amp;ct=rpc&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk">http://www.google.com/codesearch/url?hl=en&amp;q=show:6jwObt_1iY4:SES_MX_PT5c&amp;sa=N&amp;ct=rpc&amp;cs_p=http://svn.jahia.org/svn/jahia/trunk</A></SPAN><BR><BR></FONT></TD></TR></TBODY></TABLE></BODY></HTML>

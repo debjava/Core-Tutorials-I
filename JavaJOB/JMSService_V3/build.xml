@@ -1,0 +1,38 @@
+<project name="JMSService_V1" basedir="." default="Deploy">
+
+<property name="src.dir"							value="${basedir}/src"/>
+<property name="bin.dir"							value="${basedir}/bin"/>
+<property name="lib.dir"							value="${basedir}/lib"/>
+<property name="config.dir"							value="${basedir}/config"/>
+<property name="jboss.deploy.dir"					value="C:/rr/jboss-4.0.3SP1/server/default/deploy"/>
+<property name="jarfile.jar"						value="timerservice.jar"/>
+<property name="ServiceFile.file"					value="${basedir}/config/timerservice-service.xml"/>
+
+
+ <path id="libraries">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="clean">
+        <delete dir="${bin.dir}"/>
+        <mkdir dir="${bin.dir}"/>
+    </target>
+
+    <target name="compile" depends="clean">
+      <javac srcdir="${src.dir}"
+             destdir="${bin.dir}"
+             classpathref="libraries"/>
+    </target>
+
+	<target name="CreateJar" depends="compile" description="Creating jar file">
+		<jar destfile="${bin.dir}/${jarfile.jar}" basedir="${bin.dir}"/>
+	</target>
+
+	<target name="Deploy" depends="CreateJar" description="Deployoing the jar file in Jboss">		
+		<copy file="${ServiceFile.file}"		todir="${jboss.deploy.dir}"/>
+		<copy file="${bin.dir}/${jarfile.jar}"			todir="${jboss.deploy.dir}" />
+	</target>
+
+</project>

@@ -1,0 +1,48 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="DBDetails">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="DataSourceInfo"	type="DSInfoType"	minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element name="TableInfo"		type="TableInfoType"	minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+<!-- ************************************************* DataSource information ******************************************************** -->
+
+	<xsd:complexType name="DSInfoType">
+		<xsd:sequence>
+ 			<xsd:element name="DBName"		type="xsd:string"   minOccurs="1" maxOccurs="1"/>
+ 			<xsd:element name="DBPort"		type="xsd:string"   minOccurs="1" maxOccurs="1"/>
+ 			<xsd:element name="DBUser"		type="xsd:string"   minOccurs="1" maxOccurs="1" />
+			<xsd:element name="DBPassword"		type="xsd:string"   minOccurs="1" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+<!--*********************************************** Table Info *********************************************************************-->
+
+	<xsd:complexType name="TableInfoType">
+		<xsd:sequence>
+			<xsd:element name="Table"		type="TableType"   minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+<!--********************************************* Table Name and Field Info *******************************************************-->
+
+	<xsd:complexType name="TableType">
+		<xsd:sequence>
+			<xsd:element name="TableName"		type="xsd:string"    minOccurs="1"  maxOccurs="1"/>
+			<xsd:element name="FieldInfo"		type="FieldType"     minOccurs="1"  maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+<!--******************************************* Field Info ************************************************************************-->
+
+	<xsd:complexType name="FieldType">
+		<xsd:sequence>
+			<xsd:element name="FieldName"		type="xsd:string"    minOccurs="1"  maxOccurs="1"/>
+			<xsd:element name="FieldType"		type="xsd:string"    minOccurs="1"  maxOccurs="1"/>
+			<xsd:element name="FieldSize"		type="xsd:string"    minOccurs="0"  maxOccurs="1"/>
+			<xsd:element name="PrimaryKey"		type="xsd:string"    minOccurs="1"  maxOccurs="1"/>
+		</xsd:sequence>
+	<xsd:complexType>
+</xsd:schema>
